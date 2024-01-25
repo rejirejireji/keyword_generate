@@ -10,7 +10,7 @@ def generate_ad_keywords(base_keyword):
 
     try:
         response = openai.Completion.create(
-          model="text-davinci-003",  # GPT-4のモデルを指定
+          model="text-davinci-003",  
           prompt=f"Generate a list of search advertising keywords related to '{base_keyword}':",
           max_tokens=100
         )
