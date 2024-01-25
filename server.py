@@ -1,17 +1,18 @@
 import os
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # .env ファイルから環境変数を読み込む
 load_dotenv()
 
 def generate_ad_keywords(base_keyword):
-    openai.api_key = os.getenv("OPENAI_API_KEY")
 
     try:
-        response = openai.Completion.create(
-          model="text-davinci-003",  
-          prompt=f"Generate a list of search advertising keywords related to '{base_keyword}':",
+        response = client.chat.completions.create(
+          model="gpt-4",  
+          messages=f"Generate a list of search advertising keywords related to '{base_keyword}':",
           max_tokens=100
         )
         return response.choices[0].text.strip()
