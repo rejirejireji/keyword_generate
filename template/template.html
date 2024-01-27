@@ -45,13 +45,15 @@
             <!-- メインコンテンツ -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div id="inputSection" class="container my-4">
-                    <div id="keywordGenerator"></div>
-                        <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
-                        <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
-                        <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Loading...
-                        </button>
+                    <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
+                    <input type="text" id="industryInput" placeholder="業界を入力" class="form-control mb-2">
+                    <input type="text" id="appealInput" placeholder="訴求内容を入力" class="form-control mb-2">
+                    <input type="text" id="regionInput" placeholder="配信地域を入力" class="form-control mb-2">
+                    <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
+                    <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
                 </div>
 
                 <div id="resultSection" class="container my-4">
