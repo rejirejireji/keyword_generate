@@ -3,29 +3,59 @@
 <head>
     <title>キーワード生成</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <!-- キーワード入力セクション -->
-    <div id="inputSection">
-        <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
-        
-        <!-- 通常の生成ボタン -->
-        <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
-        
-        <!-- スピナーを含むボタン（初期状態では非表示） -->
-        <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Loading...
-        </button>
+    <!-- タイトルセクション -->
+    <header class="bg-primary text-white text-center py-3">
+        <h1>キーワードジェネレーター</h1>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- サイドバー -->
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">メニュー1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">メニュー2</a>
+                        </li>
+                        <!-- その他のメニューアイテム... -->
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- メインコンテンツ -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div id="inputSection" class="container my-4">
+                    <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
+                    <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
+                    <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
+                </div>
+
+                <div id="resultSection" class="container my-4">
+                    <div id="keywordsDisplay"></div>
+                </div>
+            </main>
+        </div>
     </div>
 
-    <!-- 結果表示セクション -->
-    <div id="resultSection">
-        <p>生成結果</p>
-        <div id="keywordsDisplay"></div>
-    </div>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>
+            &copy; <a href="https://www.gendai-a.co.jp/" class="text-white" style="text-decoration: none;">GENDAI AGENCY.inc.</a>
+        </p>
+    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous"></script>
 </body>
 </html>
