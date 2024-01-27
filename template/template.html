@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>キーワード生成</title>
 </head>
+
 <body>
     <input type="text" id="keywordInput" placeholder="キーワードを入力">
     <button onclick="generateKeywords()">生成</button>
     <div id="keywordsDisplay"></div>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
+
 </html>
