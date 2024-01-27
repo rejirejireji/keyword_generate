@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>キーワード生成</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <input type="text" id="keywordInput" placeholder="キーワードを入力">
-    <button onclick="generateKeywords()">生成</button>
-    <div id="keywordsDisplay"></div>
+    <!-- キーワード入力セクション -->
+    <div id="inputSection">
+        <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
+        
+        <!-- 通常の生成ボタン -->
+        <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
+        
+        <!-- スピナーを含むボタン（初期状態では非表示） -->
+        <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </button>
+    </div>
+
+    <!-- 結果表示セクション -->
+    <div id="resultSection">
+        <p>生成結果</p>
+        <div id="keywordsDisplay"></div>
+    </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-
 </html>
