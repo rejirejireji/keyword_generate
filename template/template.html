@@ -126,12 +126,14 @@
                     <select id="cityInput" class="form-control mb-2">
                         <option value="">市区町村を選択</option>
                     </select>
-                    <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
+                    <div class="button-group">
+                        <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
                     <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Loading...
                     </button>
-
+                    <button onclick="clearInputs()" class="btn btn-secondary">クリア</button>
+                    </div>
 
                     <div id="resultSection" class="container my-4">
                         <button onclick="copyToClipboard()" class="btn">
@@ -151,8 +153,10 @@
                 </div>
                 <div id="feedbackContent" class="content-section" style="display: none;">
                     <div class="form-container">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScf8t4spyC6Z0RSeUEJgm5fU4MdhbJvEAa5TkfVjoHpHviNow/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-                    </div>                    
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLScf8t4spyC6Z0RSeUEJgm5fU4MdhbJvEAa5TkfVjoHpHviNow/viewform?embedded=true"
+                            frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+                    </div>
                 </div>
 
             </main>

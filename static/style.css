@@ -58,3 +58,12 @@ body {
     height: 80vh;
     border: none;
 }
+.button-group {
+    display: flex;
+    justify-content: space-between; /* ボタンを均等に配置 */
+    margin-top: 10px; /* 上部の要素との間隔 */
+}
+
+.button-group button {
+    flex-basis: 48%; /* ボタンの幅を設定 */
+}

@@ -78,8 +78,8 @@ function copyToClipboard() {
     });
 }
 //Ajaxに対して、メインコンテンツを変更するためのリクエスト送信
-$(document).ready(function() {
-    $('.nav-link').click(function(e) {
+$(document).ready(function () {
+    $('.nav-link').click(function (e) {
         e.preventDefault(); // デフォルトのリンク動作を防止
 
         // アクティブなスタイルの切り替え
@@ -92,3 +92,10 @@ $(document).ready(function() {
         $('#' + targetId).show();
     });
 });
+function clearInputs() {
+    document.getElementById("keywordInput").value = '';
+    document.getElementById("industryInput").value = '';
+    document.getElementById("appealInput").value = '';
+    document.getElementById("prefectureInput").selectedIndex = 0; // 最初のオプションを選択
+    document.getElementById("cityInput").selectedIndex = 0; // 最初のオプションを選択
+}
