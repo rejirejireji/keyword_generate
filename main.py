@@ -46,9 +46,8 @@ def generate_keywords():
     data = request.json
     base_keyword = data["base_keyword"]
     industry = data["industry"]
-    region = data["region"]
     appeal = data["appeal"]
-    ad_keywords = generate_ad_keywords(base_keyword, industry, region, appeal)
+    ad_keywords = generate_ad_keywords(base_keyword, industry, appeal)
     return jsonify({"ad_keywords": ad_keywords})
 
 
