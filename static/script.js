@@ -42,7 +42,6 @@ function generateKeywords() {
 $(document).ready(function () {
     $('#prefectureInput').change(function () {
         var prefectureCode = $(this).val();
-        var prefectureName = $("#prefectureInput option:selected").text(); // 選択された都道府県の名前
         var citySelect = $('#cityInput');
         citySelect.empty();
 
