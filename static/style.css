@@ -7,3 +7,10 @@ body {
     border-right: 1px solid #ddd;
     height: 100vh; /* ビューポートの高さに合わせる */
 }
+.code-block {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f8f9fa; 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    overflow-x: auto; 
+}

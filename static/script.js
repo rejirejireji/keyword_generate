@@ -60,4 +60,15 @@ $(document).ready(function() {
         allowClear: true
     });
 });
+function copyToClipboard() {
+    var textToCopy = document.getElementById('keywordsDisplay').innerText;
+    navigator.clipboard.writeText(textToCopy).then(function() {
+        // コピー成功時のアラート
+        alert('コピーしました');
+    }).catch(function(err) {
+        // コピー失敗時のエラーハンドリング
+        console.error('コピーに失敗しました: ', err);
+        alert('コピーに失敗しました');
+    });
+}
     
