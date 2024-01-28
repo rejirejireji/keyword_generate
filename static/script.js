@@ -78,14 +78,17 @@ function copyToClipboard() {
     });
 }
 //Ajaxに対して、メインコンテンツを変更するためのリクエスト送信
-$(document).ready(function () {
-    $('.nav-link').click(function (e) {
+$(document).ready(function() {
+    $('.nav-link').click(function(e) {
         e.preventDefault(); // デフォルトのリンク動作を防止
 
-        var targetId = $(this).attr('href').substring(1); // リンクのhrefからIDを取得
+        // アクティブなスタイルの切り替え
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
 
-        // すべてのコンテンツセクションを非表示にし、対象のセクションのみ表示
+        // コンテンツセクションの表示切り替え
+        var targetId = $(this).attr('href').substring(1);
         $('.content-section').hide();
         $('#' + targetId).show();
     });
-});  
+});

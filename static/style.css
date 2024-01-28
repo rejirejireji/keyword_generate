@@ -5,12 +5,43 @@ body {
 .sidebar {
     background-color: #f7f7f7;
     border-right: 1px solid #ddd;
-    height: 100vh; /* ビューポートの高さに合わせる */
+    height: 100vh;
+    /* ビューポートの高さに合わせる */
 }
+
 .code-block {
     font-family: 'Noto Sans JP', sans-serif;
-    background-color: #f8f9fa; 
-    border: 1px solid #ddd; 
-    padding: 10px; 
-    overflow-x: auto; 
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.nav-link.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    /* アイテムを縦方向に中央揃え */
+    justify-content: flex-start;
+    /* アイテムを横方向に始端揃え */
+}
+
+.nav-link .material-icons {
+    margin-right: 8px;
+    /* アイコンとテキストの間にマージンを設定 */
+}
+
+.sidebar-heading {
+    display: flex;
+    align-items: center;
+    /* アイテムを縦方向に中央揃え */
+}
+
+.sidebar-heading .material-icons {
+    margin-right: 5px;
 }
