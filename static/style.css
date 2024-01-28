@@ -95,10 +95,12 @@ body {
 /* モーダルコンテンツ */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 中央に配置 */
+    margin: 10% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* 幅 */
+    height: 70vh; /* 縦の幅をビューポートの70%に */
+    overflow: auto; /* 内容がはみ出た場合にスクロールバーを表示 */
 }
 
 /* クローズボタン */
