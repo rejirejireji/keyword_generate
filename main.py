@@ -19,7 +19,7 @@ def generate_ad_keywords(base_keyword, industry, region, appeal):
     user_message = f'''{base_keyword} このキーワードに対する、検索広告のキーワードを50個作成してください。
         訴求内容は、{appeal}ということも考慮してください。
         また、単語同士の間に半角スペースを空けるようにしてください。参考として、業界は{industry}で、配信地域は{region}です。 '''
-
+    print(user_message)
     try:
         response = client.chat.completions.create(
             model="gpt-4",

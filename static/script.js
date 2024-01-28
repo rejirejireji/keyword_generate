@@ -32,3 +32,24 @@ function generateKeywords() {
         generateButton.style.display = 'block';
     });
 }
+$(document).ready(function() {
+    $('#prefectureInput').change(function() {
+        var prefectureCode = $(this).val();
+        var citySelect = $('#cityInput');
+        citySelect.empty();
+
+        if (prefectureCode) {
+            fetch(`https://www.land.mlit.go.jp/webland/api/CitySearch?area=${prefectureCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    citySelect.append($('<option>', { value: '', text: '市区町村を選択' }));
+                    data.data.forEach(function(city) {
+                        citySelect.append($('<option>', { value: city.id, text: city.name }));
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            citySelect.append($('<option>', { value: '', text: '市区町村を選択' }));
+        }
+    });
+});
