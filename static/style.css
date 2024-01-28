@@ -45,3 +45,16 @@ body {
 .sidebar-heading .material-icons {
     margin-right: 5px;
 }
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container iframe {
+    width: 80%;
+    height: 80vh;
+    border: none;
+}
