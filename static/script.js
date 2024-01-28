@@ -2,8 +2,8 @@ function generateKeywords() {
     var baseKeyword = document.getElementById('keywordInput').value;
     var industry = document.getElementById('industryInput').value;
     var appeal = document.getElementById('appealInput').value;
-    var prefecture = document.getElementById('prefectureInput').value;
-    var city = document.getElementById('cityInput').value;
+    var prefectureName = $("#prefectureInput option:selected").text(); // 都道府県名を取得
+    var city = $("#cityInput option:selected").text(); // 市区町村名を取得
     var generateButton = document.getElementById('generateButton');
     var loadingButton = document.getElementById('loadingButton');
     var keywordsDisplay = document.getElementById('keywordsDisplay');
@@ -17,25 +17,32 @@ function generateKeywords() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 'base_keyword': baseKeyword, 'industry': industry, 'appeal': appeal, 'prefecture':prefecture, 'city':city })
+        body: JSON.stringify({ 
+            'base_keyword': baseKeyword, 
+            'industry': industry, 
+            'region': city, 
+            'appeal': appeal,
+            'prefecture': prefectureName 
+        })
     })
-        .then(response => response.json())
-        .then(data => {
-            keywordsDisplay.innerText = data.ad_keywords;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            keywordsDisplay.innerText = 'エラーが発生しました。';
-        })
-        .finally(() => {
-            // ボタンの表示を元に戻す
-            loadingButton.style.display = 'none';
-            generateButton.style.display = 'block';
-        });
+    .then(response => response.json())
+    .then(data => {
+        keywordsDisplay.innerText = data.ad_keywords;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        keywordsDisplay.innerText = 'エラーが発生しました。';
+    })
+    .finally(() => {
+        // ボタンの表示を元に戻す
+        loadingButton.style.display = 'none';
+        generateButton.style.display = 'block';
+    });
 }
 $(document).ready(function () {
     $('#prefectureInput').change(function () {
         var prefectureCode = $(this).val();
+        var prefectureName = $("#prefectureInput option:selected").text(); // 選択された都道府県の名前
         var citySelect = $('#cityInput');
         citySelect.empty();
 
