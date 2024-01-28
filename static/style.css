@@ -67,3 +67,14 @@ body {
 .button-group button {
     flex-basis: 48%; /* ボタンの幅を設定 */
 }
+.main-container {
+    display: flex;
+    justify-content: center; /* 横方向の中央揃え */
+}
+
+/* キーワードジェネレータコンテンツに対するスタイル */
+#keywordGeneratorContent {
+    width: 50%; /* 幅をビューポートの50%に設定 */
+    max-width: 600px; /* 最大幅を設定 */
+    /* その他のスタイリング */
+}
