@@ -53,6 +53,11 @@ def generate_keywords():
     ad_keywords = generate_ad_keywords(base_keyword, industry, appeal, prefecture, region)
     return jsonify({"ad_keywords": ad_keywords})
 
+@app.route('/some-page')
+def some_page():
+    # このルートに対するコンテンツを返す
+    return render_template('some_page.html')
+
 
 # Flaskアプリケーションの実行
 if __name__ == "__main__":
