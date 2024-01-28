@@ -78,3 +78,44 @@ body {
     max-width: 1200px; /* 最大幅を設定 */
     /* その他のスタイリング */
 }
+/* モーダルの基本スタイル */
+.modal {
+    display: none; /* 最初は非表示 */
+    position: fixed; /* 画面に固定 */
+    z-index: 1; /* コンテンツの上に表示 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全幅 */
+    height: 100%; /* 全高 */
+    overflow: auto; /* スクロール可能に */
+    background-color: rgb(0,0,0); /* 背景色 */
+    background-color: rgba(0,0,0,0.4); /* 背景色（透明度付き） */
+}
+
+/* モーダルコンテンツ */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 中央に配置 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 幅 */
+}
+
+/* クローズボタン */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.embedded-site-title {
+    cursor: pointer; /* クリック可能な要素のカーソルを指に */
+}
+

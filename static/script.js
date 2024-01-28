@@ -99,3 +99,19 @@ function clearInputs() {
     document.getElementById("prefectureInput").selectedIndex = 0; // 最初のオプションを選択
     document.getElementById("cityInput").selectedIndex = 0; // 最初のオプションを選択
 }
+// モーダルを開く関数
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+
+// モーダルを閉じる関数
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+
+// 画面外のクリックでモーダルを閉じる
+window.onclick = function(event) {
+    if (event.target == document.getElementById("myModal")) {
+        document.getElementById("myModal").style.display = "none";
+    }
+}

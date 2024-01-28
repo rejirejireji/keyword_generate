@@ -65,9 +65,18 @@
             <!-- メインコンテンツ -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div id="homeContent" class="content-section">
-                    <p>ここにはウェブサイトの概要、主要な機能、最新情報などが表示されます。</p>
-                    <!-- その他の内容 -->
+                    <h2 class="embedded-site-title" onclick="openModal()">キーワードのマッチタイプについて</h2>
+
+                    <!-- モーダルウィンドウ -->
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <iframe src="https://anagrams.jp/blog/perfect-guide-of-keyword-match-type" width="100%" height="600" style="border:none;"></iframe>
+                        </div>
+                    </div>
                 </div>
+                
+                
                 <div class="main-container">
                     <div id="keywordGeneratorContent" class="content-section" style="display: none;">
                         <p></p>
