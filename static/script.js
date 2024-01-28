@@ -2,6 +2,8 @@ function generateKeywords() {
     var baseKeyword = document.getElementById('keywordInput').value;
     var industry = document.getElementById('industryInput').value;
     var appeal = document.getElementById('appealInput').value;
+    var prefecture = document.getElementById('prefectureInput').value;
+    var city = document.getElementById('cityInput').value;
     var generateButton = document.getElementById('generateButton');
     var loadingButton = document.getElementById('loadingButton');
     var keywordsDisplay = document.getElementById('keywordsDisplay');
@@ -15,7 +17,7 @@ function generateKeywords() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 'base_keyword': baseKeyword, 'industry': industry, 'appeal': appeal })
+        body: JSON.stringify({ 'base_keyword': baseKeyword, 'industry': industry, 'appeal': appeal, 'prefecture':prefecture, 'city':city })
     })
         .then(response => response.json())
         .then(data => {
