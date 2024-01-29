@@ -115,3 +115,15 @@ window.onclick = function(event) {
         document.getElementById("myModal").style.display = "none";
     }
 }
+function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("closed");
+
+    var menuIcon = document.getElementById("menu-icon");
+    if (sidebar.classList.contains("closed")) {
+        menuIcon.textContent = "menu_open";
+    } else {
+        menuIcon.textContent = "menu";
+    }
+}
+
