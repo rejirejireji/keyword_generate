@@ -36,24 +36,28 @@ body {
 }
 
 #sidebar.closed .nav-link {
-    background-color: transparent; /* 背景色を透明にする */
-    color: inherit; /* 色を継承する */
-    border-radius: 0; /* 角丸を無くす */
-    padding-left: 10px; /* 左パディングを調整 */
+    background-color: transparent;
+    /* 背景色を透明にする */
+    color: inherit;
+    /* 色を継承する */
+    border-radius: 0;
+    /* 角丸を無くす */
+    padding-left: 10px;
+    /* 左パディングを調整 */
 }
 
 #sidebar.closed .nav-link.active {
-    background-color: transparent; /* アクティブなリンクの背景色を透明に */
-    color: #007bff; /* アクティブなリンクの色を調整 */
-    border-radius: 0; /* 角丸を無くす */
+    background-color: transparent;
+    /* アクティブなリンクの背景色を透明に */
+    color: #007bff;
+    /* アクティブなリンクの色を調整 */
+    border-radius: 0;
+    /* 角丸を無くす */
 }
 
-#menuicon {
+#menu-icon {
     color: #01152b;
-    font-size: 40px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    font-size: 30px;
     cursor: pointer;
 }
 
@@ -152,7 +156,6 @@ body {
 
 .embedded-site-title {
     cursor: pointer;
-    /* クリック可能な要素のカーソルを指に */
 }
 
 #sidebar {
@@ -177,9 +180,17 @@ body {
 #sidebar.closed #text-analysis,
 #sidebar.closed #text-faq,
 #sidebar.closed #text-feedback {
-    display: none; 
+    display: none;
 }
 
 #sidebar.closed .material-icons {
-    display: block; 
+    display: block;
+    cursor: pointer;
+}
+
+.sidebar-heading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
 }
