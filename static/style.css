@@ -33,18 +33,30 @@ body {
 
 .nav-link .material-icons {
     margin-right: 8px;
-    /* アイコンとテキストの間にマージンを設定 */
 }
 
-.sidebar-heading {
+#sidebar.closed .nav-link {
+    background-color: transparent; /* 背景色を透明にする */
+    color: inherit; /* 色を継承する */
+    border-radius: 0; /* 角丸を無くす */
+    padding-left: 10px; /* 左パディングを調整 */
+}
+
+#sidebar.closed .nav-link.active {
+    background-color: transparent; /* アクティブなリンクの背景色を透明に */
+    color: #007bff; /* アクティブなリンクの色を調整 */
+    border-radius: 0; /* 角丸を無くす */
+}
+
+#menuicon {
+    color: #01152b;
+    font-size: 40px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    /* アイテムを縦方向に中央揃え */
+    cursor: pointer;
 }
 
-.sidebar-heading .material-icons {
-    margin-right: 5px;
-}
 
 .form-container {
     display: flex;
@@ -58,49 +70,69 @@ body {
     height: 80vh;
     border: none;
 }
+
 .button-group {
     display: flex;
-    justify-content: space-between; /* ボタンを均等に配置 */
-    margin-top: 10px; /* 上部の要素との間隔 */
+    justify-content: space-between;
+    /* ボタンを均等に配置 */
+    margin-top: 10px;
+    /* 上部の要素との間隔 */
 }
 
 .button-group button {
-    flex-basis: 48%; /* ボタンの幅を設定 */
+    flex-basis: 48%;
+    /* ボタンの幅を設定 */
 }
+
 .main-container {
     display: flex;
-    justify-content: center; /* 横方向の中央揃え */
+    justify-content: center;
+    /* 横方向の中央揃え */
 }
 
 /* キーワードジェネレータコンテンツに対するスタイル */
 #keywordGeneratorContent {
-    width: 100%; /* 幅をビューポートの50%に設定 */
-    max-width: 1200px; /* 最大幅を設定 */
+    width: 100%;
+    /* 幅をビューポートの50%に設定 */
+    max-width: 1200px;
+    /* 最大幅を設定 */
     /* その他のスタイリング */
 }
+
 /* モーダルの基本スタイル */
 .modal {
-    display: none; /* 最初は非表示 */
-    position: fixed; /* 画面に固定 */
-    z-index: 1; /* コンテンツの上に表示 */
+    display: none;
+    /* 最初は非表示 */
+    position: fixed;
+    /* 画面に固定 */
+    z-index: 1;
+    /* コンテンツの上に表示 */
     left: 0;
     top: 0;
-    width: 100%; /* 全幅 */
-    height: 100%; /* 全高 */
-    overflow: auto; /* スクロール可能に */
-    background-color: rgb(0,0,0); /* 背景色 */
-    background-color: rgba(0,0,0,0.4); /* 背景色（透明度付き） */
+    width: 100%;
+    /* 全幅 */
+    height: 100%;
+    /* 全高 */
+    overflow: auto;
+    /* スクロール可能に */
+    background-color: rgb(0, 0, 0);
+    /* 背景色 */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 背景色（透明度付き） */
 }
 
 /* モーダルコンテンツ */
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto; 
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* 幅 */
-    height: 70vh; /* 縦の幅をビューポートの70%に */
-    overflow: auto; /* 内容がはみ出た場合にスクロールバーを表示 */
+    width: 80%;
+    /* 幅 */
+    height: 70vh;
+    /* 縦の幅をビューポートの70%に */
+    overflow: auto;
+    /* 内容がはみ出た場合にスクロールバーを表示 */
 }
 
 /* クローズボタン */
@@ -117,7 +149,37 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
 .embedded-site-title {
-    cursor: pointer; /* クリック可能な要素のカーソルを指に */
+    cursor: pointer;
+    /* クリック可能な要素のカーソルを指に */
 }
 
+#sidebar {
+    width: 200px;
+    /* 開いた状態の幅 */
+    transition: width 0.3s;
+    /* スムーズな幅の変更 */
+}
+
+#sidebar.closed {
+    width: 50px;
+    /* 閉じた状態の幅 */
+}
+
+#sidebar.closed {
+    width: 50px;
+    /* 閉じた状態の幅 */
+}
+
+#sidebar.closed #text-home,
+#sidebar.closed #text-keyword,
+#sidebar.closed #text-analysis,
+#sidebar.closed #text-faq,
+#sidebar.closed #text-feedback {
+    display: none; 
+}
+
+#sidebar.closed .material-icons {
+    display: block; 
+}
