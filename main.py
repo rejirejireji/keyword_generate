@@ -20,7 +20,7 @@ def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
         訴求内容は、{appeal}ということも考慮してください。1～50のような数字で表記するのではなく、結果のみ表示してください。
         また、単語同士の間に半角スペースを空けるようにしてください。参考として、業界は{industry}で、
         配信地域は{prefecture}{city}です。 '''
-    print(user_message)
+    print(user_message) #プロンプトをログに表示
     try:
         response = client.chat.completions.create(
             model="gpt-4",
@@ -31,7 +31,7 @@ def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred: {e}") #エラーログ
         return None
 
 

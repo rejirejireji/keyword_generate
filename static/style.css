@@ -26,7 +26,6 @@ main {
     overflow: auto;
 }
 
-
 .sidebar {
     background-color: #f7f7f7;
     border-right: 1px solid #ddd;
@@ -54,9 +53,7 @@ main {
 .nav-link {
     display: flex;
     align-items: center;
-    /* アイテムを縦方向に中央揃え */
     justify-content: flex-start;
-    /* アイテムを横方向に始端揃え */
 }
 
 .nav-link .material-icons {
@@ -65,22 +62,15 @@ main {
 
 #sidebar.closed .nav-link {
     background-color: transparent;
-    /* 背景色を透明にする */
     color: inherit;
-    /* 色を継承する */
     border-radius: 0;
-    /* 角丸を無くす */
     padding-left: 10px;
-    /* 左パディングを調整 */
 }
 
 #sidebar.closed .nav-link.active {
     background-color: transparent;
-    /* アクティブなリンクの背景色を透明に */
     color: #007bff;
-    /* アクティブなリンクの色を調整 */
     border-radius: 0;
-    /* 角丸を無くす */
 }
 
 #menu-icon {
@@ -106,68 +96,46 @@ main {
 .button-group {
     display: flex;
     justify-content: space-between;
-    /* ボタンを均等に配置 */
     margin-top: 10px;
-    /* 上部の要素との間隔 */
 }
 
 .button-group button {
     flex-basis: 48%;
-    /* ボタンの幅を設定 */
 }
 
 .main-container {
     display: flex;
     justify-content: center;
-    /* 横方向の中央揃え */
 }
 
-/* キーワードジェネレータコンテンツに対するスタイル */
 #keywordGeneratorContent {
     width: 100%;
-    /* 幅をビューポートの50%に設定 */
     max-width: 1200px;
-    /* 最大幅を設定 */
-    /* その他のスタイリング */
 }
 
-/* モーダルの基本スタイル */
 .modal {
     display: none;
-    /* 最初は非表示 */
     position: fixed;
-    /* 画面に固定 */
     z-index: 1;
-    /* コンテンツの上に表示 */
     left: 0;
     top: 0;
     width: 100%;
-    /* 全幅 */
     height: 100%;
-    /* 全高 */
     overflow: auto;
-    /* スクロール可能に */
     background-color: rgb(0, 0, 0);
-    /* 背景色 */
     background-color: rgba(0, 0, 0, 0.4);
-    /* 背景色（透明度付き） */
 }
 
-/* モーダルコンテンツ */
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    /* 幅 */
     height: 70vh;
-    /* 縦の幅をビューポートの70%に */
     overflow: auto;
-    /* 内容がはみ出た場合にスクロールバーを表示 */
 }
 
-/* クローズボタン */
 .close {
     color: #aaa;
     float: right;
@@ -188,14 +156,11 @@ main {
 
 #sidebar {
     width: 200px;
-    /* 開いた状態の幅 */
     transition: width 0.3s;
-    /* スムーズな幅の変更 */
 }
 
 #sidebar.closed {
     width: 50px;
-    /* 閉じた状態の幅 */
 }
 
 
@@ -218,17 +183,16 @@ main {
     justify-content: flex-start;
     padding: 10px;
 }
-/* 初期スタイル */
+
 #main_content {
-    width: calc(100% - 250px); /* サイドバーの幅を引いた残りの幅 */
-    margin-left: 250px; /* サイドバーの幅 */
-    transition: width 0.5s, margin-left 0.5s; /* スムーズな遷移 */
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    transition: width 0.5s, margin-left 0.5s;
 }
 
-/* メディアクエリ - サイドバーが縮小されるブレークポイント */
 @media (max-width: 768px) {
     #main_content {
-        width: 100%; /* フル幅 */
-        margin-left: 0; /* マージンなし */
+        width: 100%;
+        margin-left: 0;
     }
 }
