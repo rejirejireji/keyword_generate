@@ -1,12 +1,40 @@
+header {
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 1030;
+
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030;
+
+}
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
 }
 
+main {
+    margin-top: 60px;
+    margin-left: 200px;
+    margin-bottom: 60px;
+    overflow: auto;
+}
+
+
 .sidebar {
     background-color: #f7f7f7;
     border-right: 1px solid #ddd;
-    height: 100vh;
-    /* ビューポートの高さに合わせる */
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: 100%;
+    z-index: 1030;
 }
 
 .code-block {
@@ -170,10 +198,6 @@ body {
     /* 閉じた状態の幅 */
 }
 
-#sidebar.closed {
-    width: 50px;
-    /* 閉じた状態の幅 */
-}
 
 #sidebar.closed #text-home,
 #sidebar.closed #text-keyword,
@@ -193,4 +217,18 @@ body {
     align-items: center;
     justify-content: flex-start;
     padding: 10px;
+}
+/* 初期スタイル */
+#main_content {
+    width: calc(100% - 250px); /* サイドバーの幅を引いた残りの幅 */
+    margin-left: 250px; /* サイドバーの幅 */
+    transition: width 0.5s, margin-left 0.5s; /* スムーズな遷移 */
+}
+
+/* メディアクエリ - サイドバーが縮小されるブレークポイント */
+@media (max-width: 768px) {
+    #main_content {
+        width: 100%; /* フル幅 */
+        margin-left: 0; /* マージンなし */
+    }
 }
