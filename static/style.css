@@ -11,12 +11,12 @@ header {
 
 }
 
-footer {
+#footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 1030;
-    background-color: #F4F4F4;
+    background-color: #477aae;
 }
 
 body {
@@ -28,7 +28,6 @@ body {
 
 main {
     margin-top: 80px;
-    margin-left: 200px;
     margin-bottom: 60px;
     overflow: auto;
 }
@@ -113,7 +112,6 @@ main {
 
 .main-container {
     display: flex;
-    justify-content: center;
 }
 
 #keywordGeneratorContent {
