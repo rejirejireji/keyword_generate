@@ -6,8 +6,11 @@ from openai import OpenAI
 # Flaskアプリケーションの設定
 app = Flask(__name__,template_folder='template')
 
+# アプリケーションのディレクトリを連結して指定
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+
 # .env ファイルから環境変数を読み込む
-load_dotenv()
+load_dotenv(dotenv_path)
 
 # OpenAIのクライアントを設定
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
