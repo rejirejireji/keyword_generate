@@ -1,3 +1,7 @@
+html {
+    overflow-x: hidden;
+    height: 100%;
+}
 header {
     position: fixed;
     top: 0;
@@ -18,6 +22,8 @@ footer {
 body {
     font-family: 'Noto Sans JP', sans-serif;
     background-color: #F4F4F4;
+    overflow-x: hidden;
+    height: 100%;
 }
 
 main {
@@ -46,7 +52,7 @@ main {
 }
 
 .nav-link.active {
-    background-color: #0ccaff;
+    background-color: #99cdf7;
     color: white;
     border-radius: 5px;
 }
@@ -197,17 +203,13 @@ main {
     flex-wrap: nowrap;
 }
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-html, body {
-    overflow-x: hidden;
-    height: 100%;
-}
 .header {
     display: block;
     margin: 0 auto;
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #00c6ff;
+    background-color: #89C4F4;
     position: fixed;
     height: 60px!important;
     overflow: hidden;
@@ -240,7 +242,7 @@ html, body {
     margin-top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg, #00c6ff 0%, #0072ff 100%);
+    background: linear-gradient(180deg, #89C4F4 0%, #5D9CEC 100%);;
 }
 .sidebarMenuInner{
     margin:0;
@@ -259,7 +261,7 @@ html, body {
 .sidebarMenuInner li span{
     display: block;
     font-size: 14px;
-    color: #004264;
+    color: #086491;
 }
 .sidebarMenuInner li a{
     color: #fff;
