@@ -141,13 +141,22 @@ window.onclick = function(event) {
 }
 function toggleSidebar() {
     var sidebar = document.getElementById("sidebar");
+    var mainContent = document.getElementById("main_content");
+
+    // サイドバーの表示状態を切り替え
     sidebar.classList.toggle("closed");
 
+    // メニューアイコンの表示を切り替え
     var menuIcon = document.getElementById("menu-icon");
     if (sidebar.classList.contains("closed")) {
         menuIcon.textContent = "menu_open";
+        mainContent.style.width = "100%";
+        mainContent.style.marginLeft = "0";
     } else {
         menuIcon.textContent = "menu";
+        mainContent.style.width = "calc(100% - 250px)"; // サイドバーの幅を考慮
+        mainContent.style.marginLeft = "250px";
     }
 }
+
 
