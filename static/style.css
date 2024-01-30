@@ -12,11 +12,12 @@ footer {
     bottom: 0;
     width: 100%;
     z-index: 1030;
-
+    background-color: #F4F4F4;
 }
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
+    background-color: #F4F4F4;
 }
 
 main {
@@ -45,7 +46,7 @@ main {
 }
 
 .nav-link.active {
-    background-color: #007bff;
+    background-color: #0ccaff;
     color: white;
     border-radius: 5px;
 }
@@ -58,6 +59,7 @@ main {
 
 .nav-link .material-icons {
     margin-right: 8px;
+    color: #004264
 }
 
 #sidebar.closed .nav-link {
@@ -199,19 +201,13 @@ html, body {
     overflow-x: hidden;
     height: 100%;
 }
-body {
-    background: #fff;
-    padding: 0;
-    margin: 0;
-    font-family: 'Varela Round', sans-serif;
-}
 .header {
     display: block;
     margin: 0 auto;
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #157bd1;
+    background-color: #00c6ff;
     position: fixed;
     height: 60px!important;
     overflow: hidden;
@@ -244,7 +240,7 @@ body {
     margin-top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg, #1c48fa 0%, #3F5EFB 100%);
+    background: linear-gradient(180deg, #00c6ff 0%, #0072ff 100%);
 }
 .sidebarMenuInner{
     margin:0;
@@ -256,14 +252,14 @@ body {
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 20px;
+    padding: 2px;
     cursor: pointer;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 .sidebarMenuInner li span{
     display: block;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.50);
+    color: #004264;
 }
 .sidebarMenuInner li a{
     color: #fff;

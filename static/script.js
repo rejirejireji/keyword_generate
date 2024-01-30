@@ -158,5 +158,17 @@ function toggleSidebar() {
         mainContent.style.marginLeft = "250px";
     }
 }
+document.addEventListener('click', function(event) {
+    var sidebar = document.getElementById('sidebarMenu');
+    var openSidebarMenu = document.getElementById('openSidebarMenu');
+    var isClickInsideSidebar = sidebar.contains(event.target);
+    var isSidebarCheckbox = event.target === openSidebarMenu;
+
+    // サイドバーの外側をクリックし、かつサイドバーを開くためのチェックボックスではない場合
+    if (!isClickInsideSidebar && !isSidebarCheckbox) {
+        // サイドバーを閉じる
+        openSidebarMenu.checked = false;
+    }
+});
 
 
