@@ -161,14 +161,17 @@ function toggleSidebar() {
 document.addEventListener('click', function(event) {
     var sidebar = document.getElementById('sidebarMenu');
     var openSidebarMenu = document.getElementById('openSidebarMenu');
+    var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
     var isClickInsideSidebar = sidebar.contains(event.target);
     var isSidebarCheckbox = event.target === openSidebarMenu;
+    var isToggleIcon = sidebarIconToggle.contains(event.target);
 
-    // サイドバーの外側をクリックし、かつサイドバーを開くためのチェックボックスではない場合
-    if (!isClickInsideSidebar && !isSidebarCheckbox) {
+    // サイドバーの外側をクリックし、サイドバーを開くためのチェックボックスやトグルアイコンではない場合
+    if (!isClickInsideSidebar && !isSidebarCheckbox && !isToggleIcon) {
         // サイドバーを閉じる
         openSidebarMenu.checked = false;
     }
 });
+
 
 
