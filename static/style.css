@@ -21,9 +21,10 @@ header {
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background-color: #426f78;
+    background-color: #3a5272;
     overflow-x: hidden;
     height: 100%;
+    color: #ffffff;
 }
 
 main {
@@ -207,7 +208,7 @@ main {
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #25313b;
+    background-color: #394c5c;
     position: fixed;
     height: 70px!important;
     overflow: hidden;
@@ -240,7 +241,7 @@ main {
     margin-top: 70px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg, #25313b 0%, #040011 100%);;
+    background: linear-gradient(180deg, #394c5c 0%, #040011 100%);;
 }
 .sidebarMenuInner{
     margin:0;
