@@ -21,10 +21,10 @@ header {
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background-color: #3a5272;
+    background-color: #e2e2e9;
     overflow-x: hidden;
     height: 100%;
-    color: #ffffff;
+    color: #221616;
 }
 
 main {
@@ -208,7 +208,7 @@ main {
     width: 100%;
     max-width: 100%;
     box-shadow: none;
-    background-color: #394c5c;
+    background-color: #384A5A;
     position: fixed;
     height: 70px!important;
     overflow: hidden;
@@ -335,4 +335,8 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
+}
+#generateButton {
+    background-color: #1f4b7a;
+    border-color: #1f4b7a 
 }
