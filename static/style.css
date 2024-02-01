@@ -340,3 +340,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     background-color: #1f4b7a;
     border-color: #1f4b7a 
 }
+#loadingButton {
+    background-color: #1f4b7a;
+    border-color: #1f4b7a 
+}
