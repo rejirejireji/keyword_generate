@@ -172,6 +172,21 @@ document.addEventListener('click', function(event) {
         openSidebarMenu.checked = false;
     }
 });
-
-
-
+////////////////
+//ニュースの表示
+////////////////
+$(document).ready(function() {
+    $.getJSON('/get_rss_feed', function(data) {
+        var items = [];
+        $.each(data, function(index, val) {
+            var listItem = "<li class='news_list_item'>" +
+                           "<a href='" + val.link + "'>" +
+                           "<div class='news_list_date'><time>" +
+                           val.published + "</time><p class='news_item'>お知らせ</p></div>" +
+                           "<p>" + val.title + "</p><span class='arrow'></span>" +
+                           "</a></li>";
+            items.push(listItem);
+        });
+        $("#webAdNewsList").html(items.join(""));
+    });
+});

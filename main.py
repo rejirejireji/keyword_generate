@@ -38,11 +38,15 @@ def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
 
 
 def get_google_news_feed():
-    url = "https://news.google.com/rss/search?q=WEB%E5%BA%83%E5%91%8A&hl=ja&gl=JP&ceid=JP:ja"
+    url = "https://news.google.com/rss/search?q=after:2024/01/01+WEB広告&hl=ja&gl=JP&ceid=JP:ja"
     feed = feedparser.parse(url)
     news_list = []
     for entry in feed.entries[:10]:
-        news_list.append({'title': entry.title, 'link': entry.link})
+        news_list.append({
+            'title': entry.title,
+            'link': entry.link,
+            'date': entry.published
+        })
     return news_list
 
 
@@ -55,7 +59,7 @@ def index():
 @app.route("/get_rss_feed")
 def get_rss_feed():
     news_feed = get_google_news_feed()
-    return render_template("rss_feed.html", news_feed=news_feed)
+    return jsonify(news_feed) 
 
 # Flaskエンドポイント
 @app.route("/generate_keywords", methods=["POST"])

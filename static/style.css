@@ -344,3 +344,58 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     background-color: #1f4b7a;
     border-color: #1f4b7a 
 }
+.news {
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+
+.inner {
+    max-width: 800px;
+    margin: auto;
+}
+
+.news_list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.news_list_item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.news_list_date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.news_list_date time {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.news_item {
+    font-size: 0.8em;
+    background-color: #007bff;
+    color: white;
+    padding: 2px 5px;
+}
+
+.news_list_item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.news_list_item a:hover {
+    text-decoration: underline;
+}
+
+.arrow {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    /* (矢印のスタイルを追加) */
+}
