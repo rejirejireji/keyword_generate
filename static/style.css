@@ -1,12 +1,46 @@
+html {
+    overflow-x: hidden;
+    height: 100%;
+}
+header {
+    position: fixed;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 1030;
+
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1030;
+    background-color: #040011;
+}
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
+    background-color: #e2e2e9;
+    overflow-x: hidden;
+    height: 100%;
+    color: #221616;
+}
+
+main {
+    margin-top: 80px;
+    margin-bottom: 60px;
+    overflow: auto;
 }
 
 .sidebar {
     background-color: #f7f7f7;
     border-right: 1px solid #ddd;
-    height: 100vh;
-    /* ビューポートの高さに合わせる */
+    position: fixed;
+    top: 70px;
+    left: 0;
+    height: 100%;
+    z-index: 1030;
 }
 
 .code-block {
@@ -18,7 +52,7 @@ body {
 }
 
 .nav-link.active {
-    background-color: #007bff;
+    background-color: #293e4f;
     color: white;
     border-radius: 5px;
 }
@@ -26,33 +60,25 @@ body {
 .nav-link {
     display: flex;
     align-items: center;
-    /* アイテムを縦方向に中央揃え */
     justify-content: flex-start;
-    /* アイテムを横方向に始端揃え */
 }
 
 .nav-link .material-icons {
     margin-right: 8px;
+    color: #ffffff
 }
 
 #sidebar.closed .nav-link {
     background-color: transparent;
-    /* 背景色を透明にする */
     color: inherit;
-    /* 色を継承する */
     border-radius: 0;
-    /* 角丸を無くす */
     padding-left: 10px;
-    /* 左パディングを調整 */
 }
 
 #sidebar.closed .nav-link.active {
     background-color: transparent;
-    /* アクティブなリンクの背景色を透明に */
     color: #007bff;
-    /* アクティブなリンクの色を調整 */
     border-radius: 0;
-    /* 角丸を無くす */
 }
 
 #menu-icon {
@@ -78,68 +104,45 @@ body {
 .button-group {
     display: flex;
     justify-content: space-between;
-    /* ボタンを均等に配置 */
     margin-top: 10px;
-    /* 上部の要素との間隔 */
 }
 
 .button-group button {
     flex-basis: 48%;
-    /* ボタンの幅を設定 */
 }
 
 .main-container {
     display: flex;
-    justify-content: center;
-    /* 横方向の中央揃え */
 }
 
-/* キーワードジェネレータコンテンツに対するスタイル */
 #keywordGeneratorContent {
     width: 100%;
-    /* 幅をビューポートの50%に設定 */
     max-width: 1200px;
-    /* 最大幅を設定 */
-    /* その他のスタイリング */
 }
 
-/* モーダルの基本スタイル */
 .modal {
     display: none;
-    /* 最初は非表示 */
     position: fixed;
-    /* 画面に固定 */
     z-index: 1;
-    /* コンテンツの上に表示 */
     left: 0;
     top: 0;
     width: 100%;
-    /* 全幅 */
     height: 100%;
-    /* 全高 */
     overflow: auto;
-    /* スクロール可能に */
     background-color: rgb(0, 0, 0);
-    /* 背景色 */
     background-color: rgba(0, 0, 0, 0.4);
-    /* 背景色（透明度付き） */
 }
 
-/* モーダルコンテンツ */
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    /* 幅 */
     height: 70vh;
-    /* 縦の幅をビューポートの70%に */
     overflow: auto;
-    /* 内容がはみ出た場合にスクロールバーを表示 */
 }
 
-/* クローズボタン */
 .close {
     color: #aaa;
     float: right;
@@ -159,21 +162,14 @@ body {
 }
 
 #sidebar {
-    width: 200px;
-    /* 開いた状態の幅 */
+    width: 220px;
     transition: width 0.3s;
-    /* スムーズな幅の変更 */
 }
 
 #sidebar.closed {
-    width: 50px;
-    /* 閉じた状態の幅 */
+    width: 70px;
 }
 
-#sidebar.closed {
-    width: 50px;
-    /* 閉じた状態の幅 */
-}
 
 #sidebar.closed #text-home,
 #sidebar.closed #text-keyword,
@@ -193,4 +189,154 @@ body {
     align-items: center;
     justify-content: flex-start;
     padding: 10px;
+}
+
+#main_content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    transition: width 0.5s, margin-left 0.5s;
+}
+
+.container-fluid > .row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+.header {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    background-color: #384A5A;
+    position: fixed;
+    height: 70px!important;
+    overflow: hidden;
+    z-index: 10;
+}
+.main {
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    margin-top: 60px;
+}
+.mainInner{
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+.mainInner div{
+    display:table-cell;
+    vertical-align: middle;
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 1.25px;
+}
+#sidebarMenu {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    margin-top: 70px;
+    transform: translateX(-250px);
+    transition: transform 250ms ease-in-out;
+    background: linear-gradient(180deg, #394c5c 0%, #040011 100%);;
+}
+.sidebarMenuInner{
+    margin:0;
+    padding:0;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li{
+    list-style: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 2px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sidebarMenuInner li span{
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+}
+.sidebarMenuInner li a{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+input[type="checkbox"]:checked ~ #sidebarMenu {
+    transform: translateX(0);
+}
+
+input[type=checkbox] {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    display: none;
+}
+.sidebarIconToggle {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    top: 40px;
+    left: 15px;
+    height: 22px;
+    width: 22px;
+}
+.spinner {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+}
+.horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+.diagonal.part-1 {
+    position: relative;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    float: left;
+}
+.diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    opacity: 0;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(135deg);
+    margin-top: 8px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: -9px;
+}
+#generateButton {
+    background-color: #1f4b7a;
+    border-color: #1f4b7a 
 }

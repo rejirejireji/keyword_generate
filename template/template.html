@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Find KW</title>
+    <title>AdSpark</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,162 +13,159 @@
 </head>
 
 <body>
-    <!-- タイトルセクション -->
-    <header class="bg-primary text-white text-center py-3">
-        <h1>Find KeyWord</h1>
-    </header>
+    <div class="header"></div>
+    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+    <label for="openSidebarMenu" class="sidebarIconToggle">
+        <div class="spinner diagonal part-1"></div>
+        <div class="spinner horizontal"></div>
+        <div class="spinner diagonal part-2"></div>
+    </label>
+    <div id="sidebarMenu">
+        <ul class="sidebarMenuInner">
+            <li>
+                <a class="nav-link active" href="#homeContent" id="nav-home">
+                    <i class="material-icons">home</i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#keywordGeneratorContent" id="nav-keyword">
+                    <i class="material-icons">edit_note</i>
+                    <span>キーワード作成</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#analysisContent" id="nav-analysis">
+                    <i class="material-icons">bar_chart</i>
+                    <span>分析</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#faqContent" id="nav-faq">
+                    <i class="material-icons">help</i>
+                    <span>FAQ</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#feedbackContent" id="nav-feedback">
+                    <i class="material-icons">forum</i>
+                    <span>フィードバック</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- メインコンテンツ -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="main_content">
+        <div id="homeContent" class="content-section">
+            <h2 class="embedded-site-title" onclick="openModal()">キーワードのマッチタイプについて</h2>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- サイドバー -->
-            <nav class="d-none d-md-block bg-light sidebar" id="sidebar">
-                <div class="sidebar-sticky">
-                    <h3 class="sidebar-heading p-3">
-                        <i class="material-icons" id="menu-icon" onclick="toggleSidebar()">menu</i>
-                    </h3>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#homeContent" id="nav-home">
-                                <i class="material-icons">home</i> <span id="text-home">Home</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#keywordGeneratorContent" id="nav-keyword">
-                                <i class="material-icons">edit_note</i> <span id="text-keyword">キーワード作成</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#analysisContent" id="nav-analysis">
-                                <i class="material-icons">bar_chart</i> <span id="text-analysis">分析</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#faqContent" id="nav-faq">
-                                <i class="material-icons">help</i> <span id="text-faq">FAQ</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#feedbackContent" id="nav-feedback">
-                                <i class="material-icons">forum</i> <span id="text-feedback">フィードバック</span>
-                            </a>
-                        </li>
-                    </ul>
+            <!-- モーダルウィンドウ -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <iframe src="https://anagrams.jp/blog/perfect-guide-of-keyword-match-type" width="100%" height="600"
+                        style="border:none;"></iframe>
                 </div>
-            </nav>
-
-            <!-- メインコンテンツ -->
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div id="homeContent" class="content-section">
-                    <h2 class="embedded-site-title" onclick="openModal()">キーワードのマッチタイプについて</h2>
-
-                    <!-- モーダルウィンドウ -->
-                    <div id="myModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" onclick="closeModal()">&times;</span>
-                            <iframe src="https://anagrams.jp/blog/perfect-guide-of-keyword-match-type" width="100%" height="600" style="border:none;"></iframe>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div class="main-container">
-                    <div id="keywordGeneratorContent" class="content-section" style="display: none;">
-                        <p></p>
-                        <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
-                        <input type="text" id="industryInput" placeholder="業界を入力" class="form-control mb-2">
-                        <input type="text" id="appealInput" placeholder="訴求内容を入力" class="form-control mb-2">
-                        <select id="prefectureInput" class="form-control mb-2">
-                            <option value="">都道府県を選択</option>
-                            <option value="01">北海道</option>
-                            <option value="02">青森県</option>
-                            <option value="03">岩手県</option>
-                            <option value="04">宮城県</option>
-                            <option value="05">秋田県</option>
-                            <option value="06">山形県</option>
-                            <option value="07">福島県</option>
-                            <option value="08">茨城県</option>
-                            <option value="09">栃木県</option>
-                            <option value="10">群馬県</option>
-                            <option value="11">埼玉県</option>
-                            <option value="12">千葉県</option>
-                            <option value="13">東京都</option>
-                            <option value="14">神奈川県</option>
-                            <option value="15">新潟県</option>
-                            <option value="16">富山県</option>
-                            <option value="17">石川県</option>
-                            <option value="18">福井県</option>
-                            <option value="19">山梨県</option>
-                            <option value="20">長野県</option>
-                            <option value="21">岐阜県</option>
-                            <option value="22">静岡県</option>
-                            <option value="23">愛知県</option>
-                            <option value="24">三重県</option>
-                            <option value="25">滋賀県</option>
-                            <option value="26">京都府</option>
-                            <option value="27">大阪府</option>
-                            <option value="28">兵庫県</option>
-                            <option value="29">奈良県</option>
-                            <option value="30">和歌山県</option>
-                            <option value="31">鳥取県</option>
-                            <option value="32">島根県</option>
-                            <option value="33">岡山県</option>
-                            <option value="34">広島県</option>
-                            <option value="35">山口県</option>
-                            <option value="36">徳島県</option>
-                            <option value="37">香川県</option>
-                            <option value="38">愛媛県</option>
-                            <option value="39">高知県</option>
-                            <option value="40">福岡県</option>
-                            <option value="41">佐賀県</option>
-                            <option value="42">長崎県</option>
-                            <option value="43">熊本県</option>
-                            <option value="44">大分県</option>
-                            <option value="45">宮崎県</option>
-                            <option value="46">鹿児島県</option>
-                            <option value="47">沖縄県</option>
-                        </select>
-                        <select id="cityInput" class="form-control mb-2">
-                            <option value="">市区町村を選択</option>
-                        </select>
-                        <div class="button-group">
-                            <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
-                        <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Loading...
-                        </button>
-                        <button onclick="clearInputs()" class="btn btn-secondary">クリア</button>
-                        </div>
-
-                        <div id="resultSection" class="container my-4">
-                            <button onclick="copyToClipboard()" class="btn">
-                                <i class="material-icons">content_copy</i>
-                            </button>
-                            <pre id="keywordsDisplay" class="code-block"></pre>
-                        </div>        
-                    </div>
-                </div>
-
-                <div id="analysisContent" class="content-section" style="display: none;">
-                    <p>ここにはキーワードの分析結果や関連するデータが表示されます。</p>
-                    <!-- 分析結果の表示やグラフなど -->
-                </div>
-                <div id="faqContent" class="content-section" style="display: none;">
-                    <p>ここにはよくある質問とその回答がリストされます。</p>
-                    <!-- 質問と回答のリスト -->
-                </div>
-                <div id="feedbackContent" class="content-section" style="display: none;">
-                    <div class="form-container">
-                        <iframe
-                            src="https://docs.google.com/forms/d/e/1FAIpQLScf8t4spyC6Z0RSeUEJgm5fU4MdhbJvEAa5TkfVjoHpHviNow/viewform?embedded=true"
-                            frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-                    </div>
-                </div>
-
-            </main>
+            </div>
         </div>
+
+
+        <div class="main-container">
+            <div id="keywordGeneratorContent" class="content-section" style="display: none;">
+                <p></p>
+                <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
+                <input type="text" id="industryInput" placeholder="業界を入力" class="form-control mb-2">
+                <input type="text" id="appealInput" placeholder="訴求内容を入力" class="form-control mb-2">
+                <select id="prefectureInput" class="form-control mb-2">
+                    <option value="">都道府県を選択</option>
+                    <option value="01">北海道</option>
+                    <option value="02">青森県</option>
+                    <option value="03">岩手県</option>
+                    <option value="04">宮城県</option>
+                    <option value="05">秋田県</option>
+                    <option value="06">山形県</option>
+                    <option value="07">福島県</option>
+                    <option value="08">茨城県</option>
+                    <option value="09">栃木県</option>
+                    <option value="10">群馬県</option>
+                    <option value="11">埼玉県</option>
+                    <option value="12">千葉県</option>
+                    <option value="13">東京都</option>
+                    <option value="14">神奈川県</option>
+                    <option value="15">新潟県</option>
+                    <option value="16">富山県</option>
+                    <option value="17">石川県</option>
+                    <option value="18">福井県</option>
+                    <option value="19">山梨県</option>
+                    <option value="20">長野県</option>
+                    <option value="21">岐阜県</option>
+                    <option value="22">静岡県</option>
+                    <option value="23">愛知県</option>
+                    <option value="24">三重県</option>
+                    <option value="25">滋賀県</option>
+                    <option value="26">京都府</option>
+                    <option value="27">大阪府</option>
+                    <option value="28">兵庫県</option>
+                    <option value="29">奈良県</option>
+                    <option value="30">和歌山県</option>
+                    <option value="31">鳥取県</option>
+                    <option value="32">島根県</option>
+                    <option value="33">岡山県</option>
+                    <option value="34">広島県</option>
+                    <option value="35">山口県</option>
+                    <option value="36">徳島県</option>
+                    <option value="37">香川県</option>
+                    <option value="38">愛媛県</option>
+                    <option value="39">高知県</option>
+                    <option value="40">福岡県</option>
+                    <option value="41">佐賀県</option>
+                    <option value="42">長崎県</option>
+                    <option value="43">熊本県</option>
+                    <option value="44">大分県</option>
+                    <option value="45">宮崎県</option>
+                    <option value="46">鹿児島県</option>
+                    <option value="47">沖縄県</option>
+                </select>
+                <select id="cityInput" class="form-control mb-2">
+                    <option value="">市区町村を選択</option>
+                </select>
+                <div class="button-group">
+                    <button onclick="generateKeywords()" id="generateButton" class="btn btn-primary">生成</button>
+                    <button class="btn btn-primary" type="button" disabled id="loadingButton" style="display: none;">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
+                    <button onclick="clearInputs()" class="btn btn-secondary">クリア</button>
+                </div>
+
+                <div id="resultSection" class="container my-4">
+                    <button onclick="copyToClipboard()" class="btn">
+                        <i class="material-icons">content_copy</i>
+                    </button>
+                    <pre id="keywordsDisplay" class="code-block"></pre>
+                </div>
+            </div>
+        </div>
+
+        <div id="analysisContent" class="content-section" style="display: none;">
+            <p>ここにはキーワードの分析結果や関連するデータが表示されます。</p>
+        </div>
+        <div id="faqContent" class="content-section" style="display: none;">
+            <p>ここにはよくある質問とその回答がリストされます。</p>
+        </div>
+        <div id="feedbackContent" class="content-section" style="display: none;">
+            <div class="form-container">
+                <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScf8t4spyC6Z0RSeUEJgm5fU4MdhbJvEAa5TkfVjoHpHviNow/viewform?embedded=true"
+                    frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+            </div>
+        </div>
+
+    </main>
+    </div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-3">
+    <footer  id="footer">
         <p>
             &copy; <a href="https://www.gendai-a.co.jp/" class="text-white" style="text-decoration: none;">GENDAI
                 AGENCY.inc</a>
