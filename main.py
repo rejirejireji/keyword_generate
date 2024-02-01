@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify, render_template
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-
+import feedparser
+import datetime
 
 # Flaskアプリケーションの設定
 app = Flask(__name__,template_folder='template')
@@ -36,11 +37,25 @@ def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
         return None
 
 
+def get_google_news_feed():
+    url = "https://news.google.com/rss/search?q=WEB%E5%BA%83%E5%91%8A&hl=ja&gl=JP&ceid=JP:ja"
+    feed = feedparser.parse(url)
+    news_list = []
+    for entry in feed.entries[:10]:
+        news_list.append({'title': entry.title, 'link': entry.link})
+    return news_list
+
+
 # HTMLの読み込み
 @app.route("/")
 def index():
     return render_template("template.html")
 
+# RSSフィード取得エンドポイント
+@app.route("/get_rss_feed")
+def get_rss_feed():
+    news_feed = get_google_news_feed()
+    return render_template("rss_feed.html", news_feed=news_feed)
 
 # Flaskエンドポイント
 @app.route("/generate_keywords", methods=["POST"])
