@@ -182,7 +182,7 @@ $(document).ready(function() {
             var listItem = "<li class='news_list_item'>" +
                            "<a href='" + val.link + "'>" +
                            "<div class='news_list_date'><time>" +
-                           val.published + "</time><p class='news_item'>お知らせ</p></div>" +
+                           val.pubDate + "</time><p class='news_item'>お知らせ</p></div>" +
                            "<p>" + val.title + "</p><span class='arrow'></span>" +
                            "</a></li>";
             items.push(listItem);

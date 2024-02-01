@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 import feedparser
-import datetime
+from datetime import datetime
 
 # Flaskアプリケーションの設定
 app = Flask(__name__,template_folder='template')
@@ -42,10 +42,12 @@ def get_google_news_feed():
     feed = feedparser.parse(url)
     news_list = []
     for entry in feed.entries[:10]:
+        pub_date = datetime.strptime(entry.published, '%a, %d %b %Y %H:%M:%S %Z')
+        formatted_date = pub_date.strftime('%Y/%m/%d（%a）')
         news_list.append({
             'title': entry.title,
             'link': entry.link,
-            'date': entry.published
+            'pubDate': formatted_date
         })
     return news_list
 
