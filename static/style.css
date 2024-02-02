@@ -362,7 +362,8 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 .sub_ttl {
     font-size: 30px;
     text-align: center;
-    margin-bottom: 40px;
+    padding: 45px;
+    background: url(h1_news.png) center bottom no-repeat;
 }
 
 /* ニュースリストのスタイル */
