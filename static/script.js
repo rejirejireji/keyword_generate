@@ -183,7 +183,7 @@ $(document).ready(function() {
             var listItem = "<li class='news_list_item'>" +
                            "<div class='news_list_date'>" + val.pubDate + "</div>" +
                            "<a href='" + val.link + "'target='_blank'>" +
-                           "<br /><p>" + val.title + "</p><span class='arrow'></span>" +
+                           "<br /><p>" + val.title + "</p>" +
                            "</a></li>";
             items.push(listItem);
         });
