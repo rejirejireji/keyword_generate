@@ -39,10 +39,10 @@ def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
 
 
 def get_google_news_feed():
-    # 今日の日付から10日前
-    fourteen_days_ago = (datetime.now() - timedelta(days=10)).strftime('%Y/%m/%d')
+    # 今日の日付から3日前
+    fourteen_days_ago = (datetime.now() - timedelta(days=3)).strftime('%Y/%m/%d')
     
-    # URLの日付部分を14日前の日付に更新
+    # URLの日付部分を3日前の日付に更新
     url = f"https://news.google.com/rss/search?q=after:{fourteen_days_ago}+WEB広告&hl=ja&gl=JP&ceid=JP:ja"
     feed = feedparser.parse(url)
     news_list = []
