@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import feedparser
 from datetime import datetime
+import json 
 
 # Flaskアプリケーションの設定
 app = Flask(__name__,template_folder='template')
@@ -55,15 +56,17 @@ def get_google_news_feed():
 # HTMLの読み込み
 @app.route("/")
 def index():
-    return render_template("template.html")
+    # JSONファイルのパスを指定
+    json_file_path = os.path.join(app.root_path, 'template', 'prefectures.json')
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        prefectures = json.load(f)
+    return render_template('template.html', prefectures=prefectures)
 
-# RSSフィード取得エンドポイント
 @app.route("/get_rss_feed")
 def get_rss_feed():
     news_feed = get_google_news_feed()
-    return jsonify(news_feed) 
+    return jsonify(news_feed)
 
-# Flaskエンドポイント
 @app.route("/generate_keywords", methods=["POST"])
 def generate_keywords():
     data = request.json
@@ -77,10 +80,7 @@ def generate_keywords():
 
 @app.route('/some-page')
 def some_page():
-    # このルートに対するコンテンツを返す
     return render_template('some_page.html')
 
-
-# Flaskアプリケーションの実行
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
