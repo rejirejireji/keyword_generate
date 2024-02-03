@@ -31,6 +31,11 @@ main {
     margin-top: 80px;
     margin-bottom: 60px;
     overflow: auto;
+    margin-left: auto!important;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .sidebar {
@@ -113,11 +118,12 @@ main {
 
 .main-container {
     display: flex;
+    justify-content: space-around;
 }
-
 #keywordGeneratorContent {
     width: 100%;
     max-width: 1200px;
+    margin-top: 50px;
 }
 
 .modal {
@@ -191,11 +197,7 @@ main {
     padding: 10px;
 }
 
-#main_content {
-    width: calc(100% - 250px);
-    margin-left: 250px;
-    transition: width 0.5s, margin-left 0.5s;
-}
+
 
 .container-fluid > .row {
     display: flex;
@@ -236,6 +238,7 @@ main {
 #sidebarMenu {
     height: 100%;
     position: fixed;
+    z-index: 1000;
     left: 0;
     width: 250px;
     margin-top: 70px;
@@ -244,7 +247,6 @@ main {
     background: linear-gradient(180deg, #394c5c 0%, #040011 100%);;
 }
 .sidebarMenuInner{
-    margin:0;
     padding:0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
 }
@@ -343,4 +345,90 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 #loadingButton {
     background-color: #1f4b7a;
     border-color: #1f4b7a 
+}
+
+/* インナー要素（コンテンツを中央に配置） */
+.inner {
+    /* width: 80%; */
+    background-color: #fff;
+    /* padding: 37px 0 100px; */
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
+
+/* サブタイトル */
+.sub_ttl {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 42px;
+    text-align: center;
+    padding: 40px;
+    background: url(h1_news.png) center bottom no-repeat;
+    -webkit-text-stroke: 2px #1d6297;
+    font-weight: bold;
+}
+
+/* ニュースリストのスタイル */
+.news_list {
+    margin: 0 5%;
+}
+
+/* 各ニュース項目のスタイル */
+.news_list_item {
+    padding: 5px 0;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.news_list_item:first-child {
+    border-top: 1px solid #E6E6E6;
+}
+
+/* ニュースリンクのスタイル */
+.news_list_item a {
+    position: relative;
+    display: flex;
+    margin: 5px;
+}
+
+
+
+/* 日付とカテゴリのスタイル */
+.news_list_date {
+    font-size: 15px;
+    display: flex;
+    margin-right: 15px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.news_item {
+    background: #F6C6A2;
+    border-radius: 14px;
+    width: 6em;
+    text-align: center;
+    margin-left: 20px;
+}
+a {
+    color: #000; /* 黒色 */
+    text-decoration: none; /* 下線を消す */
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 17px;
+}
+#main_conntent {
+    margin-left: auto;
+    width: 80%; /* 必要に応じて幅を調整 */
+    margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動 */
+    padding: 20px; /* 内容と境界の間にスペースを追加（オプション） */
+    box-sizing: border-box;
+}
+.content-section {
+    width: 80%; /* 必要に応じて幅を調整 */
+    margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動 */
+    padding: 20px; /* 内容と境界の間にスペースを追加（オプション） */
+    box-sizing: border-box; /* paddingを含めた幅がwidthになるように */
 }
