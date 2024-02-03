@@ -20,11 +20,12 @@ header {
 }
 
 body {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Kosugi', sans-serif;
     background-color: #e2e2e9;
     overflow-x: hidden;
     height: 100%;
     color: #221616;
+    font-weight: bold;
 }
 
 main {
@@ -352,7 +353,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     /* width: 80%; */
     background-color: #fff;
     /* padding: 37px 0 100px; */
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
@@ -361,13 +362,12 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 /* サブタイトル */
 .sub_ttl {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 42px;
+    font-size: 44px;
     text-align: center;
     padding: 40px;
     background: url(h1_news.png) center bottom no-repeat;
-    -webkit-text-stroke: 2px #1d6297;
-    font-weight: bold;
+    font-weight: 900; 
+    color: #1d6297;
 }
 
 /* ニュースリストのスタイル */
