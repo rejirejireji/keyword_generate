@@ -102,7 +102,12 @@
 
         <div id="analysisContent" class="content-section" style="display: none;">
             <p>ここにはキーワードの分析結果や関連するデータが表示されます。</p>
-        </div>
+            <select id="prefectureInput" class="form-control mb-2">
+                <option value="">都道府県を選択</option>
+                {% for prefecture in prefectures %}
+                <option value="{{ prefecture.value }}">{{ prefecture.name }}</option>
+                {% endfor %}
+            </select>
         <div id="faqContent" class="content-section" style="display: none;">
             <p>ここにはよくある質問とその回答がリストされます。</p>
         </div>
