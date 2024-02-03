@@ -352,11 +352,13 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 /* サブタイトル */
 .sub_ttl {
-    font-family: 'Oswald', sans-serif;
-    font-size: 40px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 42px;
     text-align: center;
-    padding: 45px;
+    padding: 40px;
     background: url(h1_news.png) center bottom no-repeat;
+    -webkit-text-stroke: 2px #1d6297;
+    font-weight: bold;
 }
 
 /* ニュースリストのスタイル */
@@ -366,7 +368,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 /* 各ニュース項目のスタイル */
 .news_list_item {
-    padding: 25px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #E6E6E6;
 }
 
@@ -378,8 +380,10 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 .news_list_item a {
     position: relative;
     display: flex;
-    padding-right: 30px;
+    margin: 5px;
 }
+
+
 
 /* 日付とカテゴリのスタイル */
 .news_list_date {
@@ -397,13 +401,3 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     margin-left: 20px;
 }
 
-/* 矢印アイコンのスタイル */
-.arrow {
-    width: 25px;
-    height: 1px;
-    background: #707070;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-}

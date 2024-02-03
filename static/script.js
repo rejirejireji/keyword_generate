@@ -179,11 +179,11 @@ $(document).ready(function() {
     $.getJSON('/get_rss_feed', function(data) {
         var items = [];
         $.each(data, function(index, val) {
+            // 日付を単純な文字列として表示
             var listItem = "<li class='news_list_item'>" +
+                           "<div class='news_list_date'>" + val.pubDate + "</div>" +
                            "<a href='" + val.link + "'>" +
-                           "<div class='news_list_date'><time>" +
-                           val.pubDate +
-                           "<p>" + val.title + "</p><span class='arrow'></span>" +
+                           "<br /><p>" + val.title + "</p><span class='arrow'></span>" +
                            "</a></li>";
             items.push(listItem);
         });
