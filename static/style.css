@@ -3,15 +3,6 @@ html {
     height: 100%;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    height: 70px;
-    width: 100%;
-    z-index: 1030;
-
-}
-
 #footer {
     position: fixed;
     bottom: 0;
@@ -462,3 +453,20 @@ p {
     box-sizing: border-box;
     /* paddingを含めた幅がwidthになるように */
 }
+.header {
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+    width: 100%; /* ヘッダーの幅を画面全体に */
+    padding: 10px 0; /* 上下に少し余白を設定 */
+  }
+  
+  .header-logo a {
+    display: inline-block;
+    text-align: center; /* テキスト（ここでは画像）を中央揃え */
+  }
+  
+  .header-logo img {
+    width: 120px;
+    height: 70px;
+  }
