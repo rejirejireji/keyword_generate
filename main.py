@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 import feedparser
-from datetime import datetime
+from datetime import datetime, timedelta
 import json 
 
 # Flaskアプリケーションの設定
@@ -39,17 +39,24 @@ def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
 
 
 def get_google_news_feed():
-    url = "https://news.google.com/rss/search?q=after:2024/01/01+WEB広告&hl=ja&gl=JP&ceid=JP:ja"
+    # 今日の日付から3日前
+    fourteen_days_ago = (datetime.now() - timedelta(days=3)).strftime('%Y/%m/%d')
+    
+    # URLの日付部分を3日前の日付に更新
+    url = f"https://news.google.com/rss/search?q=after:{fourteen_days_ago}+WEB広告&hl=ja&gl=JP&ceid=JP:ja"
     feed = feedparser.parse(url)
     news_list = []
+    
     for entry in feed.entries[:10]:
         pub_date = datetime.strptime(entry.published, '%a, %d %b %Y %H:%M:%S %Z')
         formatted_date = pub_date.strftime('%Y/%m/%d（%a）')
+        
         news_list.append({
             'title': entry.title,
             'link': entry.link,
             'pubDate': formatted_date
         })
+    
     return news_list
 
 
