@@ -366,7 +366,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     text-align: center;
     padding: 40px;
     background: url(h1_news.png) center bottom no-repeat;
-    -webkit-text-stroke: 2px #1d6297;
+    color:  #1d6297;
     font-weight: bold;
 }
 
