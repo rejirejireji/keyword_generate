@@ -4,9 +4,9 @@
 <head>
     <title>AdSpark</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -102,7 +102,12 @@
 
         <div id="analysisContent" class="content-section" style="display: none;">
             <p>ここにはキーワードの分析結果や関連するデータが表示されます。</p>
-        </div>
+            <select id="prefectureInput" class="form-control mb-2">
+                <option value="">都道府県を選択</option>
+                {% for prefecture in prefectures %}
+                <option value="{{ prefecture.value }}">{{ prefecture.name }}</option>
+                {% endfor %}
+            </select>
         <div id="faqContent" class="content-section" style="display: none;">
             <p>ここにはよくある質問とその回答がリストされます。</p>
         </div>
