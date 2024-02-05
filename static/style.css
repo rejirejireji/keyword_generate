@@ -20,7 +20,10 @@ header {
 }
 
 body {
-    font-family: 'Kosugi', sans-serif;
+
+    font-family: "Sawarabi Gothic";
+
+
     background-color: #e2e2e9;
     overflow-x: hidden;
     height: 100%;
@@ -364,6 +367,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 .sub_ttl {
     font-size: 44px;
     text-align: center;
+    color: #1f4b7a;
     padding: 40px;
     background: url(h1_news.png) center bottom no-repeat;
     font-weight: 900; 
