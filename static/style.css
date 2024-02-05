@@ -2,6 +2,7 @@ html {
     overflow-x: hidden;
     height: 100%;
 }
+
 header {
     position: fixed;
     top: 0;
@@ -20,22 +21,19 @@ header {
 }
 
 body {
-
-    font-family: "Sawarabi Gothic";
-
-
+    font-family: 'Noto Sans JP', sans-serif;
     background-color: #e2e2e9;
     overflow-x: hidden;
     height: 100%;
     color: #221616;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 main {
     margin-top: 80px;
     margin-bottom: 60px;
     overflow: auto;
-    margin-left: auto!important;
+    margin-left: auto !important;
     width: 80%;
     margin: 0 auto;
     padding: 20px;
@@ -53,7 +51,6 @@ main {
 }
 
 .code-block {
-    font-family: 'Noto Sans JP', sans-serif;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
     padding: 10px;
@@ -124,6 +121,7 @@ main {
     display: flex;
     justify-content: space-around;
 }
+
 #keywordGeneratorContent {
     width: 100%;
     max-width: 1200px;
@@ -180,7 +178,6 @@ main {
     width: 70px;
 }
 
-
 #sidebar.closed #text-home,
 #sidebar.closed #text-keyword,
 #sidebar.closed #text-analysis,
@@ -201,13 +198,11 @@ main {
     padding: 10px;
 }
 
-
-
-.container-fluid > .row {
+.container-fluid>.row {
     display: flex;
     flex-wrap: nowrap;
 }
-@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
 .header {
     display: block;
     margin: 0 auto;
@@ -216,29 +211,33 @@ main {
     box-shadow: none;
     background-color: #384A5A;
     position: fixed;
-    height: 70px!important;
+    height: 70px !important;
     overflow: hidden;
     z-index: 10;
 }
+
 .main {
     margin: 0 auto;
     display: block;
     height: 100%;
     margin-top: 60px;
 }
-.mainInner{
+
+.mainInner {
     display: table;
     height: 100%;
     width: 100%;
     text-align: center;
 }
-.mainInner div{
-    display:table-cell;
+
+.mainInner div {
+    display: table-cell;
     vertical-align: middle;
     font-size: 3em;
     font-weight: bold;
     letter-spacing: 1.25px;
 }
+
 #sidebarMenu {
     height: 100%;
     position: fixed;
@@ -248,13 +247,16 @@ main {
     margin-top: 70px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: linear-gradient(180deg, #394c5c 0%, #040011 100%);;
+    background: linear-gradient(180deg, #394c5c 0%, #040011 100%);
+    ;
 }
-.sidebarMenuInner{
-    padding:0;
+
+.sidebarMenuInner {
+    padding: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
 }
-.sidebarMenuInner li{
+
+.sidebarMenuInner li {
     list-style: none;
     color: #fff;
     text-transform: uppercase;
@@ -263,19 +265,22 @@ main {
     cursor: pointer;
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
-.sidebarMenuInner li span{
+
+.sidebarMenuInner li span {
     display: block;
     font-size: 14px;
     color: #ffffff;
 }
-.sidebarMenuInner li a{
+
+.sidebarMenuInner li a {
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
 }
-input[type="checkbox"]:checked ~ #sidebarMenu {
+
+input[type="checkbox"]:checked~#sidebarMenu {
     transform: translateX(0);
 }
 
@@ -284,6 +289,7 @@ input[type=checkbox] {
     box-sizing: border-box;
     display: none;
 }
+
 .sidebarIconToggle {
     transition: all 0.3s;
     box-sizing: border-box;
@@ -297,6 +303,7 @@ input[type=checkbox] {
     height: 22px;
     width: 22px;
 }
+
 .spinner {
     transition: all 0.3s;
     box-sizing: border-box;
@@ -305,6 +312,7 @@ input[type=checkbox] {
     width: 100%;
     background-color: #fff;
 }
+
 .horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
@@ -312,12 +320,14 @@ input[type=checkbox] {
     float: left;
     margin-top: 3px;
 }
+
 .diagonal.part-1 {
     position: relative;
     transition: all 0.3s;
     box-sizing: border-box;
     float: left;
 }
+
 .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
@@ -325,30 +335,35 @@ input[type=checkbox] {
     float: left;
     margin-top: 3px;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+
+input[type=checkbox]:checked~.sidebarIconToggle>.horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
     opacity: 0;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+
+input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-1 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(135deg);
     margin-top: 8px;
 }
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+
+input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
 }
+
 #generateButton {
     background-color: #1f4b7a;
-    border-color: #1f4b7a 
+    border-color: #1f4b7a
 }
+
 #loadingButton {
     background-color: #1f4b7a;
-    border-color: #1f4b7a 
+    border-color: #1f4b7a
 }
 
 /* インナー要素（コンテンツを中央に配置） */
@@ -370,7 +385,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     color: #1f4b7a;
     padding: 40px;
     background: url(h1_news.png) center bottom no-repeat;
-    font-weight: 900; 
+    font-weight: 900;
     color: #1d6297;
 }
 
@@ -396,8 +411,6 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     margin: 5px;
 }
 
-
-
 /* 日付とカテゴリのスタイル */
 .news_list_date {
     font-size: 15px;
@@ -414,25 +427,38 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     text-align: center;
     margin-left: 20px;
 }
+
 a {
-    color: #000; /* 黒色 */
-    text-decoration: none; /* 下線を消す */
+    color: #000;
+    /* 黒色 */
+    text-decoration: none;
+    /* 下線を消す */
 }
+
 p {
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 17px;
 }
+
 #main_conntent {
     margin-left: auto;
-    width: 80%; /* 必要に応じて幅を調整 */
-    margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動 */
-    padding: 20px; /* 内容と境界の間にスペースを追加（オプション） */
+    width: 80%;
+    /* 必要に応じて幅を調整 */
+    margin: 0 auto;
+    /* 上下のマージンは0、左右のマージンは自動 */
+    padding: 20px;
+    /* 内容と境界の間にスペースを追加（オプション） */
     box-sizing: border-box;
 }
+
 .content-section {
-    width: 80%; /* 必要に応じて幅を調整 */
-    margin: 0 auto; /* 上下のマージンは0、左右のマージンは自動 */
-    padding: 20px; /* 内容と境界の間にスペースを追加（オプション） */
-    box-sizing: border-box; /* paddingを含めた幅がwidthになるように */
+    width: 80%;
+    /* 必要に応じて幅を調整 */
+    margin: 0 auto;
+    /* 上下のマージンは0、左右のマージンは自動 */
+    padding: 20px;
+    /* 内容と境界の間にスペースを追加（オプション） */
+    box-sizing: border-box;
+    /* paddingを含めた幅がwidthになるように */
 }
