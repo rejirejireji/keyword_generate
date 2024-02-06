@@ -471,3 +471,11 @@ p {
     width: 120px;
     height: 70px;
   }
+  .toggle-content {
+    border: 1px solid #ddd; /* 枠線 */
+    border-radius: 8px; /* 角の丸み */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 影 */
+    padding: 20px; /* 内側の余白 */
+    background-color: #fff; /* 背景色 */
+    margin-bottom: 20px; /* 下の余白 */
+}

@@ -92,19 +92,18 @@ function copyToClipboard() {
 ///////////////////////////////////////////////////////////
 //Ajaxに対して、メインコンテンツを変更するためのリクエスト送信
 ///////////////////////////////////////////////////////////
-$(document).ready(function () {
-    $('.nav-link').click(function (e) {
-        e.preventDefault(); // デフォルトのリンク動作を防止
-
-        // アクティブなスタイルの切り替え
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
-
-        // コンテンツセクションの表示切り替え
-        var targetId = $(this).attr('href').substring(1);
-        $('.content-section').hide();
-        $('#' + targetId).show();
+$(document).ready(function() {
+    // メニューバーのリンクにクリックイベントリスナーを追加
+    $('.nav-link').click(function(e) {
+        e.preventDefault(); // デフォルトのアンカー動作をキャンセル
+        var targetId = $(this).data('target'); // リンクのdata-target属性からIDを取得
+        $('.content-section').hide(); // すべてのコンテンツセクションを非表示にする
+        $('#' + targetId).show(); // クリックされたリンクに対応するコンテンツセクションを表示
     });
+
+    // ページ読み込み時に最初のコンテンツセクションを表示
+    $('.content-section').hide(); // 最初にすべて非表示
+    $('#homeContent').show(); // homeContentだけ表示
 });
 
 //////////////////////////
@@ -118,19 +117,6 @@ function clearInputs() {
     document.getElementById("cityInput").selectedIndex = 0; // 最初のオプションを選択
 }
 
-/////////////////////
-// モーダルを開く関数
-/////////////////////
-function openModal() {
-    document.getElementById("myModal").style.display = "block";
-}
-
-///////////////////////
-// モーダルを閉じる関数
-///////////////////////
-function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-}
 ///////////////////////////////////
 // 画面外のクリックでモーダルを閉じる
 ///////////////////////////////////
@@ -188,5 +174,24 @@ $(document).ready(function() {
             items.push(listItem);
         });
         $("#webAdNewsList").html(items.join(""));
+    });
+});
+////////////////////////////
+//規定チェックのトグル関数
+////////////////////////////
+$(document).ready(function() {
+    // 最初にG検索以外を隠す
+    $("#infoGDN, #infoYSA, #infoYDA").hide();
+
+    // トグルボタンのクリックイベントハンドラーを設定
+    $(".toggle-btn").click(function() {
+        // クリックされたボタンに対応する情報のIDを取得
+        var targetId = $(this).data("target");
+        
+        // すべてのトグルコンテンツを隠す
+        $(".toggle-content").hide();
+        
+        // ターゲットのトグルコンテンツを表示
+        $("#" + targetId).show();
     });
 });
