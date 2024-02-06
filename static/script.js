@@ -177,10 +177,17 @@ $(document).ready(function() {
     });
 });
 ////////////////////////////
-//規定チェックのモーダル関数
+//規定チェックのトグル関数
 ////////////////////////////
-$('.modal').on('click', function (e) {
-    if ($(e.target).hasClass('modal') || $(e.target).attr('data-dismiss') === 'modal') {
-        $('.modal').modal('hide');
-    }
+$(document).ready(function(){
+    $('.btn').click(function(){
+        // 押されたボタンに対応するトグルのIDを取得
+        var target = $(this).data('target');
+        // 他のすべてのトグルセクションをループし、開いているものを閉じる
+        $('.collapse').each(function(){
+            if ($(this).attr('id') != target && $(this).hasClass('show')) {
+                $(this).collapse('hide');
+            }
+        });
+    });
 });
