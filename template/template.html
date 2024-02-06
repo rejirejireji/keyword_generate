@@ -3,17 +3,17 @@
 
 <head>
     <title>AdSpark</title>
-    <link rel="icon" href="static/favicon.png" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+
 
 <body>
     <div class="header">
@@ -118,29 +118,25 @@
         <div id="checkContent" class="content-section" style="display: none;">
             <p>規定チェックボタン:</p>
             <div class="button-group" style="display: flex; justify-content: space-around;">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGSearch">G検索</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGDN">GDN</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalYSA">YSA</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalYDA">YDA</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#infoGSearch">G検索</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#infoGDN">GDN</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#infoYSA">YSA</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#infoYDA">YDA</button>
             </div>
         
-            <!-- モーダル定義 -->
-            <div class="modal fade" id="modalGSearch" tabindex="-1" role="dialog" aria-labelledby="modalLabelGSearch" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabelGSearch">G検索の情報</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            G検索に関する情報をここに表示します。
-                        </div>
-                    </div>
-                </div>
+            <!-- トグルセクション -->
+            <div id="infoGSearch" class="collapse">
+                G検索に関する情報をここに表示します。
             </div>
-            <!-- GDN, YSA, YDAのモーダルも同様に定義 -->
+            <div id="infoGDN" class="collapse">
+                GDNに関する情報をここに表示します。
+            </div>
+            <div id="infoYSA" class="collapse">
+                YSAに関する情報をここに表示します。
+            </div>
+            <div id="infoYDA" class="collapse">
+                YDAに関する情報をここに表示します。
+            </div>
         </div>
         <div id="faqContent" class="content-section" style="display: none;">
             <p>ここにはよくある質問とその回答がリストされます。</p>

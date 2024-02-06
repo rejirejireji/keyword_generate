@@ -117,19 +117,6 @@ function clearInputs() {
     document.getElementById("cityInput").selectedIndex = 0; // 最初のオプションを選択
 }
 
-/////////////////////
-// モーダルを開く関数
-/////////////////////
-function openModal() {
-    document.getElementById("myModal").style.display = "block";
-}
-
-///////////////////////
-// モーダルを閉じる関数
-///////////////////////
-function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-}
 ///////////////////////////////////
 // 画面外のクリックでモーダルを閉じる
 ///////////////////////////////////
@@ -188,4 +175,12 @@ $(document).ready(function() {
         });
         $("#webAdNewsList").html(items.join(""));
     });
+});
+////////////////////////////
+//規定チェックのモーダル関数
+////////////////////////////
+$('.modal').on('click', function (e) {
+    if ($(e.target).hasClass('modal') || $(e.target).attr('data-dismiss') === 'modal') {
+        $('.modal').modal('hide');
+    }
 });
