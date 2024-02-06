@@ -50,6 +50,12 @@
                 </a>
             </li>
             <li>
+                <a class="nav-link" href="#kiteicheck" id="nav-check">
+                    <i class="material-icons">done</i>
+                    <span>規定チェック</span>
+                </a>
+            </li>
+            <li>
                 <a class="nav-link" href="#faqContent" id="nav-faq">
                     <i class="material-icons">help</i>
                     <span>FAQ</span>
@@ -114,6 +120,9 @@
                 <option value="{{ prefecture.value }}">{{ prefecture.name }}</option>
                 {% endfor %}
             </select>
+            <div id="checkContent" class="content-section" style="display: none;">
+                <p>ここにはよくある質問とその回答がリストされます。</p>
+            </div>
             <div id="faqContent" class="content-section" style="display: none;">
                 <p>ここにはよくある質問とその回答がリストされます。</p>
             </div>
