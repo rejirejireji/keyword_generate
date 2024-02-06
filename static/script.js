@@ -179,15 +179,19 @@ $(document).ready(function() {
 ////////////////////////////
 //規定チェックのトグル関数
 ////////////////////////////
-$(document).ready(function(){
-    $('.btn').click(function(){
-        // 押されたボタンに対応するトグルのIDを取得
-        var target = $(this).data('target');
-        // 他のすべてのトグルセクションをループし、開いているものを閉じる
-        $('.collapse').each(function(){
-            if ($(this).attr('id') != target && $(this).hasClass('show')) {
-                $(this).collapse('hide');
-            }
-        });
+$(document).ready(function() {
+    // 最初にG検索以外を隠す
+    $("#infoGDN, #infoYSA, #infoYDA").hide();
+
+    // トグルボタンのクリックイベントハンドラーを設定
+    $(".toggle-btn").click(function() {
+        // クリックされたボタンに対応する情報のIDを取得
+        var targetId = $(this).data("target");
+        
+        // すべてのトグルコンテンツを隠す
+        $(".toggle-content").hide();
+        
+        // ターゲットのトグルコンテンツを表示
+        $("#" + targetId).show();
     });
 });
