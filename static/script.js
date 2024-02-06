@@ -92,19 +92,18 @@ function copyToClipboard() {
 ///////////////////////////////////////////////////////////
 //Ajaxに対して、メインコンテンツを変更するためのリクエスト送信
 ///////////////////////////////////////////////////////////
-$(document).ready(function () {
-    $('.nav-link').click(function (e) {
-        e.preventDefault(); // デフォルトのリンク動作を防止
-
-        // アクティブなスタイルの切り替え
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
-
-        // コンテンツセクションの表示切り替え
-        var targetId = $(this).attr('href').substring(1);
-        $('.content-section').hide();
-        $('#' + targetId).show();
+$(document).ready(function() {
+    // メニューバーのリンクにクリックイベントリスナーを追加
+    $('.nav-link').click(function(e) {
+        e.preventDefault(); // デフォルトのアンカー動作をキャンセル
+        var targetId = $(this).data('target'); // リンクのdata-target属性からIDを取得
+        $('.content-section').hide(); // すべてのコンテンツセクションを非表示にする
+        $('#' + targetId).show(); // クリックされたリンクに対応するコンテンツセクションを表示
     });
+
+    // ページ読み込み時に最初のコンテンツセクションを表示
+    $('.content-section').hide(); // 最初にすべて非表示
+    $('#homeContent').show(); // homeContentだけ表示
 });
 
 //////////////////////////
