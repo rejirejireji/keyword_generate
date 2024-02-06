@@ -4,8 +4,10 @@ import json
 from pytrends.request import TrendReq
 from dotenv import load_dotenv
 
+load_dotenv()
+
 # APIキーの設定 ★ここにご自分のAPIキーをいれてください。
-openai.api_key = 'YOUR-API-KEY'
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 # モデルの設定
 model_name = "gpt-3.5-turbo-0613"
