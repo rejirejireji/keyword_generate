@@ -205,7 +205,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (let i = 0; i < text.length; i++) {
             const char = text.charAt(i);
-            // 全角文字の場合は2を加算、それ以外は1を加算
             if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
                 count += 2;
             } else {
@@ -214,24 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         document.getElementById('textCharCount').textContent = count;
-    });
 
-    // 以下、トグルボタンの処理
-    const toggleButtons = document.querySelectorAll('.toggle-btn');
-    const toggleContents = document.querySelectorAll('.toggle-content');
-
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const targetContent = document.getElementById(targetId);
-
-            toggleContents.forEach(content => {
-                if (content.id === targetId) {
-                    content.style.display = 'block';
-                } else {
-                    content.style.display = 'none';
-                }
-            });
-        });
+        // 文字数が30を超えた場合の処理
+        if (count > 30) {
+            this.style.borderColor = 'red'; // テキストボックスの枠を赤くする
+            document.getElementById('textAlert').style.display = 'block'; // アラートを表示
+        } else {
+            this.style.borderColor = ''; // テキストボックスの枠を元に戻す
+            document.getElementById('textAlert').style.display = 'none'; // アラートを非表示
+        }
     });
 });
