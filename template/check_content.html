@@ -4,7 +4,11 @@
         <div class="form-group">
             <input type="text" class="form-control" id="textCounterInput" placeholder="見出しを入力">
         </div>
-        <p>文字数: <span id="textCharCount">0</span></p>
+        <div class="character-counts d-flex justify-content-around">
+            <p>半角: <span id="halfWidthCount">0</span></p>
+            <p>全角: <span id="fullWidthCount">0</span></p>
+            <p>合計: <span id="textCharCount">0</span></p>
+        </div>
         <p id="textAlert" style="color: red; display: none;">文字数オーバー</p>
     </div>
     <div class="button-group" style="display: flex; justify-content: space-around;">

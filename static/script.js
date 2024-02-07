@@ -201,21 +201,27 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('textCounterInput').addEventListener('input', function() {
         const text = this.value;
-        let count = 0;
+        let halfWidthCount = 0;
+        let fullWidthCount = 0;
+        let totalCount = 0;
 
         for (let i = 0; i < text.length; i++) {
             const char = text.charAt(i);
             if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
-                count += 2;
+                fullWidthCount += 1;
+                totalCount += 2; // 全角文字は2としてカウント
             } else {
-                count += 1;
+                halfWidthCount += 1;
+                totalCount += 1; // 半角文字は1としてカウント
             }
         }
 
-        document.getElementById('textCharCount').textContent = count;
+        document.getElementById('halfWidthCount').textContent = halfWidthCount;
+        document.getElementById('fullWidthCount').textContent = fullWidthCount;
+        document.getElementById('textCharCount').textContent = totalCount;
 
         // 文字数が30を超えた場合の処理
-        if (count > 30) {
+        if (totalCount > 30) {
             this.style.borderColor = 'red'; // テキストボックスの枠を赤くする
             document.getElementById('textAlert').style.display = 'block'; // アラートを表示
         } else {

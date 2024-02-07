@@ -358,11 +358,8 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     border-color: #1f4b7a
 }
 
-/* インナー要素（コンテンツを中央に配置） */
 .inner {
-    /* width: 80%; */
     background-color: #fff;
-    /* padding: 37px 0 100px; */
     width: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -370,7 +367,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     margin-top: 50px;
 }
 
-/* サブタイトル */
 .sub_ttl {
     font-size: 44px;
     text-align: center;
@@ -381,12 +377,10 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     color: #1d6297;
 }
 
-/* ニュースリストのスタイル */
 .news_list {
     margin: 0 5%;
 }
 
-/* 各ニュース項目のスタイル */
 .news_list_item {
     padding: 5px 0;
     border-bottom: 1px solid #E6E6E6;
@@ -396,14 +390,12 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     border-top: 1px solid #E6E6E6;
 }
 
-/* ニュースリンクのスタイル */
 .news_list_item a {
     position: relative;
     display: flex;
     margin: 5px;
 }
 
-/* 日付とカテゴリのスタイル */
 .news_list_date {
     font-size: 15px;
     display: flex;
@@ -422,9 +414,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 a {
     color: #000;
-    /* 黒色 */
     text-decoration: none;
-    /* 下線を消す */
 }
 
 p {
@@ -436,41 +426,29 @@ p {
 #main_conntent {
     margin-left: auto;
     width: 80%;
-    /* 必要に応じて幅を調整 */
     margin: 0 auto;
-    /* 上下のマージンは0、左右のマージンは自動 */
     padding: 20px;
-    /* 内容と境界の間にスペースを追加（オプション） */
     box-sizing: border-box;
 }
 
 .content-section {
     width: 80%;
-    /* 必要に応じて幅を調整 */
     margin: 0 auto;
-    /* 上下のマージンは0、左右のマージンは自動 */
     padding: 20px;
-    /* 内容と境界の間にスペースを追加（オプション） */
     box-sizing: border-box;
-    /* paddingを含めた幅がwidthになるように */
 }
 
 .header {
     display: flex;
     justify-content: center;
-    /* 水平方向の中央揃え */
     align-items: center;
-    /* 垂直方向の中央揃え */
     width: 100%;
-    /* ヘッダーの幅を画面全体に */
     padding: 10px 0;
-    /* 上下に少し余白を設定 */
 }
 
 .header-logo a {
     display: inline-block;
     text-align: center;
-    /* テキスト（ここでは画像）を中央揃え */
 }
 
 .header-logo img {
@@ -480,21 +458,19 @@ p {
 
 .toggle-content {
     border: 1px solid #ddd;
-    /* 枠線 */
     border-radius: 8px;
-    /* 角の丸み */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* 影 */
     padding: 20px;
-    /* 内側の余白 */
     background-color: #fff;
-    /* 背景色 */
     margin-bottom: 20px;
-    /* 下の余白 */
 }
-.form-group + p,
+
 #textCharCount+p,
 #textAlert {
     margin-top: -18px
-        /* 上のマージンを5pxに設定して間隔を狭くする */
+}
+.character-counts p {
+    margin-top: -18px;
+    padding: 0; 
+    display: inline-block; 
 }
