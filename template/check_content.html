@@ -1,0 +1,28 @@
+<div id="checkContent" class="content-section" style="display: none;">
+    <div class="text-input-section">
+        <h3>テキスト入力</h3>
+        <textarea id="textCounterInput" rows="4" style="width: 100%;"></textarea>
+        <p>文字数: <span id="textCharCount">0</span></p>
+        <p id="textAlert" style="color: red; display: none;">文字数オーバー</p>
+    </div>
+    <div class="button-group" style="display: flex; justify-content: space-around;">
+        <button type="button" class="btn btn-primary toggle-btn" data-target="infoGSearch">G検索</button>
+        <button type="button" class="btn btn-primary toggle-btn" data-target="infoGDN">GDN</button>
+        <button type="button" class="btn btn-primary toggle-btn" data-target="infoYSA">YSA</button>
+        <button type="button" class="btn btn-primary toggle-btn" data-target="infoYDA">YDA</button>
+    </div>
+
+    <!-- トグルセクション -->
+    <div id="infoGSearch" class="toggle-content">
+        G検索に関する情報をここに表示します。
+    </div>
+    <div id="infoGDN" class="toggle-content">
+        GDNに関する情報をここに表示します。
+    </div>
+    <div id="infoYSA" class="toggle-content">
+        YSAに関する情報をここに表示します。
+    </div>
+    <div id="infoYDA" class="toggle-content">
+        YDAに関する情報をここに表示します。
+    </div>
+</div>

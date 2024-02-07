@@ -195,3 +195,32 @@ $(document).ready(function() {
         $("#" + targetId).show();
     });
 });
+////////////////////
+//文字数カウント関数
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('textCounterInput').addEventListener('input', function() {
+        const text = this.value;
+        let count = 0;
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text.charAt(i);
+            if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
+                count += 2;
+            } else {
+                count += 1;
+            }
+        }
+
+        document.getElementById('textCharCount').textContent = count;
+
+        // 文字数が30を超えた場合の処理
+        if (count > 30) {
+            this.style.borderColor = 'red'; // テキストボックスの枠を赤くする
+            document.getElementById('textAlert').style.display = 'block'; // アラートを表示
+        } else {
+            this.style.borderColor = ''; // テキストボックスの枠を元に戻す
+            document.getElementById('textAlert').style.display = 'none'; // アラートを非表示
+        }
+    });
+});
