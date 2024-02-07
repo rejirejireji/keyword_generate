@@ -230,3 +230,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('selectOption').addEventListener('change', function() {
+        // 全てのテキストボックスを非表示にする
+        document.getElementById('textGSearch').style.display = 'none';
+        document.getElementById('textGDN').style.display = 'none';
+        document.getElementById('textYSA').style.display = 'none';
+        document.getElementById('textYDN').style.display = 'none';
+
+        // 選択されたオプションに応じてテキストボックスを表示
+        const selectedOption = this.value;
+        if (selectedOption === 'GSearch') {
+            document.getElementById('textGSearch').style.display = 'block';
+        } else if (selectedOption === 'GDN') {
+            document.getElementById('textGDN').style.display = 'block';
+        } else if (selectedOption === 'YSA') {
+            document.getElementById('textYSA').style.display = 'block';
+        } else if (selectedOption === 'YDN') {
+            document.getElementById('textYDN').style.display = 'block';
+        }
+    });
+});
