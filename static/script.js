@@ -201,26 +201,53 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('textCounterInput').addEventListener('input', function() {
         const text = this.value;
-        let count = 0;
+        let halfWidthCount = 0;
+        let fullWidthCount = 0;
+        let totalCount = 0;
 
         for (let i = 0; i < text.length; i++) {
             const char = text.charAt(i);
             if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
-                count += 2;
+                fullWidthCount += 1;
+                totalCount += 2; // 全角文字は2としてカウント
             } else {
-                count += 1;
+                halfWidthCount += 1;
+                totalCount += 1; // 半角文字は1としてカウント
             }
         }
 
-        document.getElementById('textCharCount').textContent = count;
+        document.getElementById('halfWidthCount').textContent = halfWidthCount;
+        document.getElementById('fullWidthCount').textContent = fullWidthCount;
+        document.getElementById('textCharCount').textContent = totalCount;
 
         // 文字数が30を超えた場合の処理
-        if (count > 30) {
+        if (totalCount > 30) {
             this.style.borderColor = 'red'; // テキストボックスの枠を赤くする
             document.getElementById('textAlert').style.display = 'block'; // アラートを表示
         } else {
             this.style.borderColor = ''; // テキストボックスの枠を元に戻す
             document.getElementById('textAlert').style.display = 'none'; // アラートを非表示
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('selectOption').addEventListener('change', function() {
+        // 全てのテキストボックスを非表示にする
+        document.getElementById('textGSearch').style.display = 'none';
+        document.getElementById('textGDN').style.display = 'none';
+        document.getElementById('textYSA').style.display = 'none';
+        document.getElementById('textYDN').style.display = 'none';
+
+        // 選択されたオプションに応じてテキストボックスを表示
+        const selectedOption = this.value;
+        if (selectedOption === 'GSearch') {
+            document.getElementById('textGSearch').style.display = 'block';
+        } else if (selectedOption === 'GDN') {
+            document.getElementById('textGDN').style.display = 'block';
+        } else if (selectedOption === 'YSA') {
+            document.getElementById('textYSA').style.display = 'block';
+        } else if (selectedOption === 'YDN') {
+            document.getElementById('textYDN').style.display = 'block';
         }
     });
 });
