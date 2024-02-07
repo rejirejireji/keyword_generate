@@ -195,3 +195,43 @@ $(document).ready(function() {
         $("#" + targetId).show();
     });
 });
+////////////////////
+//文字数カウント関数
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('textCounterInput').addEventListener('input', function() {
+        const text = this.value;
+        let count = 0;
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text.charAt(i);
+            // 全角文字の場合は2を加算、それ以外は1を加算
+            if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
+                count += 2;
+            } else {
+                count += 1;
+            }
+        }
+
+        document.getElementById('textCharCount').textContent = count;
+    });
+
+    // 以下、トグルボタンの処理
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    const toggleContents = document.querySelectorAll('.toggle-content');
+
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const targetContent = document.getElementById(targetId);
+
+            toggleContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+        });
+    });
+});

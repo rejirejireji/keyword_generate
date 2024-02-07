@@ -116,7 +116,11 @@
             </select>
         </div>
         <div id="checkContent" class="content-section" style="display: none;">
-            <p>規定チェックボタン:</p>
+            <div class="text-input-section">
+                <h3>テキスト入力</h3>
+                <textarea id="textCounterInput" rows="4" style="width: 100%;"></textarea>
+                <p>文字数: <span id="textCharCount">0</span></p>
+            </div>
             <div class="button-group" style="display: flex; justify-content: space-around;">
                 <button type="button" class="btn btn-primary toggle-btn" data-target="infoGSearch">G検索</button>
                 <button type="button" class="btn btn-primary toggle-btn" data-target="infoGDN">GDN</button>
