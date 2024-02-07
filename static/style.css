@@ -492,9 +492,9 @@ p {
     margin-bottom: 20px;
     /* 下の余白 */
 }
-
+.form-group + p,
 #textCharCount+p,
 #textAlert {
-    margin-top: -20px
+    margin-top: -18px
         /* 上のマージンを5pxに設定して間隔を狭くする */
 }
