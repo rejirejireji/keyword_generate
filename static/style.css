@@ -474,9 +474,6 @@ p {
     padding: 0; 
     display: inline-block; 
 }
-#selectOption{
-    margin-top: 50px;
-}
 #gsaadTitle,
 #gsaadDescription,
 #gsaadPath {
@@ -491,4 +488,7 @@ p {
 #ydnbutton{
     background-color: #23466c;
     border-color:#23466c;
+}
+#kiteititle{
+    margin-top: 60px;
 }
