@@ -102,7 +102,7 @@ main {
 .button-group {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .button-group button {
@@ -481,4 +481,14 @@ p {
 #gsaadDescription,
 #gsaadPath {
     margin-top: -14px;
+}
+#kitei{
+    margin-top: 200px;
+}
+#gsabutton,
+#gdnbutton,
+#ysabutton,
+#ydnbutton{
+    background-color: #23466c;
+    border-color:#23466c;
 }
