@@ -465,8 +465,7 @@ p {
     margin-bottom: 20px;
 }
 
-#textCharCount+p,
-#textAlert {
+#textCharCount+p {
     margin-top: -18px
 }
 .character-counts p {
