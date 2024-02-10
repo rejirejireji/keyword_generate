@@ -339,3 +339,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+//////////////////////////
+//YSAテキストボックス拡張
+//////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const gsaadTitlesContainer = document.getElementById('ysaadTitlesContainer');
+    const gsaadDescriptionsContainer = document.getElementById('ysaadDescriptionsContainer');
+    const gsaadPathsContainer = document.getElementById('ysaadPathsContainer');
+
+    // 広告見出しの追加
+    gsaadTitlesContainer.addEventListener('input', function(e) {
+        addNewTextboxIfNeeded(e.target, gsaadTitlesContainer, 'ysaadTitleInput', '広告見出しを入力', 'gsaadTitleCount', 15);
+    });
+
+    // 説明文の追加
+    gsaadDescriptionsContainer.addEventListener('input', function(e) {
+        addNewTextboxIfNeeded(e.target, gsaadDescriptionsContainer, 'ysaadDescriptionInput', '説明文を入力', 'gsaadDescriptionCount', 4);
+    });
+
+    // パスの追加
+    gsaadPathsContainer.addEventListener('input', function(e) {
+        addNewTextboxIfNeeded(e.target, gsaadPathsContainer, 'ysaadPathInput', 'パスを入力', 'gsaadPathCount', 2);
+    });
+
+    function addNewTextboxIfNeeded(target, container, inputClass, placeholder, countClass, maxCount) {
+        const index = parseInt(target.getAttribute('data-index'), 10);
+        const totalCount = container.querySelectorAll(`.${inputClass}`).length;
+        if (index === totalCount && totalCount < maxCount) {
+            const newIndex = totalCount + 1;
+            const newRow = document.createElement('div');
+            newRow.classList.add('row', 'mb-3');
+            newRow.innerHTML = `
+                <div class="col-md-8">
+                    <input type="text" class="form-control ${inputClass}" placeholder="${placeholder}" data-index="${newIndex}">
+                </div>
+                <div class="col-md-4">
+                    <div class="character-counts">
+                        <p>文字数: <span class="${countClass}" data-index="${newIndex}">0</span></p>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newRow);
+        }
+    }
+});

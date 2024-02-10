@@ -97,23 +97,42 @@
             </div>
             <!--YSA-->
             <div class="form-group" id="textYSA" style="display: none;">
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadTitle" placeholder="タイトルを入力">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>広告見出し文字数: <span id="gsaadTitleCount">0</span></p>
+                <div class="form-group" id="ysaadTitlesContainer">
+                    <h5 class="mb-2">タイトル</h5>
+                    <div class="row mb-3" id="ysaadTitleRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control ysaadTitleInput" placeholder="タイトルを入力" data-index="1">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span class="gsaadTitleCount" data-index="1">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadDescription" placeholder="説明文を入力">
+                <div class="form-group" id="ysaadDescriptionsContainer">
+                    <h5 class="mb-2">説明文</h5>
+                    <div class="row mb-3" id="ysaadDescriptionRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control ysaadDescriptionInput" placeholder="説明文を入力" data-index="1">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span class="gsaadDescriptionCount" data-index="1">0</span></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>説明文文字数: <span id="gsaadDescriptionCount">0</span></p>
+                </div>
+                <div class="form-group" id="ysaadPathsContainer">
+                    <h5 class="mb-2">パス</h5>
+                    <div class="row mb-3" id="ysaadPathRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control ysaadPathInput" placeholder="パスを入力" data-index="1">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span class="gsaadPathCount" data-index="1">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
