@@ -139,23 +139,29 @@
             </div>
             <!--YDA-->
             <div class="form-group" id="textYDN" style="display: none;">
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadTitle" placeholder="タイトルを入力">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>タイトル文字数: <span id="gsaadTitleCount">0</span></p>
+                <div class="form-group" id="ydaadTitlesContainer">
+                    <h5 class="mb-2">タイトル</h5>
+                    <div class="row mb-3" id="ydaadTitleRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control ydaadTitleInput" placeholder="タイトルを入力" data-index="1">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span id="gsaadTitleCount" data-index="1">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadDescription" placeholder="説明文を入力">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>説明文文字数: <span id="gsaadDescriptionCount">0</span></p>
+                <div class="form-group" id="ydaadDescriptionsContainer">
+                    <h5 class="mb-2">説明文</h5>
+                    <div class="row mb-3" id="ydaadDescriptionRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control ydaadDescriptionInput"  placeholder="説明文を入力" data-index="1"> 
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span id="gsaadDescriptionCount" data-index="1">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
