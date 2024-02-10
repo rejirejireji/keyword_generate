@@ -62,14 +62,16 @@
             <!-- GDN -->
             <div class="form-group" id="textGDN" style="display: none;">
                 <div class="form-group" id="gdnadTitlesContainer">
-                    <h5 class="mb-2">広告見出し</h5>
+                <h5 class="mb-2">広告見出し</h5>
                     <div class="row mb-3" id="gdnadTitleRow1">
                         <div class="col-md-8">
                             <input type="text" class="form-control gdnadTitleInput" placeholder="広告見出しを入力" data-index="1">
                         </div>
                         <div class="col-md-4">
                             <div class="character-counts">
-                                <p>文字数: <span id="gdnadTitleCount" data-index="1">0</span></p>
+                                <p>半角: <span class="gdnadTitleHalfCount" data-index="1">0</span></p>
+                                <p>全角: <span class="gdnadTitleFullCount" data-index="1">0</span></p>
+                                <p>合計: <span class="gdnadTitleTotalCount" data-index="1">0</span></p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +84,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="character-counts">
-                                <p>文字数: <span id="gsaadPathCount">0</span></p>
+                                <p>半角: <span class="gdnadDescriptionHalfCount" data-index="1">0</span></p>
+                                <p>全角: <span class="gdnadDescriptionFullCount" data-index="1">0</span></p>
+                                <p>合計: <span class="gdnadDescriptionTotalCount" data-index="1">0</span></p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +99,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="character-counts">
-                                <p>文字数: <span id="gsaadDescriptionCount" data-index="1">0</span></p>
+                                <p>半角: <span class="gdnadPathHalfCount" data-index="1">0</span></p>
+                                <p>全角: <span class="gdnadPathFullCount" data-index="1">0</span></p>
+                                <p>合計: <span class="gdnadPathTotalCount" data-index="1">0</span></p>
                             </div>
                         </div>
                     </div>
