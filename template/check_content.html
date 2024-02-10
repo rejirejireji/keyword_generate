@@ -55,37 +55,47 @@
             </div>
             <!-- GDN -->
             <div class="form-group" id="textGDN" style="display: none;">
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadTitle" placeholder="広告見出しを入力">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>広告見出し文字数: <span id="gsaadTitleCount">0</span></p>
+                <div class="form-group" id="gdnadTitlesContainer">
+                    <h5 class="mb-2">広告見出し</h5>
+                    <div class="row mb-3" id="gdnadTitleRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control gdnadTitleInput" placeholder="広告見出しを入力" data-index="1">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span id="gdnadTitleCount" data-index="1">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadPath" placeholder="長い広告見出しを入力">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>長い広告見出し文字数: <span id="gsaadPathCount">0</span></p>
+                <div class="form-group" id="gdnadDescriptionsContainer">
+                    <h5 class="mb-2">長い広告見出し</h5>
+                    <div class="row mb-3" id="gdnadDescriptionRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control gdnadDescriptionInput" placeholder="長い広告見出しを入力">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span id="gsaadPathCount">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control mb-3" id="gsaadDescription" placeholder="説明文を入力">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="character-counts">
-                            <p>説明文文字数: <span id="gsaadDescriptionCount">0</span></p>
+                <div class="form-group" id="gdnadPathsContainer">
+                    <h5 class="mb-2">説明文</h5>
+                    <div class="row mb-3" id="gdnadPathRow1">
+                        <div class="col-md-8">
+                            <input type="text" class="form-control gdnadPathInput"  placeholder="説明文を入力" data-index="1">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="character-counts">
+                                <p>文字数: <span id="gsaadDescriptionCount" data-index="1">0</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--YSA-->
             <div class="form-group" id="textYSA" style="display: none;">
                 <div class="row">
                     <div class="col-md-8">
@@ -108,6 +118,7 @@
                     </div>
                 </div>
             </div>
+            <!--YDA-->
             <div class="form-group" id="textYDN" style="display: none;">
                 <div class="row">
                     <div class="col-md-8">

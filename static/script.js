@@ -251,6 +251,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+//////////////////////////
+//G検索テキストボックス拡張
+//////////////////////////
 document.addEventListener('DOMContentLoaded', function() {
     const gsaadTitlesContainer = document.getElementById('gsaadTitlesContainer');
     const gsaadDescriptionsContainer = document.getElementById('gsaadDescriptionsContainer');
@@ -292,4 +295,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+//////////////////////////
+//GDNテキストボックス拡張
+//////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const gsaadTitlesContainer = document.getElementById('gdnadTitlesContainer');
+    const gsaadDescriptionsContainer = document.getElementById('gdnadDescriptionsContainer');
+    const gsaadPathsContainer = document.getElementById('gdnadPathsContainer');
 
+    // 広告見出しの追加
+    gsaadTitlesContainer.addEventListener('input', function(e) {
+        addNewTextboxIfNeeded(e.target, gsaadTitlesContainer, 'gdnadTitleInput', '広告見出しを入力', 'gsaadTitleCount', 5);
+    });
+
+    // 説明文の追加
+    gsaadDescriptionsContainer.addEventListener('input', function(e) {
+        addNewTextboxIfNeeded(e.target, gsaadDescriptionsContainer, 'gdnadDescriptionInput', '長い広告見出しを入力', 'gsaadDescriptionCount', 1);
+    });
+
+    // パスの追加
+    gsaadPathsContainer.addEventListener('input', function(e) {
+        addNewTextboxIfNeeded(e.target, gsaadPathsContainer, 'gdnadPathInput', '説明文を入力', 'gsaadPathCount', 5);
+    });
+
+    function addNewTextboxIfNeeded(target, container, inputClass, placeholder, countClass, maxCount) {
+        const index = parseInt(target.getAttribute('data-index'), 10);
+        const totalCount = container.querySelectorAll(`.${inputClass}`).length;
+        if (index === totalCount && totalCount < maxCount) {
+            const newIndex = totalCount + 1;
+            const newRow = document.createElement('div');
+            newRow.classList.add('row', 'mb-3');
+            newRow.innerHTML = `
+                <div class="col-md-8">
+                    <input type="text" class="form-control ${inputClass}" placeholder="${placeholder}" data-index="${newIndex}">
+                </div>
+                <div class="col-md-4">
+                    <div class="character-counts">
+                        <p>文字数: <span class="${countClass}" data-index="${newIndex}">0</span></p>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newRow);
+        }
+    }
+});
