@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="col-md-4">
                     <div class="character-counts">
-                        <p>${placeholder}文字数: <span class="${countClass}" data-index="${newIndex}">0</span></p>
+                        <p>文字数: <span class="${countClass}" data-index="${newIndex}">0</span></p>
                     </div>
                 </div>
             `;
