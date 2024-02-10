@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 広告見出しの追加
     gsaadTitlesContainer.addEventListener('input', function(e) {
-        addNewTextboxIfNeeded(e.target, gsaadTitlesContainer, 'ysaadTitleInput', '広告見出しを入力', 'gsaadTitleCount', 15);
+        addNewTextboxIfNeeded(e.target, gsaadTitlesContainer, 'ysaadTitleInput', 'タイトルを入力', 'gsaadTitleCount', 15);
     });
 
     // 説明文の追加
