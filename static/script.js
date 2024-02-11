@@ -356,44 +356,57 @@ document.addEventListener('DOMContentLoaded', function() {
 //G検索テキストボックス拡張
 //////////////////////////
 document.addEventListener('DOMContentLoaded', function() {
-    // 広告見出し、説明文、パスの各セクションに対する設定
+    // セクションごとの設定
     const sections = {
         'gsaadTitlesContainer': { maxCount: 15, placeholder: '広告見出しを入力', inputClass: 'gsaadTitleInput', countClassPrefix: 'gsaadTitle' },
         'gsaadDescriptionsContainer': { maxCount: 4, placeholder: '説明文を入力', inputClass: 'gsaadDescriptionInput', countClassPrefix: 'gsaadDescription' },
         'gsaadPathsContainer': { maxCount: 2, placeholder: 'パスを入力', inputClass: 'gsaadPathInput', countClassPrefix: 'gsaadPath' }
     };
 
-    Object.entries(sections).forEach(([containerId, { maxCount, placeholder, inputClass, countClassPrefix }]) => {
+    Object.entries(sections).forEach(([containerId, config]) => {
         const container = document.getElementById(containerId);
-
-        container.addEventListener('paste', function(e) {
-            e.preventDefault();
-            const pastedData = e.clipboardData.getData('text').split(/\r?\n/);
-            pastedData.forEach((data, idx) => {
-                if (idx < maxCount) {
-                    let newInput;
-                    if (container.querySelectorAll(`.${inputClass}`).length <= idx) {
-                        newInput = addNewTextbox(container, idx + 1, inputClass, placeholder, countClassPrefix);
-                    } else {
-                        newInput = container.querySelectorAll(`.${inputClass}`)[idx];
-                    }
-                    newInput.value = data;
-                    updateCharacterCount(newInput, countClassPrefix);
-                }
-            });
-        });
-
-        // 初期ロード時に既存のテキストボックスの文字数を更新
-        container.querySelectorAll(`.${inputClass}`).forEach(input => {
-            updateCharacterCount(input, countClassPrefix);
-        });
+        // ペーストイベント処理
+        container.addEventListener('paste', e => handlePaste(e, config, container));
+        // 入力イベント処理
+        container.addEventListener('input', e => handleInput(e, config, container));
     });
 
-    function addNewTextbox(container, index, inputClass, placeholder, countClassPrefix) {
-        const newRow = document.createElement('div');
-        newRow.classList.add('row', 'mb-3');
-        newRow.innerHTML = `
-            <div class="col-md-8">
+    // ペースト時の処理
+    function handlePaste(e, config, container) {
+        e.preventDefault();
+        const pastedText = e.clipboardData.getData('text');
+        const lines = pastedText.split(/\r?\n/);
+        lines.forEach((line, idx) => {
+            if (idx < config.maxCount) {
+                let inputs = container.getElementsByClassName(config.inputClass);
+                let input = inputs[idx];
+                if (!input) {
+                    input = addNewTextbox(container, idx + 1, config);
+                }
+                input.value = line;
+                updateCharacterCount(input, config.countClassPrefix);
+            }
+        });
+    }
+
+    // 入力時の処理
+    function handleInput(e, config, container) {
+        const target = e.target;
+        if (target.classList.contains(config.inputClass)) {
+            const index = [...container.getElementsByClassName(config.inputClass)].indexOf(target);
+            if (index === container.getElementsByClassName(config.inputClass).length - 1) {
+                addNewTextboxIfNeeded(container, index + 2, config);
+            }
+            updateCharacterCount(target, config.countClassPrefix);
+        }
+    }
+
+    // 新しいテキストボックスを追加
+    function addNewTextbox(container, index, { placeholder, inputClass, countClassPrefix }) {
+        if (container.getElementsByClassName(inputClass).length < index) {
+            const newRow = document.createElement('div');
+            newRow.classList.add('row', 'mb-3');
+            newRow.innerHTML = `<div class="col-md-8">
                 <input type="text" class="form-control ${inputClass}" placeholder="${placeholder}" data-index="${index}">
             </div>
             <div class="col-md-4">
@@ -402,33 +415,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>全角: <span class="${countClassPrefix}FullCount" data-index="${index}">0</span></p>
                     <p>合計: <span class="${countClassPrefix}TotalCount" data-index="${index}">0</span></p>
                 </div>
-            </div>
-        `;
-        container.appendChild(newRow);
-        const newInput = newRow.querySelector(`.${inputClass}`);
-        newInput.addEventListener('input', () => updateCharacterCount(newInput, countClassPrefix));
-        return newInput; // 新しい入力フィールドを返す
+            </div>`;
+            container.appendChild(newRow);
+            const newInput = newRow.querySelector(`.${inputClass}`);
+            newInput.addEventListener('input', () => updateCharacterCount(newInput, countClassPrefix));
+            return newInput;
+        }
     }
 
+    // 必要に応じて新しいテキストボックスを追加
+    function addNewTextboxIfNeeded(container, index, config) {
+        let existingInputs = container.getElementsByClassName(config.inputClass);
+        if (existingInputs.length < config.maxCount) {
+            addNewTextbox(container, index, config);
+        }
+    }
+
+    // 文字数カウントの更新
     function updateCharacterCount(inputElement, countClassPrefix) {
         const text = inputElement.value;
         let halfWidthCount = 0;
         let fullWidthCount = 0;
-
         for (let char of text) {
-            if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
-                fullWidthCount += 2; // 全角文字を2としてカウント
-            } else {
-                halfWidthCount += 1; // 半角文字をカウント
-            }
+            char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-
+        const totalCharacters = halfWidthCount + fullWidthCount;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
-        document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount / 2; // 表示時には全角文字数を半分にする
-        document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = halfWidthCount + fullWidthCount;
+        document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
+        document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
     }
 });
+
 
 //////////////////////////
 //GDNテキストボックス拡張
