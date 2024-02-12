@@ -213,15 +213,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let fullCount = 0;
         for (let char of inputElement.value) {
             if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
-                fullCount += 2;
+                // 全角文字は2としてカウント
+                fullCount += 1;
             } else {
                 halfCount += 1;
             }
         }
         
+        // 全角文字数を2倍して合計に加算
+        const totalCharacters = halfCount + (fullCount * 2);
+        
         halfCountElement.textContent = halfCount;
-        fullCountElement.textContent = fullCount / 2; // 全角文字は2としてカウント
-        totalCountElement.textContent = halfCount + fullCount;
+        fullCountElement.textContent = fullCount; // 全角文字を1として表示
+        totalCountElement.textContent = totalCharacters; // 合計は半角1文字、全角2文字として計算
     }
 
     // 全てのテキストボックスにイベントリスナーを設定
@@ -231,6 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('input', () => updateCharacterCount(input));
     });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     // 文字数カウント関数の定義
     function updateCharacterCount(inputElement) {
@@ -439,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount;
+        const totalCharacters = halfWidthCount + fullWidthCount*2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -510,6 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>全角: <span class="${countClassPrefix}FullCount" data-index="${index}">0</span></p>
                     <p>合計: <span class="${countClassPrefix}TotalCount" data-index="${index}">0</span></p>
                 </div>
+                <p class="text-danger gsaadTitleAlert" data-index="1" style="display: none;">文字数オーバー</p>
             </div>`;
             container.appendChild(newRow);
             const newInput = newRow.querySelector(`.${inputClass}`);
@@ -534,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount;
+        const totalCharacters = halfWidthCount + fullWidthCount*2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -629,7 +635,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount;
+        const totalCharacters = halfWidthCount + fullWidthCount*2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -722,10 +728,44 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount;
+        const totalCharacters = halfWidthCount + fullWidthCount*2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
         document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
     }
+});
+///////////////////////
+//文字数オーバーアラート
+///////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    // 広告見出しテキストボックスに対するイベントリスナー
+    document.querySelectorAll('.gsaadTitleInput').forEach(input => {
+        input.addEventListener('input', function() {
+            const index = this.getAttribute('data-index');
+            const totalCountElement = document.querySelector(`.gsaadTitleTotalCount[data-index="${index}"]`);
+            const alertElement = document.querySelector(`.gsaadTitleAlert[data-index="${index}"]`);
+            let halfCount = 0;
+            let fullCount = 0;
+
+            for (let char of this.value) {
+                if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
+                    fullCount += 1;
+                } else {
+                    halfCount += 1;
+                }
+            }
+
+            const totalCount = halfCount + fullCount*2;
+            totalCountElement.textContent = totalCount;
+
+            if (totalCount > 30) {
+                this.classList.add('is-invalid'); // テキストボックスを赤くする
+                alertElement.style.display = 'block'; // アラートを表示
+            } else {
+                this.classList.remove('is-invalid'); // テキストボックスの赤い枠線を削除
+                alertElement.style.display = 'none'; // アラートを非表示
+            }
+        });
+    });
 });
