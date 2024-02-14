@@ -269,6 +269,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 document.addEventListener('DOMContentLoaded', function() {
+    const gdnadDescriptionInput = document.querySelector('.gdnadDescriptionInput');
+
+    // 長い広告見出しの入力フィールドのイベントリスナー
+    gdnadDescriptionInput.addEventListener('input', function() {
+        const halfCountElement = document.querySelector('.gdnadDescriptionHalfCount');
+        const fullCountElement = document.querySelector('.gdnadDescriptionFullCount');
+        const totalCountElement = document.querySelector('.gdnadDescriptionTotalCount');
+
+        let halfWidthCount = 0;
+        let fullWidthCount = 0;
+
+        // 入力されたテキストの全角・半角文字をカウント
+        for (let char of this.value) {
+            // 全角文字の判定
+            if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
+                fullWidthCount += 1; // 全角文字は2文字としてカウント
+            } else {
+                halfWidthCount += 1; // 半角文字は1文字としてカウント
+            }
+        }
+
+        // 合計文字数を計算（全角文字は2文字として加算）
+        const totalCharacters = halfWidthCount + (fullWidthCount * 2);
+
+        // 結果を表示
+        halfCountElement.textContent = halfWidthCount;
+        fullCountElement.textContent = fullWidthCount;
+        totalCountElement.textContent = totalCharacters;
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
     // 文字数カウント関数
     function updateCharacterCount(inputElement) {
         const index = inputElement.getAttribute('data-index');
