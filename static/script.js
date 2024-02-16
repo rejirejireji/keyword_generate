@@ -477,14 +477,25 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount * 2;
+        const totalCharacters = halfWidthCount + fullWidthCount*2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
-        document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
-
         const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
-        if (parseInt(totalCountElement.textContent, 10) > 30) {
+        totalCountElement.textContent = totalCharacters;
+    
+        // 閾値を設定
+        let threshold = 0;
+        if (countClassPrefix.includes('Title')) {
+            threshold = 30;
+        } else if (countClassPrefix.includes('Description')) {
+            threshold = 90;
+        } else if (countClassPrefix.includes('Path')) {
+            threshold = 15;
+        }
+    
+        // 閾値を超えた場合にテキストの色を赤に変更
+        if (parseInt(totalCountElement.textContent, 10) > threshold) {
             totalCountElement.style.color = 'red';
         } else {
             totalCountElement.style.color = ''; // デフォルトの色に戻す
@@ -774,23 +785,5 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
         document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
     }
-});
-///////////////////////
-//文字数オーバーアラート
-///////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    // gsaadTitleTotalCountクラスを持つ全ての要素を選択
-    const elements = document.querySelectorAll('.gsaadTitleTotalCount');
-
-    // 各要素に対して処理を実行
-    elements.forEach(function (element) {
-        // 要素のテキストを数値に変換
-        const value = parseInt(element.innerText, 10);
-
-        // 値が30を超える場合、テキストの色を赤に変更
-        if (value > 30) {
-            element.style.color = 'red';
-        }
-    });
 });
 
