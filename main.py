@@ -18,7 +18,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # キーワード生成関数
 def generate_ad_keywords(base_keyword, industry, appeal, prefecture, city):
-    system_message = "あなたは検索広告のキーワードを作成します。基本的に単語のみで返すようにしてください。"
+    system_message = "あなたは検索広告のキーワードを作成します。単語のみで返すようにしてください。"
     user_message = f'''{base_keyword} このキーワードに対する、検索広告のキーワードを50個作成してください。
         訴求内容は、{appeal}ということも考慮してください。1～50のような数字で表記するのではなく、結果のみ表示してください。
         また、単語同士の間に半角スペースを空けるようにしてください。参考として、業界は{industry}で、
