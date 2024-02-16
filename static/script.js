@@ -92,9 +92,9 @@ function copyToClipboard() {
 ///////////////////////////////////////////////////////////
 //Ajaxに対して、メインコンテンツを変更するためのリクエスト送信
 ///////////////////////////////////////////////////////////
-$(document).ready(function() {
+$(document).ready(function () {
     // メニューバーのリンクにクリックイベントリスナーを追加
-    $('.nav-link').click(function(e) {
+    $('.nav-link').click(function (e) {
         e.preventDefault(); // デフォルトのアンカー動作をキャンセル
         var targetId = $(this).data('target'); // リンクのdata-target属性からIDを取得
         $('.content-section').hide(); // すべてのコンテンツセクションを非表示にする
@@ -120,7 +120,7 @@ function clearInputs() {
 ///////////////////////////////////
 // 画面外のクリックでモーダルを閉じる
 ///////////////////////////////////
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == document.getElementById("myModal")) {
         document.getElementById("myModal").style.display = "none";
     }
@@ -144,7 +144,7 @@ function toggleSidebar() {
         mainContent.style.marginLeft = "250px";
     }
 }
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     var sidebar = document.getElementById('sidebarMenu');
     var openSidebarMenu = document.getElementById('openSidebarMenu');
     var sidebarIconToggle = document.querySelector('.sidebarIconToggle');
@@ -161,16 +161,16 @@ document.addEventListener('click', function(event) {
 ////////////////
 //ニュースの表示
 ////////////////
-$(document).ready(function() {
-    $.getJSON('/get_rss_feed', function(data) {
+$(document).ready(function () {
+    $.getJSON('/get_rss_feed', function (data) {
         var items = [];
-        $.each(data, function(index, val) {
+        $.each(data, function (index, val) {
             // 日付を単純な文字列として表示
             var listItem = "<li class='news_list_item'>" +
-                           "<div class='news_list_date'>" + val.pubDate + "</div>" +
-                           "<a href='" + val.link + "'target='_blank'>" +
-                           "<br /><p>" + val.title + "</p>" +
-                           "</a></li>";
+                "<div class='news_list_date'>" + val.pubDate + "</div>" +
+                "<a href='" + val.link + "'target='_blank'>" +
+                "<br /><p>" + val.title + "</p>" +
+                "</a></li>";
             items.push(listItem);
         });
         $("#webAdNewsList").html(items.join(""));
@@ -179,18 +179,18 @@ $(document).ready(function() {
 ////////////////////////////
 //規定チェックのトグル関数
 ////////////////////////////
-$(document).ready(function() {
+$(document).ready(function () {
     // 最初にG検索以外を隠す
     $("#infoGDN, #infoYSA, #infoYDA").hide();
 
     // トグルボタンのクリックイベントハンドラーを設定
-    $(".toggle-btn").click(function() {
+    $(".toggle-btn").click(function () {
         // クリックされたボタンに対応する情報のIDを取得
         var targetId = $(this).data("target");
-        
+
         // すべてのトグルコンテンツを隠す
         $(".toggle-content").hide();
-        
+
         // ターゲットのトグルコンテンツを表示
         $("#" + targetId).show();
     });
@@ -198,17 +198,17 @@ $(document).ready(function() {
 ////////////////////
 //文字数カウント関数
 ////////////////////
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 文字数カウント関数
     function updateCharacterCount(inputElement) {
         const index = inputElement.getAttribute('data-index');
-        const inputType = inputElement.classList.contains('gsaadTitleInput') ? 'Title' : 
-                          inputElement.classList.contains('gsaadDescriptionInput') ? 'Description' : 'Path';
-        
+        const inputType = inputElement.classList.contains('gsaadTitleInput') ? 'Title' :
+            inputElement.classList.contains('gsaadDescriptionInput') ? 'Description' : 'Path';
+
         const halfCountElement = document.querySelector(`.gsaad${inputType}HalfCount[data-index="${index}"]`);
         const fullCountElement = document.querySelector(`.gsaad${inputType}FullCount[data-index="${index}"]`);
         const totalCountElement = document.querySelector(`.gsaad${inputType}TotalCount[data-index="${index}"]`);
-        
+
         let halfCount = 0;
         let fullCount = 0;
         for (let char of inputElement.value) {
@@ -219,10 +219,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 halfCount += 1;
             }
         }
-        
+
         // 全角文字数を2倍して合計に加算
         const totalCharacters = halfCount + (fullCount * 2);
-        
+
         halfCountElement.textContent = halfCount;
         fullCountElement.textContent = fullCount; // 全角文字を1として表示
         totalCountElement.textContent = totalCharacters; // 合計は半角1文字、全角2文字として計算
@@ -236,17 +236,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 文字数カウント関数の定義
     function updateCharacterCount(inputElement) {
         const index = inputElement.getAttribute('data-index');
-        const inputType = inputElement.classList.contains('gdnadTitleInput') ? 'Title' : 
-                          inputElement.classList.contains('gdnadDescriptionInput') ? 'Description' : 'Path';
-        
+        const inputType = inputElement.classList.contains('gdnadTitleInput') ? 'Title' :
+            inputElement.classList.contains('gdnadDescriptionInput') ? 'Description' : 'Path';
+
         const halfCountElement = document.querySelector(`.gdnad${inputType}HalfCount[data-index="${index}"]`);
         const fullCountElement = document.querySelector(`.gdnad${inputType}FullCount[data-index="${index}"]`);
         const totalCountElement = document.querySelector(`.gdnad${inputType}TotalCount[data-index="${index}"]`);
-        
+
         let halfCount = 0;
         let fullCount = 0;
         for (let char of inputElement.value) {
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 halfCount += 1; // 半角文字をカウント
             }
         }
-        
+
         // 対応する要素に文字数を設定
         halfCountElement.textContent = halfCount;
         fullCountElement.textContent = fullCount / 2; // 全角文字を2としてカウントしているので、表示時には2で割る
@@ -268,11 +268,11 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('input', () => updateCharacterCount(input));
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const gdnadDescriptionInput = document.querySelector('.gdnadDescriptionInput');
 
     // 長い広告見出しの入力フィールドのイベントリスナー
-    gdnadDescriptionInput.addEventListener('input', function() {
+    gdnadDescriptionInput.addEventListener('input', function () {
         const halfCountElement = document.querySelector('.gdnadDescriptionHalfCount');
         const fullCountElement = document.querySelector('.gdnadDescriptionFullCount');
         const totalCountElement = document.querySelector('.gdnadDescriptionTotalCount');
@@ -299,17 +299,17 @@ document.addEventListener('DOMContentLoaded', function() {
         totalCountElement.textContent = totalCharacters;
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 文字数カウント関数
     function updateCharacterCount(inputElement) {
         const index = inputElement.getAttribute('data-index');
-        const inputType = inputElement.classList.contains('ysaadTitleInput') ? 'Title' : 
-                          inputElement.classList.contains('ysaadDescriptionInput') ? 'Description' : 'Path';
-        
+        const inputType = inputElement.classList.contains('ysaadTitleInput') ? 'Title' :
+            inputElement.classList.contains('ysaadDescriptionInput') ? 'Description' : 'Path';
+
         const halfCountElement = document.querySelector(`.ysaad${inputType}HalfCount[data-index="${index}"]`);
         const fullCountElement = document.querySelector(`.ysaad${inputType}FullCount[data-index="${index}"]`);
         const totalCountElement = document.querySelector(`.ysaad${inputType}TotalCount[data-index="${index}"]`);
-        
+
         let halfCount = 0;
         let fullCount = 0;
         for (let char of inputElement.value) {
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 halfCount += 1;
             }
         }
-        
+
         halfCountElement.textContent = halfCount;
         fullCountElement.textContent = fullCount / 2; // 全角文字は2としてカウント
         totalCountElement.textContent = halfCount + fullCount;
@@ -333,17 +333,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 文字数カウント関数
     function updateCharacterCount(inputElement) {
         const index = inputElement.getAttribute('data-index');
-        const inputType = inputElement.classList.contains('ydaadTitleInput') ? 'Title' : 
-                          inputElement.classList.contains('ydaadDescriptionInput') ? 'Description' : 'Path';
-        
+        const inputType = inputElement.classList.contains('ydaadTitleInput') ? 'Title' :
+            inputElement.classList.contains('ydaadDescriptionInput') ? 'Description' : 'Path';
+
         const halfCountElement = document.querySelector(`.ydaad${inputType}HalfCount[data-index="${index}"]`);
         const fullCountElement = document.querySelector(`.ydaad${inputType}FullCount[data-index="${index}"]`);
         const totalCountElement = document.querySelector(`.ydaad${inputType}TotalCount[data-index="${index}"]`);
-        
+
         let halfCount = 0;
         let fullCount = 0;
         for (let char of inputElement.value) {
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 halfCount += 1;
             }
         }
-        
+
         halfCountElement.textContent = halfCount;
         fullCountElement.textContent = fullCount / 2; // 全角文字は2としてカウント
         totalCountElement.textContent = halfCount + fullCount;
@@ -367,8 +367,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('selectOption').addEventListener('change', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('selectOption').addEventListener('change', function () {
         // 全てのテキストボックスを非表示にする
         document.getElementById('textGSearch').style.display = 'none';
         document.getElementById('textGDN').style.display = 'none';
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //////////////////////////
 //G検索テキストボックス拡張
 //////////////////////////
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // セクションごとの設定
     const sections = {
         'gsaadTitlesContainer': { maxCount: 15, placeholder: '広告見出しを入力', inputClass: 'gsaadTitleInput', countClassPrefix: 'gsaadTitle' },
@@ -451,6 +451,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>全角: <span class="${countClassPrefix}FullCount" data-index="${index}">0</span></p>
                     <p>合計: <span class="${countClassPrefix}TotalCount" data-index="${index}">0</span></p>
                 </div>
+                <!-- 文字数オーバーアラート表示用 -->
+                <p class="text-danger gsaadTitleAlert" data-index="1" style="display: none;">文字数オーバー</p>
             </div>`;
             container.appendChild(newRow);
             const newInput = newRow.querySelector(`.${inputClass}`);
@@ -475,11 +477,18 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount*2;
+        const totalCharacters = halfWidthCount + fullWidthCount * 2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
         document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
+
+        const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
+        if (parseInt(totalCountElement.textContent, 10) > 30) {
+            totalCountElement.style.color = 'red';
+        } else {
+            totalCountElement.style.color = ''; // デフォルトの色に戻す
+        }
     }
 });
 
@@ -487,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //////////////////////////
 //GDNテキストボックス拡張
 //////////////////////////
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 広告見出し、説明文、パスの各セクションに対する設定
     const sections = {
         'gdnadTitlesContainer': { maxCount: 5, placeholder: '広告見出しを入力', inputClass: 'gdnadTitleInput', countClassPrefix: 'gdnadTitle' },
@@ -571,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount*2;
+        const totalCharacters = halfWidthCount + fullWidthCount * 2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -582,7 +591,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //////////////////////////
 //YSAテキストボックス拡張
 //////////////////////////
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 広告見出し、説明文、パスの各セクションに対する設定
     const sections = {
         'ysaadTitlesContainer': { maxCount: 15, placeholder: '広告見出しを入力', inputClass: 'ysaadTitleInput', countClassPrefix: 'ysaadTitle' },
@@ -666,7 +675,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount*2;
+        const totalCharacters = halfWidthCount + fullWidthCount * 2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -676,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //////////////////////////
 //YDAテキストボックス拡張
 //////////////////////////
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 広告見出し、説明文、パスの各セクションに対する設定
     const sections = {
         'ydaadTitlesContainer': { maxCount: 15, placeholder: 'タイトルを入力', inputClass: 'ydaadTitleInput', countClassPrefix: 'ydaadTitle' },
@@ -759,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount*2;
+        const totalCharacters = halfWidthCount + fullWidthCount * 2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -769,34 +778,19 @@ document.addEventListener('DOMContentLoaded', function() {
 ///////////////////////
 //文字数オーバーアラート
 ///////////////////////
-document.addEventListener('DOMContentLoaded', function() {
-    // 広告見出しテキストボックスに対するイベントリスナー
-    document.querySelectorAll('.gsaadTitleInput').forEach(input => {
-        input.addEventListener('input', function() {
-            const index = this.getAttribute('data-index');
-            const totalCountElement = document.querySelector(`.gsaadTitleTotalCount[data-index="${index}"]`);
-            const alertElement = document.querySelector(`.gsaadTitleAlert[data-index="${index}"]`);
-            let halfCount = 0;
-            let fullCount = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    // gsaadTitleTotalCountクラスを持つ全ての要素を選択
+    const elements = document.querySelectorAll('.gsaadTitleTotalCount');
 
-            for (let char of this.value) {
-                if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
-                    fullCount += 1;
-                } else {
-                    halfCount += 1;
-                }
-            }
+    // 各要素に対して処理を実行
+    elements.forEach(function (element) {
+        // 要素のテキストを数値に変換
+        const value = parseInt(element.innerText, 10);
 
-            const totalCount = halfCount + fullCount*2;
-            totalCountElement.textContent = totalCount;
-
-            if (totalCount > 30) {
-                this.classList.add('is-invalid'); // テキストボックスを赤くする
-                alertElement.style.display = 'block'; // アラートを表示
-            } else {
-                this.classList.remove('is-invalid'); // テキストボックスの赤い枠線を削除
-                alertElement.style.display = 'none'; // アラートを非表示
-            }
-        });
+        // 値が30を超える場合、テキストの色を赤に変更
+        if (value > 30) {
+            element.style.color = 'red';
+        }
     });
 });
+
