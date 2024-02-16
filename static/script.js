@@ -477,13 +477,13 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount*2;
+        const totalCharacters = halfWidthCount + fullWidthCount * 2;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
         const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
         totalCountElement.textContent = totalCharacters;
-    
+
         // 閾値を設定
         let threshold = 0;
         if (countClassPrefix.includes('Title')) {
@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (countClassPrefix.includes('Path')) {
             threshold = 15;
         }
-    
+
         // 閾値を超えた場合にテキストの色を赤に変更
         if (parseInt(totalCountElement.textContent, 10) > threshold) {
             totalCountElement.style.color = 'red';
@@ -584,6 +584,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 文字数カウントの更新
+    // 文字数カウントの更新と、条件に応じたテキスト色の変更
     function updateCharacterCount(inputElement, countClassPrefix) {
         const text = inputElement.value;
         let halfWidthCount = 0;
@@ -595,8 +596,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
-        document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
+        const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
+        totalCountElement.textContent = totalCharacters;
+
+        // 閾値の設定
+        let threshold = 0; // 初期閾値
+        if (countClassPrefix.includes('Title')) {
+            threshold = 30; // gdnadTitleTotalCountの場合
+        } else if (countClassPrefix.includes('Description') || countClassPrefix.includes('Path')) {
+            threshold = 90; // gdnadDescriptionTotalCount と gdnadPathTotalCount の場合
+        }
+
+        // 文字数が閾値を超えた場合にテキストの色を赤に変更
+        if (parseInt(totalCountElement.textContent, 10) > threshold) {
+            totalCountElement.style.color = 'red';
+        } else {
+            totalCountElement.style.color = ''; // デフォルトの色に戻す
+        }
     }
+
 });
 
 //////////////////////////
@@ -690,7 +708,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
-        document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
+        const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
+        totalCountElement.textContent = totalCharacters;
+
+        // 閾値を設定
+        let threshold = 0;
+        if (countClassPrefix.includes('Title')) {
+            threshold = 30;
+        } else if (countClassPrefix.includes('Description')) {
+            threshold = 90;
+        } else if (countClassPrefix.includes('Path')) {
+            threshold = 15;
+        }
+
+        // 閾値を超えた場合にテキストの色を赤に変更
+        if (parseInt(totalCountElement.textContent, 10) > threshold) {
+            totalCountElement.style.color = 'red';
+        } else {
+            totalCountElement.style.color = ''; // デフォルトの色に戻す
+        }
     }
 });
 //////////////////////////
@@ -783,7 +819,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
-        document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`).textContent = totalCharacters;
+        const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
+        totalCountElement.textContent = totalCharacters;
+
+        // 閾値の設定
+        let threshold = 0; // 初期閾値
+        if (countClassPrefix.includes('Title')) {
+            threshold = 20; // gdnadTitleTotalCountの場合
+        } else if (countClassPrefix.includes('Description')) {
+            threshold = 90; 
+        }
+
+        // 文字数が閾値を超えた場合にテキストの色を赤に変更
+        if (parseInt(totalCountElement.textContent, 10) > threshold) {
+            totalCountElement.style.color = 'red';
+        } else {
+            totalCountElement.style.color = ''; // デフォルトの色に戻す
+        }
     }
 });
 
