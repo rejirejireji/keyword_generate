@@ -603,7 +603,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let threshold = 0; // 初期閾値
         if (countClassPrefix.includes('Title')) {
             threshold = 30; // gdnadTitleTotalCountの場合
-        } else if (countClassPrefix.includes('Description') || countClassPrefix.includes('Path')) {
+        } else if ( countClassPrefix.includes('Path')) {
             threshold = 90; // gdnadDescriptionTotalCount と gdnadPathTotalCount の場合
         }
 
@@ -838,4 +838,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
