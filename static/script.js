@@ -583,7 +583,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 文字数カウントの更新
     // 文字数カウントの更新と、条件に応じたテキスト色の変更
     function updateCharacterCount(inputElement, countClassPrefix) {
         const text = inputElement.value;
