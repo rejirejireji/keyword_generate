@@ -424,6 +424,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    
+    
 
     // 入力時の処理
     function handleInput(e, config, container) {
@@ -473,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = inputElement.value;
         let halfWidthCount = 0;
         let fullWidthCount = 0;
-
+    
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
@@ -483,8 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
         const totalCountElement = document.querySelector(`.${countClassPrefix}TotalCount[data-index="${index}"]`);
         totalCountElement.textContent = totalCharacters;
-
-        // 閾値を設定
+    
         let threshold = 0;
         if (countClassPrefix.includes('Title')) {
             threshold = 30;
@@ -493,21 +494,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (countClassPrefix.includes('Path')) {
             threshold = 15;
         }
-
-        // 閾値を超えた場合にテキストの色を赤に変更
+    
         if (parseInt(totalCountElement.textContent, 10) > threshold) {
             totalCountElement.style.color = 'red';
         } else {
             totalCountElement.style.color = ''; // デフォルトの色に戻す
         }
-        const alertElement = document.querySelector(`.${countClassPrefix}Alert[data-index="${index}"]`);
-        if (text.includes('！') || text.includes('!')) {
-            alertElement.style.display = 'block';
-            alertElement.textContent = '「！」や「!」が含まれています。';
-        } else {
-            alertElement.style.display = 'none';
-        }
     }
+    
 });
 
 
@@ -846,18 +840,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 document.addEventListener('DOMContentLoaded', function () {
-    // 全セクションの設定
     const sections = {
         'gsaadTitlesContainer': 'gsaadTitleInput',
-        'gsaadDescriptionsContainer': 'gsaadDescriptionInput',
-        'gsaadPathsContainer': 'gsaadPathInput'
+        // 他のセクションも同様に追加可能です。
     };
 
     Object.keys(sections).forEach(containerId => {
         const container = document.getElementById(containerId);
         const inputClass = sections[containerId];
 
-        // アラート表示用の要素を作成し、コンテナの最後に追加
+        // コンテナ内のh5タグを見つけます。
+        const h5 = container.querySelector('h5');
+
+        // アラート表示用の要素を作成し、h5タグの直下に追加
         const alertElementId = `${containerId}ExclamationAlert`;
         let alertElement = document.getElementById(alertElementId);
         if (!alertElement) {
@@ -866,7 +861,8 @@ document.addEventListener('DOMContentLoaded', function () {
             alertElement.id = alertElementId;
             alertElement.style.display = 'none';
             alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
-            container.appendChild(alertElement);
+            // h5タグの直後にアラートを追加
+            h5.insertAdjacentElement('afterend', alertElement);
         }
 
         // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
@@ -881,4 +877,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
 
