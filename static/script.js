@@ -439,10 +439,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 新しいテキストボックスを追加
     function addNewTextbox(container, index, { placeholder, inputClass, countClassPrefix }) {
-        if (container.getElementsByClassName(inputClass).length < index) {
-            const newRow = document.createElement('div');
-            newRow.classList.add('row', 'mb-3');
-            newRow.innerHTML = `<div class="col-md-8">
+        const newRow = document.createElement('div');
+        newRow.classList.add('row', 'mb-3');
+        newRow.innerHTML = `
+            <div class="col-md-8">
                 <input type="text" class="form-control ${inputClass}" placeholder="${placeholder}" data-index="${index}">
             </div>
             <div class="col-md-4">
@@ -452,14 +452,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p>合計: <span class="${countClassPrefix}TotalCount" data-index="${index}">0</span></p>
                 </div>
                 <!-- 文字数オーバーアラート表示用 -->
-                <p class="text-danger gsaadTitleAlert" data-index="1" style="display: none;">文字数オーバー</p>
+                <p class="text-danger ${countClassPrefix}Alert" data-index="${index}" style="display: none;"></p>
             </div>`;
-            container.appendChild(newRow);
-            showAlert = text.includes('！') || text.includes('!');
-            const newInput = newRow.querySelector(`.${inputClass}`);
-            newInput.addEventListener('input', () => updateCharacterCount(newInput, countClassPrefix));
-            return newInput;
-        }
+        container.appendChild(newRow);
+        const newInput = newRow.querySelector(`.${inputClass}`);
+        newInput.addEventListener('input', () => updateCharacterCount(newInput, countClassPrefix));
+        return newInput;
     }
 
     // 必要に応じて新しいテキストボックスを追加
@@ -475,8 +473,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = inputElement.value;
         let halfWidthCount = 0;
         let fullWidthCount = 0;
-
-        showAlert = text.includes('！') || text.includes('!');
 
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
@@ -503,6 +499,13 @@ document.addEventListener('DOMContentLoaded', function () {
             totalCountElement.style.color = 'red';
         } else {
             totalCountElement.style.color = ''; // デフォルトの色に戻す
+        }
+        const alertElement = document.querySelector(`.${countClassPrefix}Alert[data-index="${index}"]`);
+        if (text.includes('！') || text.includes('!')) {
+            alertElement.style.display = 'block';
+            alertElement.textContent = '「！」や「!」が含まれています。';
+        } else {
+            alertElement.style.display = 'none';
         }
     }
 });
@@ -607,7 +610,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let threshold = 0; // 初期閾値
         if (countClassPrefix.includes('Title')) {
             threshold = 30; // gdnadTitleTotalCountの場合
-        } else if ( countClassPrefix.includes('gdnadDescriptionTotalCount') || countClassPrefix.includes('Path')) {
+        } else if (countClassPrefix.includes('gdnadDescriptionTotalCount') || countClassPrefix.includes('Path')) {
             threshold = 90; // gdnadDescriptionTotalCount と gdnadPathTotalCount の場合
         }
 
@@ -831,7 +834,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (countClassPrefix.includes('Title')) {
             threshold = 20; // gdnadTitleTotalCountの場合
         } else if (countClassPrefix.includes('Description')) {
-            threshold = 90; 
+            threshold = 90;
         }
 
         // 文字数が閾値を超えた場合にテキストの色を赤に変更
@@ -842,26 +845,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const containerId = 'gsaadTitlesContainer';
-    const container = document.getElementById(containerId);
+document.addEventListener('DOMContentLoaded', function () {
+    // 全セクションの設定
+    const sections = {
+        'gsaadTitlesContainer': 'gsaadTitleInput',
+        'gsaadDescriptionsContainer': 'gsaadDescriptionInput',
+        'gsaadPathsContainer': 'gsaadPathInput'
+    };
 
-    // アラート表示用の要素を作成し、コンテナの最後に追加
-    const alertElement = document.createElement('div');
-    alertElement.className = 'alert alert-warning mt-3';
-    alertElement.id = 'exclamationAlert';
-    alertElement.style.display = 'none';
-    alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
-    container.appendChild(alertElement);
+    Object.keys(sections).forEach(containerId => {
+        const container = document.getElementById(containerId);
+        const inputClass = sections[containerId];
 
-    // テキストボックスの入力を監視
-    container.addEventListener('input', function(e) {
-        if (e.target.classList.contains('gsaadTitleInput')) {
-            const hasExclamation = Array.from(container.querySelectorAll('.gsaadTitleInput'))
-                .some(input => input.value.includes('！') || input.value.includes('!'));
-
-            // アラートの表示/非表示を切り替え
-            alertElement.style.display = hasExclamation ? '' : 'none';
+        // アラート表示用の要素を作成し、コンテナの最後に追加
+        const alertElementId = `${containerId}ExclamationAlert`;
+        let alertElement = document.getElementById(alertElementId);
+        if (!alertElement) {
+            alertElement = document.createElement('div');
+            alertElement.className = 'alert alert-warning mt-3';
+            alertElement.id = alertElementId;
+            alertElement.style.display = 'none';
+            alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
+            container.appendChild(alertElement);
         }
+
+        // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
+        container.addEventListener('input', function (e) {
+            if (e.target.classList.contains(inputClass)) {
+                const hasExclamation = Array.from(container.querySelectorAll(`.${inputClass}`))
+                    .some(input => input.value.includes('！') || input.value.includes('!'));
+
+                // アラートの表示/非表示を切り替え
+                alertElement.style.display = hasExclamation ? '' : 'none';
+            }
+        });
     });
 });
+
