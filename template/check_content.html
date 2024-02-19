@@ -1,232 +1,225 @@
-<div id="checkContent" class="content-section" style="display: none;">
-    <div class="text-input-section">
-        <div class="container">
-            <div class="form-group">
-                <h3 class="text-center mb-4" id="kiteititle">-規定チェック-</h3>
-                <select class="form-control" id="selectOption">
-                    <option value="">チェックする媒体を選択してください</option>
-                    <option value="GSearch">G検索</option>
-                    <option value="GDN">GDN</option>
-                    <option value="YSA">YSA</option>
-                    <option value="YDN">YDA</option>
-                </select>
-                <div class="d-flex align-items-center text-muted mt-3">
-                    <span class="material-symbols-outlined mr-2" id="light">lightbulb</span>
-                    <p class="mb-0">エクセル等の複数のセルを一括でペーストできます。</p>
-                </div>
+{% macro check_content() %}
+<div class="text-input-section">
+    <div class="container">
+        <div class="form-group">
+            <h3 class="text-center mb-4" id="kiteititle">-規定チェック-</h3>
+            <select class="form-control" id="selectOption">
+                <option value="">チェックする媒体を選択してください</option>
+                <option value="GSearch">G検索</option>
+                <option value="GDN">GDN</option>
+                <option value="YSA">YSA</option>
+                <option value="YDN">YDA</option>
+            </select>
+            <div class="d-flex align-items-center text-muted mt-3">
+                <span class="material-symbols-outlined mr-2" id="light">lightbulb</span>
+                <p class="mb-0">エクセル等の複数のセルを一括でペーストできます。</p>
             </div>
-            <!-- G検索 -->
-            <div class="form-group" id="textGSearch" style="display: none;">
-                <div class="form-group" id="gsaadTitlesContainer">
-                    <h5 class="mb-2">広告見出し</h5>
-                    <div class="row mb-3" id="gsaadTitleRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control gsaadTitleInput" placeholder="広告見出しを入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="gsaadTitleHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="gsaadTitleFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="gsaadTitleTotalCount" data-index="1">0</span></p>
-                            </div>
+        </div>
+        <!-- G検索 -->
+        <div class="form-group" id="textGSearch" style="display: none;">
+            <div class="form-group" id="gsaadTitlesContainer">
+                <h5 class="mb-2">広告見出し</h5>
+                <div class="row mb-3" id="gsaadTitleRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control gsaadTitleInput" placeholder="広告見出しを入力" data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="gsaadTitleHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="gsaadTitleFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="gsaadTitleTotalCount" data-index="1">0</span></p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group" id="gsaadDescriptionsContainer">
-                    <h5 class="mb-2">説明文</h5>
-                    <div class="row mb-3" id="gsaadDescriptionRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control gsaadDescriptionInput" placeholder="説明文を入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="gsaadDescriptionHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="gsaadDescriptionFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="gsaadDescriptionTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
+            <div class="form-group" id="gsaadDescriptionsContainer">
+                <h5 class="mb-2">説明文</h5>
+                <div class="row mb-3" id="gsaadDescriptionRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control gsaadDescriptionInput" placeholder="説明文を入力"
+                            data-index="1">
                     </div>
-                </div>
-                <div class="form-group" id="gsaadPathsContainer">
-                    <h5 class="mb-2">パス</h5>
-                    <div class="row mb-3" id="gsaadPathRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control gsaadPathInput" placeholder="パスを入力" data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="gsaadPathHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="gsaadPathFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="gsaadPathTotalCount" data-index="1">0</span></p>
-                            </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="gsaadDescriptionHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="gsaadDescriptionFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="gsaadDescriptionTotalCount" data-index="1">0</span></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- GDN -->
-            <div class="form-group" id="textGDN" style="display: none;">
-                <div class="form-group" id="gdnadTitlesContainer">
-                    <h5 class="mb-2">広告見出し</h5>
-                    <div class="row mb-3" id="gdnadTitleRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control gdnadTitleInput" placeholder="広告見出しを入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="gdnadTitleHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="gdnadTitleFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="gdnadTitleTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
+            <div class="form-group" id="gsaadPathsContainer">
+                <h5 class="mb-2">パス</h5>
+                <div class="row mb-3" id="gsaadPathRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control gsaadPathInput" placeholder="パスを入力" data-index="1">
                     </div>
-                </div>
-                <div class="form-group" id="gdnadDescriptionsContainer">
-                    <h5 class="mb-2">長い広告見出し</h5>
-                    <div class="row mb-3" id="gdnadDescriptionRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control gdnadDescriptionInput" placeholder="長い広告見出しを入力">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="gdnadDescriptionHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="gdnadDescriptionFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="gdnadDescriptionTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" id="gdnadPathsContainer">
-                    <h5 class="mb-2">説明文</h5>
-                    <div class="row mb-3" id="gdnadPathRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control gdnadPathInput" placeholder="説明文を入力" data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="gdnadPathHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="gdnadPathFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="gdnadPathTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--YSA-->
-            <div class="form-group" id="textYSA" style="display: none;">
-                <div class="form-group" id="ysaadTitlesContainer">
-                    <h5 class="mb-2">広告見出し</h5>
-                    <div class="row mb-3" id="ysaadTitleRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control ysaadTitleInput" placeholder="広告見出しを入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="ysaadTitleHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="ysaadTitleFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="ysaadTitleTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" id="ysaadDescriptionsContainer">
-                    <h5 class="mb-2">説明文</h5>
-                    <div class="row mb-3" id="ysaadDescriptionRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control ysaadDescriptionInput" placeholder="説明文を入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="ysaadDescriptionHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="ysaadDescriptionFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="ysaadDescriptionTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" id="ysaadPathsContainer">
-                    <h5 class="mb-2">パス</h5>
-                    <div class="row mb-3" id="ysaadPathRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control ysaadPathInput" placeholder="パスを入力" data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="ysaadPathHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="ysaadPathFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="ysaadPathTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--YDA-->
-            <div class="form-group" id="textYDN" style="display: none;">
-                <div class="form-group" id="ydaadTitlesContainer">
-                    <h5 class="mb-2">タイトル</h5>
-                    <div class="row mb-3" id="ydaadTitleRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control ydaadTitleInput" placeholder="タイトルを入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="ydaadTitleHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="ydaadTitleFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="ydaadTitleTotalCount" data-index="1">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" id="ydaadDescriptionsContainer">
-                    <h5 class="mb-2">説明文</h5>
-                    <div class="row mb-3" id="ydaadDescriptionRow1">
-                        <div class="col-md-8">
-                            <input type="text" class="form-control ydaadDescriptionInput" placeholder="説明文を入力"
-                                data-index="1">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="character-counts">
-                                <p>半角: <span class="ydaadDescriptionHalfCount" data-index="1">0</span></p>
-                                <p>全角: <span class="ydaadDescriptionFullCount" data-index="1">0</span></p>
-                                <p>合計: <span class="ydaadDescriptionTotalCount" data-index="1">0</span></p>
-                            </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="gsaadPathHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="gsaadPathFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="gsaadPathTotalCount" data-index="1">0</span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="form-group" id="kitei">
-            <h3 class="text-center mb-4">-入稿規定-</h3>
-            <div class="button-group" style="display: flex; justify-content: space-around;">
-                <button type="button" class="btn btn-primary toggle-btn" data-target="infoGSearch"
-                    id="gsabutton">G検索</button>
-                <button type="button" class="btn btn-primary toggle-btn" data-target="infoGDN"
-                    id="gdnbutton">GDN</button>
-                <button type="button" class="btn btn-primary toggle-btn" data-target="infoYSA"
-                    id="ysabutton">YSA</button>
-                <button type="button" class="btn btn-primary toggle-btn" data-target="infoYDA"
-                    id="ydnbutton">YDA</button>
+        <!-- GDN -->
+        <div class="form-group" id="textGDN" style="display: none;">
+            <div class="form-group" id="gdnadTitlesContainer">
+                <h5 class="mb-2">広告見出し</h5>
+                <div class="row mb-3" id="gdnadTitleRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control gdnadTitleInput" placeholder="広告見出しを入力" data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="gdnadTitleHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="gdnadTitleFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="gdnadTitleTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="gdnadDescriptionsContainer">
+                <h5 class="mb-2">長い広告見出し</h5>
+                <div class="row mb-3" id="gdnadDescriptionRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control gdnadDescriptionInput" placeholder="長い広告見出しを入力">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="gdnadDescriptionHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="gdnadDescriptionFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="gdnadDescriptionTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="gdnadPathsContainer">
+                <h5 class="mb-2">説明文</h5>
+                <div class="row mb-3" id="gdnadPathRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control gdnadPathInput" placeholder="説明文を入力" data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="gdnadPathHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="gdnadPathFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="gdnadPathTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- トグルセクション -->
-        <div id="infoGSearch" class="toggle-content">
-            ・広告見出し「！」使用不可 <br>
-            ・機種依存文字使用不可（参考=https://mect-japan.com/2019/guide/izon.html）
+        <!--YSA-->
+        <div class="form-group" id="textYSA" style="display: none;">
+            <div class="form-group" id="ysaadTitlesContainer">
+                <h5 class="mb-2">広告見出し</h5>
+                <div class="row mb-3" id="ysaadTitleRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control ysaadTitleInput" placeholder="広告見出しを入力" data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="ysaadTitleHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="ysaadTitleFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="ysaadTitleTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="ysaadDescriptionsContainer">
+                <h5 class="mb-2">説明文</h5>
+                <div class="row mb-3" id="ysaadDescriptionRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control ysaadDescriptionInput" placeholder="説明文を入力"
+                            data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="ysaadDescriptionHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="ysaadDescriptionFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="ysaadDescriptionTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="ysaadPathsContainer">
+                <h5 class="mb-2">パス</h5>
+                <div class="row mb-3" id="ysaadPathRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control ysaadPathInput" placeholder="パスを入力" data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="ysaadPathHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="ysaadPathFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="ysaadPathTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="infoGDN" class="toggle-content">
-            GDNに関する情報をここに表示します。
-        </div>
-        <div id="infoYSA" class="toggle-content">
-            YSAに関する情報をここに表示します。
-        </div>
-        <div id="infoYDA" class="toggle-content">
-            YDAに関する情報をここに表示します。
+        <!--YDA-->
+        <div class="form-group" id="textYDN" style="display: none;">
+            <div class="form-group" id="ydaadTitlesContainer">
+                <h5 class="mb-2">タイトル</h5>
+                <div class="row mb-3" id="ydaadTitleRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control ydaadTitleInput" placeholder="タイトルを入力" data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="ydaadTitleHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="ydaadTitleFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="ydaadTitleTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="ydaadDescriptionsContainer">
+                <h5 class="mb-2">説明文</h5>
+                <div class="row mb-3" id="ydaadDescriptionRow1">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control ydaadDescriptionInput" placeholder="説明文を入力"
+                            data-index="1">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="character-counts">
+                            <p>半角: <span class="ydaadDescriptionHalfCount" data-index="1">0</span></p>
+                            <p>全角: <span class="ydaadDescriptionFullCount" data-index="1">0</span></p>
+                            <p>合計: <span class="ydaadDescriptionTotalCount" data-index="1">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="form-group" id="kitei">
+        <h3 class="text-center mb-4">-入稿規定-</h3>
+        <div class="button-group" style="display: flex; justify-content: space-around;">
+            <button type="button" class="btn btn-primary toggle-btn" data-target="infoGSearch"
+                id="gsabutton">G検索</button>
+            <button type="button" class="btn btn-primary toggle-btn" data-target="infoGDN" id="gdnbutton">GDN</button>
+            <button type="button" class="btn btn-primary toggle-btn" data-target="infoYSA" id="ysabutton">YSA</button>
+            <button type="button" class="btn btn-primary toggle-btn" data-target="infoYDA" id="ydnbutton">YDA</button>
+        </div>
+    </div>
+
+    <!-- トグルセクション -->
+    <div id="infoGSearch" class="toggle-content">
+        ・広告見出し「！」使用不可 <br>
+        ・機種依存文字使用不可（参考=https://mect-japan.com/2019/guide/izon.html）
+    </div>
+    <div id="infoGDN" class="toggle-content">
+        GDNに関する情報をここに表示します。
+    </div>
+    <div id="infoYSA" class="toggle-content">
+        YSAに関する情報をここに表示します。
+    </div>
+    <div id="infoYDA" class="toggle-content">
+        YDAに関する情報をここに表示します。
+    </div>
+    {% endmacro %}

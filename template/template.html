@@ -10,8 +10,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
@@ -116,16 +118,20 @@
                 {% endfor %}
             </select>
         </div>
-        {% include 'check_content.html' %}
+        <div id="checkContent" class="content-section" style="display: none;">
+            {% from "check_content.html" import check_content %}
+            {{ check_content() }}
+        </div>
+
         <div id="faqContent" class="content-section" style="display: none;">
             <p>ここにはよくある質問とその回答がリストされます。</p>
         </div>
+
         <div id="feedbackContent" class="content-section" style="display: none;">
             <div class="form-container">
-                <iframe>
+                <iframe
                     src="https://docs.google.com/forms/d/e/1FAIpQLScf8t4spyC6Z0RSeUEJgm5fU4MdhbJvEAa5TkfVjoHpHviNow/viewform?embedded=true"
-                    frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…
-                </iframe>
+                    frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
             </div>
         </div>
 

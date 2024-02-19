@@ -92,20 +92,20 @@ function copyToClipboard() {
 ///////////////////////////////////////////////////////////
 //Ajaxに対して、メインコンテンツを変更するためのリクエスト送信
 ///////////////////////////////////////////////////////////
-$(document).ready(function () {
-    // メニューバーのリンクにクリックイベントリスナーを追加
-    $('.nav-link').click(function (e) {
-        e.preventDefault(); // デフォルトのアンカー動作をキャンセル
-        var targetId = $(this).data('target'); // リンクのdata-target属性からIDを取得
-        $('.content-section').hide(); // すべてのコンテンツセクションを非表示にする
-        $('#' + targetId).show(); // クリックされたリンクに対応するコンテンツセクションを表示
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('data-target');
+
+        // すべてのセクションを非表示にする
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // クリックされたリンクに対応するセクションを表示する
+        document.getElementById(targetId).style.display = 'block';
     });
-
-    // ページ読み込み時に最初のコンテンツセクションを表示
-    $('.content-section').hide(); // 最初にすべて非表示
-    $('#homeContent').show(); // homeContentだけ表示
 });
-
 //////////////////////////
 // 入力内容をクリアする関数
 //////////////////////////
@@ -839,6 +839,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+///////////////////////
+//G検索　「！」チェック
+///////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const sections = {
         'gsaadTitlesContainer': 'gsaadTitleInput',
@@ -877,5 +880,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
 
