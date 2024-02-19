@@ -455,6 +455,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p class="text-danger gsaadTitleAlert" data-index="1" style="display: none;">文字数オーバー</p>
             </div>`;
             container.appendChild(newRow);
+            showAlert = text.includes('！') || text.includes('!');
             const newInput = newRow.querySelector(`.${inputClass}`);
             newInput.addEventListener('input', () => updateCharacterCount(newInput, countClassPrefix));
             return newInput;
@@ -474,6 +475,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = inputElement.value;
         let halfWidthCount = 0;
         let fullWidthCount = 0;
+
+        showAlert = text.includes('！') || text.includes('!');
+
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
@@ -837,4 +841,27 @@ document.addEventListener('DOMContentLoaded', function () {
             totalCountElement.style.color = ''; // デフォルトの色に戻す
         }
     }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const containerId = 'gsaadTitlesContainer';
+    const container = document.getElementById(containerId);
+
+    // アラート表示用の要素を作成し、コンテナの最後に追加
+    const alertElement = document.createElement('div');
+    alertElement.className = 'alert alert-warning mt-3';
+    alertElement.id = 'exclamationAlert';
+    alertElement.style.display = 'none';
+    alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
+    container.appendChild(alertElement);
+
+    // テキストボックスの入力を監視
+    container.addEventListener('input', function(e) {
+        if (e.target.classList.contains('gsaadTitleInput')) {
+            const hasExclamation = Array.from(container.querySelectorAll('.gsaadTitleInput'))
+                .some(input => input.value.includes('！') || input.value.includes('!'));
+
+            // アラートの表示/非表示を切り替え
+            alertElement.style.display = hasExclamation ? '' : 'none';
+        }
+    });
 });
