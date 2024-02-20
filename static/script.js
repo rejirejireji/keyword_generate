@@ -412,15 +412,29 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         const pastedText = e.clipboardData.getData('text');
         const lines = pastedText.split(/\r?\n/);
-        lines.forEach((line, idx) => {
-            if (idx < config.maxCount) {
-                let inputs = container.getElementsByClassName(config.inputClass);
-                let input = inputs[idx];
-                if (!input) {
-                    input = addNewTextbox(container, idx + 1, config);
+        
+        // ペーストされたテキストボックスのインデックスを取得
+        const startIndex = parseInt(e.target.getAttribute('data-index')) || 0;
+        let currentInput = container.querySelector(`.${config.inputClass}[data-index="${startIndex}"]`);
+        
+        if (lines.length > 0) {
+            // 最初の行を現在のテキストボックスに追加
+            let existingText = currentInput.value.substring(0, currentInput.selectionStart);
+            let newText = existingText + lines[0];
+            currentInput.value = newText;
+            updateCharacterCount(currentInput, config.countClassPrefix);
+        }
+        
+        // 残りの行を新しいテキストボックスに追加
+        lines.slice(1).forEach((line, index) => {
+            let inputIndex = startIndex + index + 1; // 最初の行は既に処理されているため、インデックスを調整
+            if (inputIndex < config.maxCount) { // 最大数を超えない範囲で処理
+                let nextInput = container.querySelector(`.${config.inputClass}[data-index="${inputIndex}"]`);
+                if (!nextInput) { // 対象のテキストボックスが存在しなければ新しく追加
+                    nextInput = addNewTextbox(container, inputIndex, config);
                 }
-                input.value = line;
-                updateCharacterCount(input, config.countClassPrefix);
+                nextInput.value += line; // 新しいテキストボックスに行の内容を追加
+                updateCharacterCount(nextInput, config.countClassPrefix);
             }
         });
     }
@@ -863,7 +877,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alertElement.className = 'alert alert-warning mt-3';
             alertElement.id = alertElementId;
             alertElement.style.display = 'none';
-            alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
+            alertElement.textContent = '「!」または「！」を含むテキストは使用出来ません。';
             // h5タグの直後にアラートを追加
             h5.insertAdjacentElement('afterend', alertElement);
         }
