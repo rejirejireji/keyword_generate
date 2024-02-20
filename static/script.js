@@ -863,7 +863,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alertElement.className = 'alert alert-warning mt-3';
             alertElement.id = alertElementId;
             alertElement.style.display = 'none';
-            alertElement.textContent = '「!」または「！」を含むテキストは使用出来ません。';
+            alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
             // h5タグの直後にアラートを追加
             h5.insertAdjacentElement('afterend', alertElement);
         }
@@ -880,6 +880,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
 /////////////////////
 //G検索　機種依存文字
 /////////////////////
@@ -1004,7 +1005,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         "奣",
         "寬",
         "﨑",
-        "嵂"
+        "嵂",
+        "㍿",
     ];
 
     Object.keys(sections).forEach(containerId => {
