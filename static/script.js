@@ -863,7 +863,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alertElement.className = 'alert alert-warning mt-3';
             alertElement.id = alertElementId;
             alertElement.style.display = 'none';
-            alertElement.textContent = '「!」または「！」を含むテキストは使用しないでください。';
+            alertElement.textContent = '「!」または「！」を含むテキストは使用出来ません。';
             // h5タグの直後にアラートを追加
             h5.insertAdjacentElement('afterend', alertElement);
         }
@@ -891,51 +891,151 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
 
     // 機種依存文字のリストを取得
-    let dependencyChars = [];
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', './dependencyChars.json', true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            try {
-                const data = JSON.parse(xhr.responseText);
-                dependencyChars = data.chars;
+    let dependencyChars = [
+        "№",
+        "㏍",
+        "℡",
+        "㊤",
+        "㊥",
+        "㊦",
+        "㊧",
+        "㊨",
+        "㈱",
+        "㈲",
+        "㈹",
+        "㍾",
+        "㍽",
+        "㍼",
+        "㍻",
+        "㍉",
+        "㎜",
+        "㎝",
+        "㎞",
+        "㎎",
+        "㎏",
+        "㏄",
+        "㍉㌔",
+        "㌢",
+        "㍍㌘",
+        "㌧",
+        "㌃",
+        "㌶",
+        "㍑",
+        "㍗",
+        "㌍",
+        "㌦",
+        "㌣",
+        "㌫",
+        "㍊",
+        "㌻",
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮",
+        "⑯",
+        "⑰",
+        "⑱",
+        "⑲",
+        "⑳",
+        "Ⅰ",
+        "Ⅱ",
+        "Ⅲ",
+        "Ⅳ",
+        "Ⅴ",
+        "Ⅵ",
+        "Ⅶ",
+        "Ⅷ",
+        "Ⅸ",
+        "Ⅹ",
+        "Ⅺ",
+        "Ⅻ",
+        "Ⅼ",
+        "Ⅽ",
+        "Ⅾ",
+        "Ⅿ",
+        "ⅰ",
+        "ⅱ",
+        "ⅲ",
+        "ⅳ",
+        "ⅴ",
+        "ⅵ",
+        "ⅶ",
+        "ⅷ",
+        "ⅸ",
+        "ⅹ",
+        "ⅺ",
+        "ⅻ",
+        "ⅼ",
+        "ⅽ",
+        "ⅾ",
+        "ⅿ",
+        "≡",
+        "∑",
+        "∫",
+        "∮",
+        "√",
+        "⊥",
+        "∠",
+        "∟",
+        "⊿",
+        "∵",
+        "∩",
+        "∪",
+        "・",
+        "纊",
+        "鍈",
+        "蓜",
+        "炻",
+        "棈",
+        "兊",
+        "夋",
+        "奛",
+        "奣",
+        "寬",
+        "﨑",
+        "嵂"
+    ];
 
-                // ここに依存文字をチェックしてアラート表示する処理を追加
-                Object.keys(sections).forEach(containerId => {
-                    const container = document.getElementById(containerId);
-                    const inputClass = sections[containerId];
+    Object.keys(sections).forEach(containerId => {
+        const container = document.getElementById(containerId);
+        const inputClass = sections[containerId];
 
-                    // コンテナ内のh5タグを見つけます。
-                    const h5 = container.querySelector('h5');
+        // コンテナ内のh5タグを見つけます。
+        const h5 = container.querySelector('h5');
 
-                    // アラート表示用の要素を作成し、h5タグの直下に追加
-                    const dependencyAlertElementId = `${containerId}DependencyAlert`;
-                    let dependencyAlertElement = document.getElementById(dependencyAlertElementId);
-                    if (!dependencyAlertElement) {
-                        dependencyAlertElement = document.createElement('div');
-                        dependencyAlertElement.className = 'alert alert-danger mt-3';
-                        dependencyAlertElement.id = dependencyAlertElementId;
-                        dependencyAlertElement.style.display = 'none';
-                        dependencyAlertElement.textContent = '機種依存文字が含まれています。';
-                        h5.insertAdjacentElement('afterend', dependencyAlertElement);
-                    }
-
-                    // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
-                    container.addEventListener('input', function(e) {
-                        if (e.target.classList.contains(inputClass)) {
-                            const hasDependencyChar = Array.from(container.querySelectorAll(`.${inputClass}`))
-                                .some(input => dependencyChars.some(char => input.value.includes(char)));
-
-                            // アラートの表示/非表示を切り替え
-                            dependencyAlertElement.style.display = hasDependencyChar ? '' : 'none';
-                        }
-                    });
-                });
-
-            } catch (error) {
-                console.error('Error parsing JSON:', error);
-            }
+        // アラート表示用の要素を作成し、h5タグの直下に追加
+        const dependencyAlertElementId = `${containerId}DependencyAlert`;
+        let dependencyAlertElement = document.getElementById(dependencyAlertElementId);
+        if (!dependencyAlertElement) {
+            dependencyAlertElement = document.createElement('div');
+            dependencyAlertElement.className = 'alert alert-danger mt-3';
+            dependencyAlertElement.id = dependencyAlertElementId;
+            dependencyAlertElement.style.display = 'none';
+            dependencyAlertElement.textContent = '機種依存文字は使用できません。';
+            h5.insertAdjacentElement('afterend', dependencyAlertElement);
         }
-    };
-    xhr.send();
+
+        // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
+        container.addEventListener('input', function (e) {
+            if (e.target.classList.contains(inputClass)) {
+                const hasDependencyChar = Array.from(container.querySelectorAll(`.${inputClass}`))
+                    .some(input => dependencyChars.some(char => input.value.includes(char)));
+
+                // アラートの表示/非表示を切り替え
+                dependencyAlertElement.style.display = hasDependencyChar ? '' : 'none';
+            }
+        });
+    });
 });
+
