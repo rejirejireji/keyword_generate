@@ -880,4 +880,62 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+/////////////////////
+//G検索　機種依存文字
+/////////////////////
+document.addEventListener('DOMContentLoaded', async function () {
+    const sections = {
+        'gsaadTitlesContainer': 'gsaadTitleInput',
+        'gsaadDescriptionsContainer': 'gsaadDescriptionInput',
+        'gsaadPathsContainer': 'gsaadPathInput'
+    };
 
+    // 機種依存文字のリストを取得
+    let dependencyChars = [];
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', './dependencyChars.json', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+                const data = JSON.parse(xhr.responseText);
+                dependencyChars = data.chars;
+
+                // ここに依存文字をチェックしてアラート表示する処理を追加
+                Object.keys(sections).forEach(containerId => {
+                    const container = document.getElementById(containerId);
+                    const inputClass = sections[containerId];
+
+                    // コンテナ内のh5タグを見つけます。
+                    const h5 = container.querySelector('h5');
+
+                    // アラート表示用の要素を作成し、h5タグの直下に追加
+                    const dependencyAlertElementId = `${containerId}DependencyAlert`;
+                    let dependencyAlertElement = document.getElementById(dependencyAlertElementId);
+                    if (!dependencyAlertElement) {
+                        dependencyAlertElement = document.createElement('div');
+                        dependencyAlertElement.className = 'alert alert-danger mt-3';
+                        dependencyAlertElement.id = dependencyAlertElementId;
+                        dependencyAlertElement.style.display = 'none';
+                        dependencyAlertElement.textContent = '機種依存文字が含まれています。';
+                        h5.insertAdjacentElement('afterend', dependencyAlertElement);
+                    }
+
+                    // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
+                    container.addEventListener('input', function(e) {
+                        if (e.target.classList.contains(inputClass)) {
+                            const hasDependencyChar = Array.from(container.querySelectorAll(`.${inputClass}`))
+                                .some(input => dependencyChars.some(char => input.value.includes(char)));
+
+                            // アラートの表示/非表示を切り替え
+                            dependencyAlertElement.style.display = hasDependencyChar ? '' : 'none';
+                        }
+                    });
+                });
+
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+            }
+        }
+    };
+    xhr.send();
+});
