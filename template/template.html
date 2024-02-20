@@ -123,10 +123,36 @@
         <div id="faqContent" class="content-section" style="display: none;">
             <p>ここにはよくある質問とその回答がリストされます。</p>
         </div>
-        
+
         <div id="feedbackContent" class="content-section" style="display: none;">
             <div class="form-container">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScf8t4spyC6Z0RSeUEJgm5fU4MdhbJvEAa5TkfVjoHpHviNow/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+                <div class="container my-5">
+                    <div class="contact-form-container">
+                        <h2 class="form-header mb-4">フィードバックフォーム</h2>
+                        <form action="YOUR_BACKEND_ENDPOINT" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">氏名<span class="text-muted">（任意）</span></label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="氏名">
+                            </div>
+                            <div class="mb-3">
+                                <label for="type" class="form-label required">種類</label>
+                                <select class="form-select" id="type" name="type" required>
+                                    <option value="">選択してください</option>
+                                    <option value="improvement">改善点</option>
+                                    <option value="request">要望</option>
+                                    <option value="other">その他</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="detail" class="form-label required">詳細</label>
+                                <textarea class="form-control" id="detail" name="detail" rows="6" required placeholder="お問い合わせの内容を記入してください"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">送信</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -140,9 +166,7 @@
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
