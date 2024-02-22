@@ -545,19 +545,35 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         const pastedText = e.clipboardData.getData('text');
         const lines = pastedText.split(/\r?\n/);
-        lines.forEach((line, idx) => {
-            if (idx < config.maxCount) {
-                let inputs = container.getElementsByClassName(config.inputClass);
-                let input = inputs[idx];
-                if (!input) {
-                    input = addNewTextbox(container, idx + 1, config);
+    
+        // 現在のテキストボックスの数を取得
+        const currentCount = container.getElementsByClassName(config.inputClass).length;
+    
+        // ペーストされたテキストボックスのインデックスを取得
+        const startIndex = parseInt(e.target.getAttribute('data-index')) || 0;
+        let currentInput = container.querySelector(`.${config.inputClass}[data-index="${startIndex}"]`);
+    
+        // 最初の行を現在のテキストボックスに追加
+        if (lines.length > 0) {
+            let existingText = currentInput.value.substring(0, currentInput.selectionStart);
+            let newText = existingText + lines[0];
+            currentInput.value = newText;
+            updateCharacterCount(currentInput, config.countClassPrefix);
+        }
+    
+        // 残りの行を新しいテキストボックスに追加
+        lines.slice(1).forEach((line, index) => {
+            if (currentCount + index < config.maxCount) { // マックスカウントを超えない範囲で処理
+                let inputIndex = startIndex + index + 1;
+                let nextInput = container.querySelector(`.${config.inputClass}[data-index="${inputIndex}"]`);
+                if (!nextInput) {
+                    nextInput = addNewTextbox(container, inputIndex, config);
                 }
-                input.value = line;
-                updateCharacterCount(input, config.countClassPrefix);
+                nextInput.value = line;
+                updateCharacterCount(nextInput, config.countClassPrefix);
             }
         });
     }
-
     // 入力時の処理
     function handleInput(e, config, container) {
         const target = e.target;
@@ -747,6 +763,56 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+///////////////////////
+//長い広告見出しペースト
+///////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    // 特定のコンテナ内のinput要素に対してペーストイベントを設定
+    const container = document.getElementById('gdnadDescriptionsContainer');
+    const input = container.querySelector('.gdnadDescriptionInput');
+
+    // ペーストイベントリスナーを追加
+    input.addEventListener('paste', function(event) {
+        event.preventDefault(); // デフォルトのペースト処理をキャンセル
+
+        // ペーストされたテキストを取得
+        const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+
+        // カーソルの位置を取得
+        const cursorPos = input.selectionStart;
+
+        // 既存のテキストを分割して、ペーストされたテキストを挿入
+        const textBefore = input.value.substring(0, cursorPos);
+        const textAfter = input.value.substring(cursorPos);
+        input.value = textBefore + pastedText + textAfter;
+
+        // 文字カウントの更新関数を呼び出し（別途定義が必要です）
+        updateCharacterCount(input);
+    });
+
+    function updateCharacterCount(inputElement) {
+        // 文字数の計算
+        let halfWidthCount = 0;
+        let fullWidthCount = 0;
+
+        // 文字ごとに半角か全角かを判定してカウント
+        for (let char of inputElement.value) {
+            if (char.match(/[^\x01-\x7E\xA1-\xDF]/)) {
+                fullWidthCount++;
+            } else {
+                halfWidthCount++;
+            }
+        }
+
+        // 合計文字数を計算（全角を2としてカウント）
+        const totalCharacters = halfWidthCount + fullWidthCount * 2;
+
+        // HTMLに反映
+        container.querySelector('.gdnadDescriptionHalfCount').textContent = halfWidthCount;
+        container.querySelector('.gdnadDescriptionFullCount').textContent = fullWidthCount;
+        container.querySelector('.gdnadDescriptionTotalCount').textContent = totalCharacters;
+    }
+});
 //////////////////////////
 //YDAテキストボックス拡張
 //////////////////////////
@@ -857,11 +923,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 ///////////////////////
-//G検索　「！」チェック
+//G検索　GDN「！」チェック
 ///////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const sections = {
         'gsaadTitlesContainer': 'gsaadTitleInput',
+        'gdnadTitlesContainer': 'gdnadTitleInput',
+        'gdnadDescriptionsContainer': 'gdnadDescriptionInput',
         // 他のセクションも同様に追加可能です。
     };
 
@@ -910,7 +978,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     const sections = {
         'gsaadTitlesContainer': 'gsaadTitleInput',
         'gsaadDescriptionsContainer': 'gsaadDescriptionInput',
-        'gsaadPathsContainer': 'gsaadPathInput'
+        'gsaadPathsContainer': 'gsaadPathInput',
+        'gdnadTitlesContainer': 'gdnadTitleInput',
+        'gdnadDescriptionsContainer': 'gdnadDescriptionInput',
+        'gdnadPathsContainer': 'gdnadPathInput',
     };
 
     // 機種依存文字のリストを取得
@@ -1027,7 +1098,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         "奣",
         "寬",
         "﨑",
-        "嵂"
+        "嵂",
+        "~"
     ];
 
     Object.keys(sections).forEach(containerId => {
@@ -1067,4 +1139,50 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 });
+/////////////////
+//GDN　！連続使用
+/////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = {
+        'gdnadPathsContainer': 'gdnadPathInput',
+        // 他のセクションも同様に追加可能です。
+    };
 
+    Object.keys(sections).forEach(containerId => {
+        const container = document.getElementById(containerId);
+        const inputClass = sections[containerId];
+        const h5 = container.querySelector('h5');
+
+        const alertElementId = `${containerId}ExclamationAlert`;
+        let alertElement = document.getElementById(alertElementId);
+        if (!alertElement) {
+            alertElement = document.createElement('div');
+            alertElement.className = 'alert alert-warning mt-3';
+            alertElement.id = alertElementId;
+            alertElement.style.display = 'none';
+            alertElement.textContent = '「!」または「！」は連続して使用出来ません。';
+            h5.insertAdjacentElement('afterend', alertElement);
+        }
+
+        // テキスト入力とペーストの両方を監視
+        container.addEventListener('input', handleEvent);
+        container.addEventListener('paste', handleEvent);
+
+        function handleEvent(e) {
+            let text;
+            if (e.type === 'paste') {
+                // ペーストイベントの場合、ペーストされたテキストを取得
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                text = pastedData;
+            } else {
+                // それ以外の場合は、イベントが発生した要素の値を使用
+                text = e.target.value;
+            }
+        
+            const consecutiveExclamationPattern = /([!！]{2,})/g; 
+            const hasConsecutiveExclamation = consecutiveExclamationPattern.test(text);
+            alertElement.style.display = hasConsecutiveExclamation ? '' : 'none';
+        }
+    });
+});
