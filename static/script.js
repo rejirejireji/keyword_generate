@@ -899,7 +899,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let char of text) {
             char.match(/[^\x01-\x7E\xA1-\xDF]/) ? fullWidthCount++ : halfWidthCount++;
         }
-        const totalCharacters = halfWidthCount + fullWidthCount * 2;
+        const totalCharacters = halfWidthCount + fullWidthCount;
         const index = inputElement.getAttribute('data-index');
         document.querySelector(`.${countClassPrefix}HalfCount[data-index="${index}"]`).textContent = halfWidthCount;
         document.querySelector(`.${countClassPrefix}FullCount[data-index="${index}"]`).textContent = fullWidthCount;
@@ -1196,6 +1196,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = {
         'ysaadTitlesContainer': 'ysaadTitleInput',
         'ysaadDescriptionsContainer': 'ysaadDescriptionInput',
+        'ydaadTitlesContainer': 'ydaadTitleInput',
+        'ydaadDescriptionsContainer': 'ydaadDescriptionInput',
         // 他のセクションも同様に追加可能です。
     };
 
