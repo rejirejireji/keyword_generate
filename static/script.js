@@ -1244,47 +1244,54 @@ document.addEventListener('DOMContentLoaded', function () {
 //!連続使用不可
 ///////////////
 document.addEventListener('DOMContentLoaded', function () {
-    // Define a shared alert element outside of the forEach loop
+    // Initialize a shared alert element
     let alertElement;
 
-    const containers = [
-        document.getElementById('ysaadTitlesContainer'),
-        document.getElementById('ysaadDescriptionsContainer')
-    ];
+    // Get containers
+    const titleContainer = document.getElementById('ysaadTitlesContainer');
+    const descriptionContainer = document.getElementById('ysaadDescriptionsContainer');
 
-    // Ensure the alert element is created only once and placed appropriately
-    if (containers[0]) {
-        const h5 = containers[0].querySelector('h5');
-        const alertElementId = 'exclamationAlert';
+    // Create the alert element and append it after the first container's heading
+    if (titleContainer) {
+        const h5 = titleContainer.querySelector('h5');
         alertElement = document.createElement('div');
         alertElement.className = 'alert alert-warning mt-3';
-        alertElement.id = alertElementId;
+        alertElement.id = 'exclamationAlert';
         alertElement.style.display = 'none';
         alertElement.textContent = '感嘆符を2回以上使用することはできません。';
         h5.insertAdjacentElement('afterend', alertElement);
     }
 
-    containers.forEach(container => {
+    // Event listener for input and paste events in both containers
+    [titleContainer, descriptionContainer].forEach(container => {
         if (!container) return; // Skip if the container does not exist
-
-        // Monitor both text input and paste events for each container
-        container.addEventListener('input', handleEvent);
-        container.addEventListener('paste', handleEvent);
+        container.addEventListener('input', evaluateExclamationUseAcrossContainers);
+        container.addEventListener('paste', evaluateExclamationUseAcrossContainers);
     });
 
-    function handleEvent() {
-        // Aggregate text from all relevant inputs
-        let allText = '';
-        document.querySelectorAll('.ysaadTitleInput, .ysaadDescriptionInput').forEach(input => {
-            allText += input.value;
-        });
+    function evaluateExclamationUseAcrossContainers() {
+        // Get all input values from both containers
+        const titleInputs = Array.from(titleContainer.querySelectorAll('.ysaadTitleInput')).map(input => input.value);
+        const descriptionInputs = Array.from(descriptionContainer.querySelectorAll('.ysaadDescriptionInput')).map(input => input.value);
 
-        // Check for occurrences of exclamation marks
-        const totalExclamations = (allText.match(/!|！/g) || []).length;
+        // Check for the use of "!" or "！" across containers
+        let crossContainerExclamationUse = false;
+        for (let titleInput of titleInputs) {
+            for (let descriptionInput of descriptionInputs) {
+                const combinedText = titleInput + descriptionInput;
+                const exclamationCount = (combinedText.match(/!|！/g) || []).length;
+                if (exclamationCount >= 2) {
+                    crossContainerExclamationUse = true;
+                    break;
+                }
+            }
+            if (crossContainerExclamationUse) break;
+        }
 
-        // Display the alert if the total is 2 or more
+        // Display or hide the alert based on the findings
         if (alertElement) {
-            alertElement.style.display = totalExclamations >= 2 ? '' : 'none';
+            alertElement.style.display = crossContainerExclamationUse ? '' : 'none';
         }
     }
 });
+
