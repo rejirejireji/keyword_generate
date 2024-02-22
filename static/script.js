@@ -982,6 +982,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         'gdnadTitlesContainer': 'gdnadTitleInput',
         'gdnadDescriptionsContainer': 'gdnadDescriptionInput',
         'gdnadPathsContainer': 'gdnadPathInput',
+        'ysaadTitlesContainer': 'ysaadTitleInput',
+        'ysaadDescriptionsContainer': 'ysaadDescriptionInput',
+        'ysaadPathsContainer': 'ysaadPathInput',
     };
 
     // 機種依存文字のリストを取得
@@ -1190,46 +1193,98 @@ document.addEventListener('DOMContentLoaded', function () {
 //かっこ連続不可
 ////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    // 監視対象のセクションを指定
-    const sections = ['ysaadTitlesContainer', 'ysaadDescriptionsContainer'];
+    const sections = {
+        'ysaadTitlesContainer': 'ysaadTitleInput',
+        'ysaadDescriptionsContainer': 'ysaadDescriptionInput',
+        // 他のセクションも同様に追加可能です。
+    };
 
-    // アラート表示用の要素を初期化
-    let alertElement;
-
-    sections.forEach(sectionId => {
-        const container = document.getElementById(sectionId);
-        if (!container) return; // コンテナがなければスキップ
-
+    Object.keys(sections).forEach(containerId => {
+        const container = document.getElementById(containerId);
+        const inputClass = sections[containerId];
         const h5 = container.querySelector('h5');
+
+        const alertElementId = `${containerId}BracketAlert`;
+        let alertElement = document.getElementById(alertElementId);
         if (!alertElement) {
-            // アラート表示用の要素を作成し、最初のh5タグの直下に追加
-            const alertElementId = `${sectionId}BracketAlert`;
             alertElement = document.createElement('div');
             alertElement.className = 'alert alert-warning mt-3';
             alertElement.id = alertElementId;
             alertElement.style.display = 'none';
-            alertElement.textContent = '括弧を2回以上使用することはできません。';
+            alertElement.textContent = 'かっこを2回以上使用できません。';
             h5.insertAdjacentElement('afterend', alertElement);
         }
 
-        // テキスト入力とペーストの両方を監視
+        container.addEventListener('input', handleEvent);
+        container.addEventListener('paste', handleEvent);
+
+        function handleEvent(e) {
+            let text;
+            if (e.type === 'paste') {
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                text = pastedData;
+            } else {
+                text = e.target.value;
+            }
+
+            // 全ての括弧の出現をチェック
+            // 全角の括弧（）を含めた正規表現パターン
+            const bracketPattern = /[\(\)\[\]\{\}【】｛｝「」（）]/g;
+
+            const matches = text.match(bracketPattern);
+            const totalBrackets = matches ? matches.length : 0;
+            
+            // 合計が4回以上ならアラートを表示
+            alertElement.style.display = totalBrackets >= 4 ? '' : 'none';
+        }
+    });
+});
+///////////////
+//!連続使用不可
+///////////////
+document.addEventListener('DOMContentLoaded', function () {
+    // Define a shared alert element outside of the forEach loop
+    let alertElement;
+
+    const containers = [
+        document.getElementById('ysaadTitlesContainer'),
+        document.getElementById('ysaadDescriptionsContainer')
+    ];
+
+    // Ensure the alert element is created only once and placed appropriately
+    if (containers[0]) {
+        const h5 = containers[0].querySelector('h5');
+        const alertElementId = 'exclamationAlert';
+        alertElement = document.createElement('div');
+        alertElement.className = 'alert alert-warning mt-3';
+        alertElement.id = alertElementId;
+        alertElement.style.display = 'none';
+        alertElement.textContent = '感嘆符を2回以上使用することはできません。';
+        h5.insertAdjacentElement('afterend', alertElement);
+    }
+
+    containers.forEach(container => {
+        if (!container) return; // Skip if the container does not exist
+
+        // Monitor both text input and paste events for each container
         container.addEventListener('input', handleEvent);
         container.addEventListener('paste', handleEvent);
     });
 
-    function handleEvent(e) {
-        // 全てのテキストボックスからテキストを集める
+    function handleEvent() {
+        // Aggregate text from all relevant inputs
         let allText = '';
         document.querySelectorAll('.ysaadTitleInput, .ysaadDescriptionInput').forEach(input => {
             allText += input.value;
         });
 
-        // 全ての括弧の出現をチェック
-        const bracketPattern = /[\(\)\[\]\{\}【】｛｝「」（）]/g;
-        const matches = allText.match(bracketPattern);
-        const totalBrackets = matches ? matches.length : 0;
-        
-        // 合計が4回以上ならアラートを表示
-        alertElement.style.display = totalBrackets >= 4 ? '' : 'none';
+        // Check for occurrences of exclamation marks
+        const totalExclamations = (allText.match(/!|！/g) || []).length;
+
+        // Display the alert if the total is 2 or more
+        if (alertElement) {
+            alertElement.style.display = totalExclamations >= 2 ? '' : 'none';
+        }
     }
 });
