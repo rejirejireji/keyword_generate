@@ -412,28 +412,31 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         const pastedText = e.clipboardData.getData('text');
         const lines = pastedText.split(/\r?\n/);
-        
+    
+        // 現在のテキストボックスの数を取得
+        const currentCount = container.getElementsByClassName(config.inputClass).length;
+    
         // ペーストされたテキストボックスのインデックスを取得
         const startIndex = parseInt(e.target.getAttribute('data-index')) || 0;
         let currentInput = container.querySelector(`.${config.inputClass}[data-index="${startIndex}"]`);
-        
+    
+        // 最初の行を現在のテキストボックスに追加
         if (lines.length > 0) {
-            // 最初の行を現在のテキストボックスに追加
             let existingText = currentInput.value.substring(0, currentInput.selectionStart);
             let newText = existingText + lines[0];
             currentInput.value = newText;
             updateCharacterCount(currentInput, config.countClassPrefix);
         }
-        
+    
         // 残りの行を新しいテキストボックスに追加
         lines.slice(1).forEach((line, index) => {
-            let inputIndex = startIndex + index + 1; // 最初の行は既に処理されているため、インデックスを調整
-            if (inputIndex < config.maxCount) { // 最大数を超えない範囲で処理
+            if (currentCount + index < config.maxCount) { // マックスカウントを超えない範囲で処理
+                let inputIndex = startIndex + index + 1;
                 let nextInput = container.querySelector(`.${config.inputClass}[data-index="${inputIndex}"]`);
-                if (!nextInput) { // 対象のテキストボックスが存在しなければ新しく追加
+                if (!nextInput) {
                     nextInput = addNewTextbox(container, inputIndex, config);
                 }
-                nextInput.value += line; // 新しいテキストボックスに行の内容を追加
+                nextInput.value = line;
                 updateCharacterCount(nextInput, config.countClassPrefix);
             }
         });
