@@ -868,11 +868,8 @@ document.addEventListener('DOMContentLoaded', function () {
     Object.keys(sections).forEach(containerId => {
         const container = document.getElementById(containerId);
         const inputClass = sections[containerId];
-
-        // コンテナ内のh5タグを見つけます。
         const h5 = container.querySelector('h5');
 
-        // アラート表示用の要素を作成し、h5タグの直下に追加
         const alertElementId = `${containerId}ExclamationAlert`;
         let alertElement = document.getElementById(alertElementId);
         if (!alertElement) {
@@ -881,20 +878,28 @@ document.addEventListener('DOMContentLoaded', function () {
             alertElement.id = alertElementId;
             alertElement.style.display = 'none';
             alertElement.textContent = '「!」または「！」を含むテキストは使用出来ません。';
-            // h5タグの直後にアラートを追加
             h5.insertAdjacentElement('afterend', alertElement);
         }
 
-        // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
-        container.addEventListener('input', function (e) {
-            if (e.target.classList.contains(inputClass)) {
-                const hasExclamation = Array.from(container.querySelectorAll(`.${inputClass}`))
-                    .some(input => input.value.includes('！') || input.value.includes('!'));
+        // テキスト入力とペーストの両方を監視
+        container.addEventListener('input', handleEvent);
+        container.addEventListener('paste', handleEvent);
 
-                // アラートの表示/非表示を切り替え
-                alertElement.style.display = hasExclamation ? '' : 'none';
+        function handleEvent(e) {
+            let text;
+            if (e.type === 'paste') {
+                // ペーストイベントの場合、ペーストされたテキストを取得
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                text = pastedData;
+            } else {
+                // それ以外の場合は、イベントが発生した要素の値を使用
+                text = e.target.value;
             }
-        });
+
+            const hasExclamation = text.includes('！') || text.includes('!');
+            alertElement.style.display = hasExclamation ? '' : 'none';
+        }
     });
 });
 
@@ -909,22 +914,127 @@ document.addEventListener('DOMContentLoaded', async function () {
     };
 
     // 機種依存文字のリストを取得
-    let dependencyChars = await fetch('./chars/dependencyChars.json')
-        .then(response => response.json())
-        .then(data => data.chars)
-        .catch(error => {
-            console.error('機種依存文字の読み込みに失敗しました:', error);
-            return []; // エラーが発生した場合は空の配列を返す
-        });
+    let dependencyChars = [
+        "№",
+        "㏍",
+        "℡",
+        "㊤",
+        "㊥",
+        "㊦",
+        "㊧",
+        "㊨",
+        "㈱",
+        "㈲",
+        "㈹",
+        "㍾",
+        "㍽",
+        "㍼",
+        "㍻",
+        "㍉",
+        "㎜",
+        "㎝",
+        "㎞",
+        "㎎",
+        "㎏",
+        "㏄",
+        "㍉㌔",
+        "㌢",
+        "㍍㌘",
+        "㌧",
+        "㌃",
+        "㌶",
+        "㍑",
+        "㍗",
+        "㌍",
+        "㌦",
+        "㌣",
+        "㌫",
+        "㍊",
+        "㌻",
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩",
+        "⑪",
+        "⑫",
+        "⑬",
+        "⑭",
+        "⑮",
+        "⑯",
+        "⑰",
+        "⑱",
+        "⑲",
+        "⑳",
+        "Ⅰ",
+        "Ⅱ",
+        "Ⅲ",
+        "Ⅳ",
+        "Ⅴ",
+        "Ⅵ",
+        "Ⅶ",
+        "Ⅷ",
+        "Ⅸ",
+        "Ⅹ",
+        "Ⅺ",
+        "Ⅻ",
+        "Ⅼ",
+        "Ⅽ",
+        "Ⅾ",
+        "Ⅿ",
+        "ⅰ",
+        "ⅱ",
+        "ⅲ",
+        "ⅳ",
+        "ⅴ",
+        "ⅵ",
+        "ⅶ",
+        "ⅷ",
+        "ⅸ",
+        "ⅹ",
+        "ⅺ",
+        "ⅻ",
+        "ⅼ",
+        "ⅽ",
+        "ⅾ",
+        "ⅿ",
+        "≡",
+        "∑",
+        "∫",
+        "∮",
+        "√",
+        "⊥",
+        "∠",
+        "∟",
+        "⊿",
+        "∵",
+        "∩",
+        "∪",
+        "・",
+        "纊",
+        "鍈",
+        "蓜",
+        "炻",
+        "棈",
+        "兊",
+        "夋",
+        "奛",
+        "奣",
+        "寬",
+        "﨑",
+        "嵂"
+    ];
 
     Object.keys(sections).forEach(containerId => {
         const container = document.getElementById(containerId);
         const inputClass = sections[containerId];
-
-        // コンテナ内のh5タグを見つけます。
         const h5 = container.querySelector('h5');
 
-        // アラート表示用の要素を作成し、h5タグの直下に追加
         const dependencyAlertElementId = `${containerId}DependencyAlert`;
         let dependencyAlertElement = document.getElementById(dependencyAlertElementId);
         if (!dependencyAlertElement) {
@@ -936,16 +1046,25 @@ document.addEventListener('DOMContentLoaded', async function () {
             h5.insertAdjacentElement('afterend', dependencyAlertElement);
         }
 
-        // テキストボックスの入力を監視して、アラートの表示/非表示を切り替え
-        container.addEventListener('input', function (e) {
-            if (e.target.classList.contains(inputClass)) {
-                const hasDependencyChar = Array.from(container.querySelectorAll(`.${inputClass}`))
-                    .some(input => dependencyChars.some(char => input.value.includes(char)));
+        // テキスト入力とペーストの両方を監視
+        container.addEventListener('input', handleEvent);
+        container.addEventListener('paste', handleEvent);
 
-                // アラートの表示/非表示を切り替え
-                dependencyAlertElement.style.display = hasDependencyChar ? '' : 'none';
+        function handleEvent(e) {
+            let text;
+            if (e.type === 'paste') {
+                // ペーストイベントの場合、ペーストされたテキストを取得
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                text = pastedData;
+            } else {
+                // それ以外の場合は、イベントが発生した要素の値を使用
+                text = e.target.value;
             }
-        });
+
+            const hasDependencyChar = dependencyChars.some(char => text.includes(char));
+            dependencyAlertElement.style.display = hasDependencyChar ? '' : 'none';
+        }
     });
 });
 
