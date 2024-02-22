@@ -1186,3 +1186,54 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+////////////////
+//かっこ連続不可
+////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = {
+        'ysaadTitlesContainer': 'ysaadTitleInput',
+        'ysaadDescriptionsContainer': 'ysaadDescriptionInput',
+        // 他のセクションも同様に追加可能です。
+    };
+
+    Object.keys(sections).forEach(containerId => {
+        const container = document.getElementById(containerId);
+        const inputClass = sections[containerId];
+        const h5 = container.querySelector('h5');
+
+        const alertElementId = `${containerId}BracketAlert`;
+        let alertElement = document.getElementById(alertElementId);
+        if (!alertElement) {
+            alertElement = document.createElement('div');
+            alertElement.className = 'alert alert-warning mt-3';
+            alertElement.id = alertElementId;
+            alertElement.style.display = 'none';
+            alertElement.textContent = '括弧を2回以上使用することはできません。';
+            h5.insertAdjacentElement('afterend', alertElement);
+        }
+
+        container.addEventListener('input', handleEvent);
+        container.addEventListener('paste', handleEvent);
+
+        function handleEvent(e) {
+            let text;
+            if (e.type === 'paste') {
+                e.preventDefault();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                text = pastedData;
+            } else {
+                text = e.target.value;
+            }
+
+            // 全ての括弧の出現をチェック
+            // 全角の括弧（）を含めた正規表現パターン
+            const bracketPattern = /[\(\)\[\]\{\}【】｛｝「」（）]/g;
+
+            const matches = text.match(bracketPattern);
+            const totalBrackets = matches ? matches.length : 0;
+            
+            // 合計が4回以上ならアラートを表示
+            alertElement.style.display = totalBrackets >= 4 ? '' : 'none';
+        }
+    });
+});
