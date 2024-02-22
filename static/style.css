@@ -535,9 +535,13 @@ p {
     /* フォーム要素のボーダーを角丸に */
     border: 1px solid #ced4da;
     /* 枠線の色を統一 */
+    font-weight: bold; 
 }
 
 .form-select {
     display: block;
     padding: 2px 10px;
+}
+.form-control::placeholder {
+    font-weight: normal; /* プレースホルダーのテキストを太字に設定 */
 }
