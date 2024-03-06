@@ -1296,7 +1296,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
+////////////////////
+//GSA広告見出しコピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="gsaadTitleInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.gsaadTitleInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//GDN広告見出しコピー
+////////////////////
 document.addEventListener('DOMContentLoaded', function() {
     const copyIcon = document.querySelector('.copyButton[data-target="gdnadTitleInput1"]');
     copyIcon.addEventListener('click', function() {
