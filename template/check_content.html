@@ -67,10 +67,10 @@
         <!-- GDN -->
         <div class="form-group" id="textGDN" style="display: none;">
             <div class="form-group" id="gdnadTitlesContainer">
-                <h5 class="mb-2">広告見出し</h5>
+                <h5 class="mb-2">広告見出し <button class="copyButton" data-target="gdnadTitleInput1">コピー</button></h5>
                 <div class="row mb-3" id="gdnadTitleRow1">
-                    <div class="col-md-8">
-                        <input type="text" class="form-control gdnadTitleInput" placeholder="広告見出しを入力" data-index="1">
+                    <div class="col-md-8 position-relative">
+                        <input type="text" class="form-control gdnadTitleInput" id="gdnadTitleInput1" placeholder="広告見出しを入力" data-index="1">
                     </div>
                     <div class="col-md-4">
                         <div class="character-counts">
@@ -81,6 +81,21 @@
                     </div>
                 </div>
             </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const copyButtons = document.querySelectorAll('.copyButton');
+                    copyButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const targetId = this.getAttribute('data-target');
+                            const targetInput = document.getElementById(targetId);
+                            if (targetInput) {
+                                targetInput.select();
+                                document.execCommand('copy');
+                            }
+                        });
+                    });
+                });
+            </script>
             <div class="form-group" id="gdnadDescriptionsContainer">
                 <h5 class="mb-2">長い広告見出し</h5>
                 <div class="row mb-3" id="gdnadDescriptionRow1">
