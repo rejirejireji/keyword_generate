@@ -545,3 +545,6 @@ p {
 .form-control::placeholder {
     font-weight: normal; /* プレースホルダーのテキストを太字に設定 */
 }
+.copyButton {
+    cursor: pointer; /* カーソルをポインターに変更 */
+}
