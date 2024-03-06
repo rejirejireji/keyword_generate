@@ -1319,6 +1319,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 ////////////////////
+//GSA説明文コピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="gsaadDescriptionInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.gsaadDescriptionInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//GSAパスコピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="gsaadPathInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.gsaadPathInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
 //GDN広告見出しコピー
 ////////////////////
 document.addEventListener('DOMContentLoaded', function() {
@@ -1327,6 +1371,116 @@ document.addEventListener('DOMContentLoaded', function() {
         let textToCopy = '';
         for (let i = 1; i <= 15; i++) {
             const inputElement = document.querySelector(`.gdnadTitleInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//GDN長い広告見出しコピーこれはまだできていない
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="gdnadDescriptionInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.gdnadDescriptionInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//GDN説明文コピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="gdnadPathInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.gdnadPathInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//YSA見出しコピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="ysaadTitleInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.ysaadTitleInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//YSA説明文コピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="ysaadDescriptionInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.ysaadDescriptionInput[data-index="${i}"]`);
+            if (inputElement) {
+                textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
+            }
+        }
+        // 一時的なテキストエリアを作成してテキストをコピー
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = textToCopy;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+    });
+});
+////////////////////
+//YSAパスコピー
+////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const copyIcon = document.querySelector('.copyButton[data-target="ysaadPathInput1"]');
+    copyIcon.addEventListener('click', function() {
+        let textToCopy = '';
+        for (let i = 1; i <= 15; i++) {
+            const inputElement = document.querySelector(`.ysaadPathInput[data-index="${i}"]`);
             if (inputElement) {
                 textToCopy += inputElement.value + '\n'; // 各入力値を改行で区切って追加
             }
