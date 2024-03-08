@@ -112,7 +112,8 @@ def analyze_trend():
     data = request.get_json()
     keyword = data['keyword']
     # ここでは固定の日付を使用していますが、必要に応じて変更してください
-    trends_json = get_search_trends(keyword, "2023-01-01", "2023-04-01")
+    trends_json = get_search_trends(keyword, "2024-01-01", "2024-03-01")
+    print(trends_json)
     return jsonify(trends_json)
 
 if __name__ == '__main__':
