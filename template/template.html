@@ -108,13 +108,7 @@
         </div>
 
         <div id="analysisContent" class="content-section" style="display: none;">
-            <p>ここにはキーワードの分析結果や関連するデータが表示されます。</p>
-            <select id="prefectureInput" class="form-control mb-2">
-                <option value="">都道府県を選択</option>
-                {% for prefecture in prefectures %}
-                <option value="{{ prefecture.value }}">{{ prefecture.name }}</option>
-                {% endfor %}
-            </select>
+            {% include 'trend.html' %}
         </div>
         <div id="checkContent" class="content-section" style="display: none;">
             {% include 'check_content.html' %}

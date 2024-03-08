@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>検索トレンド分析</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="trend-analysis">
+        <h2>キーワードによる検索トレンド分析</h2>
+        <form id="trendForm">
+            <label for="keyword">キーワード:</label>
+            <input type="text" id="keyword" name="keyword" required>
+            <button type="button" id="analyzeButton">分析開始</button>
+        </form>
+
+        <!-- 結果表示用のセクション -->
+        <div id="trendResults"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#analyzeButton').click(function() {
+                var keyword = $('#keyword').val();
+                if (keyword) {
+                    // ここでサーバーにキーワードを送信し、結果を取得する
+                    $.ajax({
+                        url: '/analyze_trend', // サーバー側のエンドポイントURLに置き換えてください
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ keyword: keyword }),
+                        success: function(data) {
+                            // 成功時の処理。dataにはサーバーからの応答が含まれる
+                            $('#trendResults').html('<pre>' + JSON.stringify(data, null, 2) + '</pre>');
+                        },
+                        error: function(xhr, status, error) {
+                            // エラー時の処理
+                            $('#trendResults').html('<p>エラーが発生しました。</p>');
+                        }
+                    });
+                } else {
+                    alert('キーワードを入力してください。');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
