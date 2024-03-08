@@ -1535,3 +1535,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(tempTextArea);
     });
 });
+fetch('/analyze_trend', {
+    method: 'POST', // リクエストメソッドをPOSTに設定
+    headers: {
+        'Content-Type': 'application/json', // コンテンツタイプをJSONに設定
+    },
+    body: JSON.stringify({ keyword: '検索キーワード' }) // 送信するデータ
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data); // サーバーからの応答を処理
+})
+.catch(error => {
+    console.error('Error:', error);
+});

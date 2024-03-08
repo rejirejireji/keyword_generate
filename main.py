@@ -90,14 +90,22 @@ def some_page():
     return render_template('some_page.html')
 
 from pytrends.request import TrendReq
-
+import pandas as pd
 
 
 def get_search_trends(keyword, start_date, end_date, geo='JP'):
     pytrends = TrendReq(hl='ja-JP', tz=360)
-    pytrends.build_payload([keyword], timeframe=f'{start_date} {end_date}', geo=geo)
+    # キーワードが日本語の場合と英語の場合で処理を分ける
+    if keyword.isascii():
+        pytrends.build_payload([keyword], timeframe=f'{start_date} {end_date}', geo=geo)
+    else:
+        # 日本語のキーワードを扱うために、キーワードをリストで渡す
+        pytrends.build_payload(kw_list=[keyword], timeframe=f'{start_date} {end_date}', geo=geo)
     interest_over_time = pytrends.interest_over_time()
-    return interest_over_time.to_json()
+    # 日付をより視認性の高い形式に変更
+    interest_over_time.index = interest_over_time.index.strftime('%Y年%m月%d日')
+    # 正しくエンコードして返す
+    return interest_over_time.to_json(date_format='iso', force_ascii=False)
 
 @app.route('/analyze_trend', methods=['POST'])
 def analyze_trend():
@@ -106,7 +114,6 @@ def analyze_trend():
     # ここでは固定の日付を使用していますが、必要に応じて変更してください
     trends_json = get_search_trends(keyword, "2023-01-01", "2023-04-01")
     return jsonify(trends_json)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
