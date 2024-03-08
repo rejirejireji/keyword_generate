@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>検索トレンド分析</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.jsのバージョンを2.9.4に変更 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 </head>
 <body>
     <div class="trend-analysis">
@@ -20,55 +21,5 @@
             <canvas id="myChart"></canvas>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#analyzeButton').click(function() {
-                var keyword = $('#keyword').val();
-                if (keyword) {
-                    // ここでサーバーにキーワードを送信し、結果を取得する
-                    $.ajax({
-                        url: '/analyze_trend',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({ keyword: keyword }),
-                        success: function(data) {
-                            // 成功時の処理。dataにはサーバーからの応答が含まれる
-                            var ctx = document.getElementById('myChart').getContext('2d');
-                            var trendData = JSON.parse(data);
-                            var labels = Object.keys(trendData);
-                            var values = Object.values(trendData).map(function(value) { return value[Object.keys(value)[0]]; });
-                            var myChart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: labels,
-                                    datasets: [{
-                                        label: '検索トレンド',
-                                        data: values,
-                                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                        borderColor: 'rgba(255, 99, 132, 1)',
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            // エラー時の処理
-                            $('#trendResults').html('<p>エラーが発生しました。</p>');
-                        }
-                    });
-                } else {
-                    alert('キーワードを入力してください。');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
