@@ -1514,7 +1514,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 ////////////////////
-//YDAタイトルコピー
+//YDA説明文コピー
 ////////////////////
 document.addEventListener('DOMContentLoaded', function() {
     const copyIcon = document.querySelector('.copyButton[data-target="ydaadDescriptionInput1"]');
@@ -1535,9 +1535,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(tempTextArea);
     });
 });
-// script.js
+
+////////////////////
+//トレンド
+////////////////////
 document.getElementById('analyzeButton').addEventListener('click', function() {
-    var keyword = document.getElementById('keywordInput').value;
+    var keyword = document.getElementById('keywordInput').value.trim();
+    if (!keyword) {
+        console.error('キーワードが入力されていません。');
+        alert('キーワードを入力してください。');
+        return;
+    }
+
     fetch('/analyze_trend', {
         method: 'POST',
         headers: {
@@ -1545,12 +1554,23 @@ document.getElementById('analyzeButton').addEventListener('click', function() {
         },
         body: JSON.stringify({ keyword: keyword })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('サーバーからの応答が正しくありません: ' + response.statusText);
+        }
+        return response.json();
+    })
     .then(data => {
-        drawChart(data);
+        if (data.error) {
+            console.error('エラー:', data.error);
+            alert('エラー: ' + data.error); // エラーメッセージをユーザーに表示
+        } else {
+            drawChart(data);
+        }
     })
     .catch(error => {
         console.error('Error:', error);
+        alert('エラーが発生しました: ' + error.message); // エラーメッセージをユーザーに表示
     });
 });
 

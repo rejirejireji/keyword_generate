@@ -91,18 +91,28 @@ def generate_keywords():
 def some_page():
     return render_template('some_page.html')
 
-app = Flask(__name__)
 
 @app.route('/analyze_trend', methods=['POST'])
 def analyze_trend():
     data = request.get_json()
-    keyword = data['keyword']
+    # .get() を使用してキーワードを安全に取得
+    keyword = data.get('keyword')
+    if not keyword:
+        # キーワードが提供されていない場合はエラーを返す
+        return jsonify({"error": "キーワードが指定されていません。"}), 400
+
     pytrends = TrendReq(hl='ja-JP', tz=360)
     pytrends.build_payload([keyword], timeframe='today 3-m', geo='JP')
     interest_over_time = pytrends.interest_over_time()
+    
     if not interest_over_time.empty:
-        result = interest_over_time[keyword].to_dict()
-        return jsonify(result)
+        # キーワードがDataFrameに存在するか確認
+        if keyword in interest_over_time.columns:
+            result = interest_over_time[keyword].to_dict()
+            return jsonify(result)
+        else:
+            # キーワードがDataFrameに存在しない場合はエラーを返す
+            return jsonify({"error": f"キーワード '{keyword}' のデータが見つかりませんでした。"}), 404
     else:
         return jsonify({"error": "データが見つかりませんでした。"}), 404
 
