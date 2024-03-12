@@ -1535,62 +1535,39 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(tempTextArea);
     });
 });
+// script.js
 document.getElementById('analyzeButton').addEventListener('click', function() {
-    var keyword = document.getElementById('keywordInput').value; // 入力フィールドからキーワードを取得
+    var keyword = document.getElementById('keywordInput').value;
     fetch('/analyze_trend', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ keyword: keyword }) // 入力したキーワードを送信するデータに設定
+        body: JSON.stringify({ keyword: keyword })
     })
     .then(response => response.json())
     .then(data => {
-        drawChart(JSON.parse(data)); // サーバーからの応答を処理してグラフを描画
+        drawChart(data);
     })
     .catch(error => {
         console.error('Error:', error);
     });
 });
 
-// グラフを描画する関数
 function drawChart(data) {
-    const ctx = document.getElementById('myChart').getContext('2d'); // キャンバスのIDを修正
-    const trendData = data; // データ構造の変更に伴い、直接dataを使用
-    const labels = Object.keys(trendData);
-    const values = Object.values(trendData);
-
+    const ctx = document.getElementById('trendChart').getContext('2d');
+    const labels = Object.keys(data);
+    const values = Object.values(data);
     new Chart(ctx, {
-        type: 'line', // グラフのタイプを折れ線グラフに設定
+        type: 'line',
         data: {
-            labels: labels, // X軸のラベル
+            labels: labels,
             datasets: [{
                 label: '検索トレンド',
-                data: values, // Y軸のデータ
+                data: values,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    type: 'time',
-                    time: {
-                        parser: 'YYYY-MM-DD',
-                        tooltipFormat: 'll'
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: '日付'
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: '検索トレンド値'
-                    }
-                }]
-            }
         }
     });
 }

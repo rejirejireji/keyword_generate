@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import json 
 from pytrends.request import TrendReq
 
+
 # Flaskアプリケーションの設定
 app = Flask(__name__,template_folder='template')
 
@@ -90,9 +91,7 @@ def generate_keywords():
 def some_page():
     return render_template('some_page.html')
 
-from pytrends.request import TrendReq
-import pandas as pd
-
+app = Flask(__name__)
 
 @app.route('/analyze_trend', methods=['POST'])
 def analyze_trend():
@@ -102,7 +101,6 @@ def analyze_trend():
     pytrends.build_payload([keyword], timeframe='today 3-m', geo='JP')
     interest_over_time = pytrends.interest_over_time()
     if not interest_over_time.empty:
-        # 日付と検索トレンド値を抽出
         result = interest_over_time[keyword].to_dict()
         return jsonify(result)
     else:

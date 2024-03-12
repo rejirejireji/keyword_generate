@@ -2,24 +2,16 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>検索トレンド分析</title>
+    <title>Googleトレンド分析</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Chart.jsのバージョンを2.9.4に変更 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="trend-analysis">
-        <h2>キーワードによる検索トレンド分析</h2>
-        <form id="trendForm">
-            <label for="keyword">キーワード:</label>
-            <input type="text" id="keyword" name="keyword" required>
-            <button type="button" id="analyzeButton">分析開始</button>
-        </form>
+    <h1>Googleトレンド分析</h1>
+    <input type="text" id="keywordInput" placeholder="キーワードを入力">
+    <button id="analyzeButton">分析開始</button>
+    <canvas id="trendChart"></canvas>
 
-        <!-- 結果表示用のセクション -->
-        <div id="trendResults" style="width: 600px; height: 400px;">
-            <canvas id="myChart"></canvas>
-        </div>
-    </div>
+    <script src="script.js"></script>
 </body>
 </html>
