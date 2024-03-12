@@ -5,6 +5,7 @@ from openai import OpenAI
 import feedparser
 from datetime import datetime, timedelta
 import json 
+from pytrends.request import TrendReq
 
 # Flaskアプリケーションの設定
 app = Flask(__name__,template_folder='template')
@@ -93,28 +94,19 @@ from pytrends.request import TrendReq
 import pandas as pd
 
 
-def get_search_trends(keyword, start_date, end_date, geo='JP'):
-    pytrends = TrendReq(hl='ja-JP', tz=360)
-    # キーワードが日本語の場合と英語の場合で処理を分ける
-    if keyword.isascii():
-        pytrends.build_payload([keyword], timeframe=f'{start_date} {end_date}', geo=geo)
-    else:
-        # 日本語のキーワードを扱うために、キーワードをリストで渡す
-        pytrends.build_payload(kw_list=[keyword], timeframe=f'{start_date} {end_date}', geo=geo)
-    interest_over_time = pytrends.interest_over_time()
-    # 日付をより視認性の高い形式に変更
-    interest_over_time.index = interest_over_time.index.strftime('%Y年%m月%d日')
-    # 正しくエンコードして返す
-    return interest_over_time.to_json(date_format='iso', force_ascii=False)
-
 @app.route('/analyze_trend', methods=['POST'])
 def analyze_trend():
     data = request.get_json()
     keyword = data['keyword']
-    # ここでは固定の日付を使用していますが、必要に応じて変更してください
-    trends_json = get_search_trends(keyword, "2024-01-01", "2024-02-01")
-    print(trends_json)
-    return jsonify(trends_json)
+    pytrends = TrendReq(hl='ja-JP', tz=360)
+    pytrends.build_payload([keyword], timeframe='today 3-m', geo='JP')
+    interest_over_time = pytrends.interest_over_time()
+    if not interest_over_time.empty:
+        # 日付と検索トレンド値を抽出
+        result = interest_over_time[keyword].to_dict()
+        return jsonify(result)
+    else:
+        return jsonify({"error": "データが見つかりませんでした。"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
