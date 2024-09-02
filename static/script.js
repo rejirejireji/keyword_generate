@@ -115,6 +115,7 @@ function clearInputs() {
     document.getElementById("keywordInput").value = '';
     document.getElementById("industryInput").value = '';
     document.getElementById("appealInput").value = '';
+    document.getElementById("tergetInput").value = '';
     document.getElementById("prefectureInput").selectedIndex = 0; // 最初のオプションを選択
     document.getElementById("cityInput").selectedIndex = 0; // 最初のオプションを選択
 }
