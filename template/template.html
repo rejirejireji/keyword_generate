@@ -79,9 +79,10 @@
 
         <div id="keywordGeneratorContent" class="content-section" style="display: none;">
             <p></p>
-            <input type="text" id="keywordInput" placeholder="キーワードを入力" class="form-control mb-2">
-            <input type="text" id="industryInput" placeholder="業界を入力" class="form-control mb-2">
-            <input type="text" id="appealInput" placeholder="訴求内容を入力" class="form-control mb-2">
+            <input type="text" id="keywordInput" placeholder="ブランド名を入力" class="form-control mb-2">
+            <input type="text" id="industryInput" placeholder="業種を入力" class="form-control mb-2">
+            <input type="text" id="appealInput" placeholder="特徴（単語 or 短文のカンマ区切り推奨）を入力" class="form-control mb-2">
+            <input type="text" id="tergetInput" placeholder="ターゲットを入力" class="form-control mb-2">
             <select id="prefectureInput" class="form-control mb-2">
                 <option value="">都道府県を選択</option>
                 {% for prefecture in prefectures %}

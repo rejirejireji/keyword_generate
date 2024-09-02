@@ -5,6 +5,7 @@ function generateKeywords() {
     var baseKeyword = document.getElementById('keywordInput').value; //キーワードを取得
     var industry = document.getElementById('industryInput').value; //業界を取得
     var appeal = document.getElementById('appealInput').value; //訴求内容を取得
+    var target = document.getElementById('tergetInput').value; //ターゲットを取得
     var prefectureName = $("#prefectureInput option:selected").text(); // 都道府県名を取得
     var city = $("#cityInput option:selected").text(); // 市区町村名を取得
     var generateButton = document.getElementById('generateButton'); //生成ボタン
@@ -26,6 +27,7 @@ function generateKeywords() {
             'industry': industry,
             'region': city,
             'appeal': appeal,
+            'target': target,
             'prefecture': prefectureName
         })
     })
